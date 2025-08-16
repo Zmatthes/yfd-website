@@ -12,32 +12,32 @@ const Header = () => {
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <h1 className="text-xl font-bold text-foreground">Your Favorite Detailer</h1>
+          <h1 className="text-xl font-bold text-foreground font-display">Your Favorite Detailer</h1>
         </div>
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <button 
             onClick={() => scrollToSection('services')}
-            className="text-muted-foreground hover:text-foreground transition-smooth"
+            className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
             Services
           </button>
           <button 
-            onClick={() => scrollToSection('pricing')}
-            className="text-muted-foreground hover:text-foreground transition-smooth"
+            onClick={() => scrollToSection('quote-builder')}
+            className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
-            Pricing
+            Build Quote
           </button>
           <button 
             onClick={() => scrollToSection('gallery')}
-            className="text-muted-foreground hover:text-foreground transition-smooth"
+            className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
             Gallery
           </button>
           <button 
             onClick={() => scrollToSection('contact')}
-            className="text-muted-foreground hover:text-foreground transition-smooth"
+            className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
             Contact
           </button>
@@ -52,10 +52,10 @@ const Header = () => {
           <Button 
             variant="hero" 
             size="sm"
-            onClick={() => scrollToSection('contact')}
+            onClick={() => scrollToSection('quote-builder')}
           >
             <Phone className="h-4 w-4" />
-            Get Quote
+            Build Quote
           </Button>
         </div>
       </div>

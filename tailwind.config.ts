@@ -79,8 +79,8 @@ export default {
 				'bounce': 'var(--transition-bounce)'
 			},
 			fontFamily: {
-				'display': ['Inter', 'system-ui', 'sans-serif'],
-				'body': ['Inter', 'system-ui', 'sans-serif']
+				'display': ['Oswald', 'Inter', 'system-ui', 'sans-serif'],
+				'body': ['Oswald', 'Inter', 'system-ui', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
