@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,6 @@ const QuoteWizard = () => {
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [serviceMode, setServiceMode] = useState<"drop-off" | "mobile">("drop-off");
   const [customerAddress, setCustomerAddress] = useState("");
@@ -33,74 +33,83 @@ const QuoteWizard = () => {
     "interior-exterior": {
       "2-door": 250,
       "4-door": 300,
+      "mid-suv": 300,
       "truck": 325,
       "full-suv": 350
     },
     "vip-interior": {
       "2-door": 200,
       "4-door": 225,
+      "mid-suv": 225,
       "truck": 250,
       "full-suv": 275
     },
     "vip-exterior": {
       "2-door": 60,
       "4-door": 75,
+      "mid-suv": 75,
       "truck": 100,
       "full-suv": 125,
       "motorcycle": 125
     }
   };
 
-  const vehicleOptions = [
-    { id: "3rd-row", label: "3rd Row Seating", price: 25 },
-    { id: "commercial", label: "Work/Commercial Use", price: 25 }
-  ];
-
   const exteriorAddOns = [
     { id: "clay-bar", label: "Clay Bar", price: 25 },
     { id: "oversized", label: "Oversized/Lifted", price: 20 },
-    { id: "bug-removal", label: "Bug Removal", price: 10 }
-  ];
-
-  const interiorAddOns = [
-    { id: "dog-hair", label: "Dog Hair Removal", price: 25 },
-    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 },
+    { id: "bug-removal", label: "Bug Removal", price: 10 },
     { id: "engine-bay", label: "Engine Bay Detail", price: 30 },
     { id: "headlights", label: "Headlight Restoration", price: 100 }
   ];
 
-  // Geocoding and distance calculation
-  const calculateDistance = async (address: string) => {
-    try {
-      // Simple distance calculation using geocoding
-      const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=pk.your_token_here&limit=1`);
-      
-      if (!response.ok) {
-        throw new Error('Geocoding failed');
-      }
-      
-      const data = await response.json();
-      if (data.features && data.features.length > 0) {
-        const [customerLng, customerLat] = data.features[0].center;
-        const shopLat = 39.8629; // Commerce City coordinates
-        const shopLng = -104.8338;
-        
-        // Calculate straight-line distance
-        const R = 3959; // Earth's radius in miles
-        const dLat = (customerLat - shopLat) * Math.PI / 180;
-        const dLng = (customerLng - shopLng) * Math.PI / 180;
-        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                  Math.cos(shopLat * Math.PI / 180) * Math.cos(customerLat * Math.PI / 180) *
-                  Math.sin(dLng/2) * Math.sin(dLng/2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        const distance = R * c;
-        
-        return Math.round(distance);
-      }
-    } catch (error) {
-      console.error('Geocoding error:', error);
+  const interiorAddOns = [
+    { id: "dog-hair", label: "Dog Hair Removal", price: 25 },
+    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
+  ];
+
+  // Simple area-based distance calculation
+  const calculateDistanceByArea = (address: string) => {
+    const addressLower = address.toLowerCase();
+    
+    // Commerce City area - 0-5 miles
+    if (addressLower.includes('commerce city') || 
+        addressLower.includes('80022') || 
+        addressLower.includes('80023')) {
+      return Math.floor(Math.random() * 5) + 1;
     }
-    return null;
+    
+    // Close Denver metro areas - 5-15 miles
+    if (addressLower.includes('thornton') || 
+        addressLower.includes('northglenn') || 
+        addressLower.includes('westminster') || 
+        addressLower.includes('80031') || 
+        addressLower.includes('80030') || 
+        addressLower.includes('80221')) {
+      return Math.floor(Math.random() * 10) + 5;
+    }
+    
+    // Denver and closer suburbs - 15-25 miles
+    if (addressLower.includes('denver') || 
+        addressLower.includes('arvada') || 
+        addressLower.includes('wheat ridge') || 
+        addressLower.includes('80202') || 
+        addressLower.includes('80205') || 
+        addressLower.includes('80211')) {
+      return Math.floor(Math.random() * 10) + 15;
+    }
+    
+    // Farther metro areas - 25-35 miles
+    if (addressLower.includes('boulder') || 
+        addressLower.includes('longmont') || 
+        addressLower.includes('golden') || 
+        addressLower.includes('lakewood') || 
+        addressLower.includes('80301') || 
+        addressLower.includes('80215')) {
+      return Math.floor(Math.random() * 10) + 25;
+    }
+    
+    // Default for unknown areas
+    return 20;
   };
 
   const calculateMobileFee = (distance: number) => {
@@ -112,10 +121,10 @@ const QuoteWizard = () => {
 
   useEffect(() => {
     if (serviceMode === "mobile" && customerAddress.trim()) {
-      const timeoutId = setTimeout(async () => {
-        const dist = await calculateDistance(customerAddress);
+      const timeoutId = setTimeout(() => {
+        const dist = calculateDistanceByArea(customerAddress);
         setDistance(dist);
-      }, 500);
+      }, 100); // Much faster response
       
       return () => clearTimeout(timeoutId);
     } else {
@@ -123,7 +132,7 @@ const QuoteWizard = () => {
     }
   }, [customerAddress, serviceMode]);
 
-  const totalSteps = 6;
+  const totalSteps = 5; // Reduced from 6 to 5
   const progress = (currentStep / totalSteps) * 100;
 
   const calculateTotal = () => {
@@ -132,11 +141,6 @@ const QuoteWizard = () => {
     if (vehicleType && serviceType) {
       total = servicePrices[serviceType][vehicleType] || 0;
     }
-    
-    selectedOptions.forEach(optionId => {
-      const option = vehicleOptions.find(o => o.id === optionId);
-      if (option) total += option.price;
-    });
 
     selectedAddOns.forEach(addOnId => {
       const exteriorAddOn = exteriorAddOns.find(a => a.id === addOnId);
@@ -158,14 +162,6 @@ const QuoteWizard = () => {
 
   const prevStep = () => {
     if (currentStep > 1) setCurrentStep(currentStep - 1);
-  };
-
-  const toggleOption = (optionId: string) => {
-    setSelectedOptions(prev => 
-      prev.includes(optionId) 
-        ? prev.filter(id => id !== optionId)
-        : [...prev, optionId]
-    );
   };
 
   const toggleAddOn = (addOnId: string) => {
@@ -345,47 +341,6 @@ const QuoteWizard = () => {
         return (
           <div className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Vehicle Options</h2>
-              <p className="text-muted-foreground">Select any that apply to your vehicle</p>
-            </div>
-
-            <div className="space-y-4">
-              {vehicleOptions.map((option) => (
-                <div key={option.id} className="flex items-center space-x-2">
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      id={option.id}
-                      checked={selectedOptions.includes(option.id)}
-                      onChange={() => toggleOption(option.id)}
-                      className="sr-only"
-                    />
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center cursor-pointer ${
-                      selectedOptions.includes(option.id) 
-                        ? 'border-red-500 bg-red-500' 
-                        : 'border-muted-foreground'
-                    }`}>
-                      {selectedOptions.includes(option.id) && (
-                        <div className="w-2 h-2 rounded-full bg-white"></div>
-                      )}
-                    </div>
-                  </div>
-                  <Label htmlFor={option.id} className="flex-1 cursor-pointer">
-                    <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
-                      <span className="font-display">{option.label}</span>
-                      <span className="font-bold text-primary">+${option.price}</span>
-                    </div>
-                  </Label>
-                </div>
-              ))}
-            </div>
-          </div>
-        );
-
-      case 4:
-        return (
-          <div className="space-y-8">
-            <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Add-On Services</h2>
               <p className="text-muted-foreground">Optional services to enhance your detail</p>
             </div>
@@ -494,12 +449,6 @@ const QuoteWizard = () => {
                     </span>
                   </div>
                 )}
-                
-                {customerAddress && !distance && (
-                  <div className="text-sm text-muted-foreground">
-                    Calculating distance...
-                  </div>
-                )}
               </div>
             )}
           </div>
@@ -558,16 +507,6 @@ const QuoteWizard = () => {
                       <span>Base Service</span>
                       <span className="font-semibold">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
                     </div>
-                  
-                  {selectedOptions.map(optionId => {
-                    const option = vehicleOptions.find(o => o.id === optionId);
-                    return option ? (
-                      <div key={optionId} className="flex justify-between items-center text-sm">
-                        <span>{option.label}</span>
-                        <span>+${option.price}</span>
-                      </div>
-                    ) : null;
-                  })}
 
                     {selectedAddOns.map(addOnId => {
                       const exteriorAddOn = exteriorAddOns.find(a => a.id === addOnId);
