@@ -438,7 +438,7 @@ const QuoteWizard = () => {
           </div>
         );
 
-      case 5:
+      case 4:
         return (
           <div className="space-y-8">
             <div className="text-center">
@@ -505,7 +505,7 @@ const QuoteWizard = () => {
           </div>
         );
 
-      case 6:
+      case 5:
         return (
           <div className="space-y-8">
             <div className="text-center">

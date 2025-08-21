@@ -14,23 +14,29 @@ const Services = () => {
     {
       icon: Car,
       title: "Exterior Detailing",
-      description: "Complete exterior wash, clay bar treatment, polish, and protective wax application for a showroom shine.",
-      features: ["Hand wash & dry", "Clay bar treatment", "Paint polish", "Protective wax", "Tire & rim cleaning"],
+      description: "Complete exterior detailing with professional techniques and premium products.",
+      features: [
+        "2 Bucket Hand Wash of Exterior", 
+        "Deep Clean of Wheels & Wheel Wells", 
+        "6 Month Paint Sealant Applied To Paint & Wheels For Protection & Hydrophobicity", 
+        "Tire Shine Applied (No Tire Shine Can Be Requested)"
+      ],
       popular: false
     },
     {
       icon: Sparkles,
       title: "Interior Detailing", 
-      description: "Deep interior cleaning including vacuuming, leather treatment, fabric protection, and dashboard care.",
-      features: ["Deep vacuum", "Leather conditioning", "Fabric protection", "Dashboard treatment", "Window cleaning"],
+      description: "Deep interior cleaning that removes 99.9% of germs and bacteria with steam cleaning.",
+      features: [
+        "Vacuum of Interior Including Trunk", 
+        "Deep Clean of ALL Interior Surfaces with Steam Effectively Removing 99.9% of Germs and Bacteria", 
+        "Shampoo Carpets", 
+        "Shampoo Seats", 
+        "Glass Cleaned", 
+        "Leather / Plastics Conditioned", 
+        "Door Jams Cleaned"
+      ],
       popular: false
-    },
-    {
-      icon: Shield,
-      title: "Full Detail Package",
-      description: "Complete interior and exterior detailing for the ultimate automotive care experience.",
-      features: ["Complete exterior detail", "Complete interior detail", "Engine bay cleaning", "Headlight restoration", "Paint protection"],
-      popular: true
     },
     {
       icon: Brush,
@@ -44,13 +50,6 @@ const Services = () => {
       title: "Ceramic Coating",
       description: "Long-lasting ceramic coating protection for superior paint protection and easy maintenance.",
       features: ["Paint preparation", "Ceramic application", "Curing process", "2-year protection", "Hydrophobic finish"],
-      popular: false
-    },
-    {
-      icon: Smartphone,
-      title: "Mobile Detailing",
-      description: "We come to you! Professional detailing services at your home, office, or preferred location.",
-      features: ["On-site service", "Full equipment", "Water & power included", "Flexible scheduling", "Denver Metro area"],
       popular: false
     }
   ];
@@ -133,12 +132,6 @@ const Services = () => {
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="text-center">
-            <p className="text-lg text-muted-foreground mb-6">
-              Need a custom package?
-            </p>
-          </div>
         </div>
       </div>
     </section>
