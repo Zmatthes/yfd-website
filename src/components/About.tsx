@@ -37,8 +37,7 @@ const About = () => {
                 variant="hero" 
                 size="lg"
                 onClick={() => {
-                  console.log('Button clicked'); // Debug log
-                  window.open('https://www.google.com/search?q=your+favorite+detailer#lrd=0x261db19847dbd8ff:0x7a226e5c0ed7cf92,1', '_blank');
+                  window.open('https://www.google.com/maps/place/Your+Favorite+Detailer/@39.9155378,-105.1115905,37596m/data=!3m1!1e3!4m8!3m7!1s0x261db19847dbd8ff:0x7a226e5c0ed7cf92!8m2!3d39.9156545!4d-104.946779!9m1!1b1!16s%2Fg%2F11rxjttqlv?entry=ttu&g_ep=EgoyMDI1MDgxOC4wIKXMDSoASAFQAw%3D%3D', '_blank');
                 }}
                 className="group"
               >
