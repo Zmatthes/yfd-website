@@ -24,7 +24,7 @@ const Header = () => {
             Services
           </button>
           <button 
-            onClick={() => scrollToSection('quote-builder')}
+            onClick={() => scrollToSection('quote-wizard')}
             className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
             Build Quote
@@ -52,7 +52,7 @@ const Header = () => {
           <Button 
             variant="hero" 
             size="sm"
-            onClick={() => scrollToSection('quote-builder')}
+            onClick={() => scrollToSection('quote-wizard')}
           >
             <Phone className="h-4 w-4" />
             Build Quote
