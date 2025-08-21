@@ -36,17 +36,13 @@ const About = () => {
               <Button 
                 variant="hero" 
                 size="lg"
-                onClick={scrollToContact}
+                onClick={() => window.open('https://www.google.com/search?q=your+favorite+detailer&sca_esv=5e55e5ee976bdccc&sxsrf=AE3TifMn2vxkGia18IG44y5VSmJ7toFs1A%3A1755758349116&source=hp&ei=Db-maKnzBJ2fkPIPpJ_6oAo&iflsig=AOw8s4IAAAAAaKbNHdTSNZ88i3o3lDQ1MwzlaZmjPw05&oq=your+favorite+det&gs_lp=Egdnd3Mtd2l6IhF5b3VyIGZhdm9yaXRlIGRldCoCCAAyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIIEAAYFhgKGB4yBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHjIGEAAYFhgeSNYrUABY3RdwAHgAkAEAmAGrAaABxg-qAQQ0LjEzuAEByAEA-AEBmAIRoAKjEMICBBAjGCfCAhAQIxjwBRiABBgnGMkCGIoFwgIKECMYgAQYJxiKBcICCxAuGIAEGLEDGIMBwgIREC4YgAQYsQMY0QMYgwEYxwHCAgsQABiABBixAxiDAcICDhAAGIAEGLEDGIMBGIoFwgIIEAAYgAQYsQPCAgUQLhiABMICBRAAGIAEwgIOEC4YgAQYsQMYgwEYigXCAg0QLhiABBixAxiDARgKwgIOEC4YgAQYxwEYjgUYrwHCAg0QABiABBixAxiDARgKwgILEC4YgAQYxwEYrwHCAggQLhiABBixA5gDAJIHBDIuMTWgB-XoAbIHBDIuMTW4B6MQwgcGMC4xLjE2yAdS&sclient=gws-wiz#lrd=0x261db19847dbd8ff:0x7a226e5c0ed7cf92,1,,,,', '_blank')}
                 className="group"
               >
-                Schedule Appointment
+                See Testimonials
               </Button>
             </div>
 
-            {/* Image placeholder */}
-            <div className="bg-muted/50 rounded-lg h-96 flex items-center justify-center">
-              <p className="text-muted-foreground">Professional detailing workspace</p>
-            </div>
           </div>
         </div>
       </div>

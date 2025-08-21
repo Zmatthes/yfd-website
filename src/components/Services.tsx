@@ -70,8 +70,7 @@ const Services = () => {
               Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              From basic washes to complete paint correction, I offer comprehensive automotive 
-              detailing services to keep your vehicle looking its absolute best.
+              I take my time, I don't do half details, there are levels to it and I am everybody's favorite for a reason.
             </p>
           </div>
 
@@ -122,7 +121,10 @@ const Services = () => {
                   <Button 
                     variant={service.popular ? "hero" : "luxury"}
                     className="w-full mt-auto"
-                    onClick={scrollToContact}
+                    onClick={() => {
+                      const element = document.getElementById('quote-wizard');
+                      element?.scrollIntoView({ behavior: 'smooth' });
+                    }}
                   >
                     Get Quote
                   </Button>

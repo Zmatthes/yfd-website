@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { Car, Clock, Phone, ChevronLeft, ChevronRight } from "lucide-react";
+import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "motorcycle";
 type ServiceType = "interior-exterior" | "vip-interior" | "vip-exterior";
@@ -47,26 +47,81 @@ const QuoteWizard = () => {
       "4-door": 75,
       "truck": 100,
       "full-suv": 125,
-      "motorcycle": 100
+      "motorcycle": 125
     }
   };
 
   const vehicleOptions = [
     { id: "3rd-row", label: "3rd Row Seating", price: 25 },
-    { id: "oversized", label: "Oversized/Lifted", price: 20 },
     { id: "commercial", label: "Work/Commercial Use", price: 25 }
   ];
 
   const exteriorAddOns = [
     { id: "clay-bar", label: "Clay Bar", price: 25 },
+    { id: "oversized", label: "Oversized/Lifted", price: 20 },
     { id: "bug-removal", label: "Bug Removal", price: 10 }
   ];
 
   const interiorAddOns = [
     { id: "dog-hair", label: "Dog Hair Removal", price: 25 },
+    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 },
     { id: "engine-bay", label: "Engine Bay Detail", price: 30 },
     { id: "headlights", label: "Headlight Restoration", price: 100 }
   ];
+
+  // Geocoding and distance calculation
+  const calculateDistance = async (address: string) => {
+    try {
+      // Simple distance calculation using geocoding
+      const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=pk.your_token_here&limit=1`);
+      
+      if (!response.ok) {
+        throw new Error('Geocoding failed');
+      }
+      
+      const data = await response.json();
+      if (data.features && data.features.length > 0) {
+        const [customerLng, customerLat] = data.features[0].center;
+        const shopLat = 39.8629; // Commerce City coordinates
+        const shopLng = -104.8338;
+        
+        // Calculate straight-line distance
+        const R = 3959; // Earth's radius in miles
+        const dLat = (customerLat - shopLat) * Math.PI / 180;
+        const dLng = (customerLng - shopLng) * Math.PI / 180;
+        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                  Math.cos(shopLat * Math.PI / 180) * Math.cos(customerLat * Math.PI / 180) *
+                  Math.sin(dLng/2) * Math.sin(dLng/2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        const distance = R * c;
+        
+        return Math.round(distance);
+      }
+    } catch (error) {
+      console.error('Geocoding error:', error);
+    }
+    return null;
+  };
+
+  const calculateMobileFee = (distance: number) => {
+    if (distance <= 30) {
+      return 25;
+    }
+    return 25 + (Math.ceil((distance - 30) / 10) * 10);
+  };
+
+  useEffect(() => {
+    if (serviceMode === "mobile" && customerAddress.trim()) {
+      const timeoutId = setTimeout(async () => {
+        const dist = await calculateDistance(customerAddress);
+        setDistance(dist);
+      }, 500);
+      
+      return () => clearTimeout(timeoutId);
+    } else {
+      setDistance(null);
+    }
+  }, [customerAddress, serviceMode]);
 
   const totalSteps = 6;
   const progress = (currentStep / totalSteps) * 100;
@@ -90,7 +145,9 @@ const QuoteWizard = () => {
       if (addOn) total += addOn.price;
     });
 
-    if (serviceMode === "mobile") total += 25;
+    if (serviceMode === "mobile" && distance) {
+      total += calculateMobileFee(distance);
+    }
 
     return total;
   };
@@ -134,7 +191,7 @@ const QuoteWizard = () => {
                 <Label htmlFor="year" className="font-display">Year</Label>
                 <Input
                   id="year"
-                  placeholder="2020"
+                  placeholder=""
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
                 />
@@ -143,7 +200,7 @@ const QuoteWizard = () => {
                 <Label htmlFor="make" className="font-display">Make</Label>
                 <Input
                   id="make"
-                  placeholder="Toyota"
+                  placeholder=""
                   value={make}
                   onChange={(e) => setMake(e.target.value)}
                 />
@@ -152,7 +209,7 @@ const QuoteWizard = () => {
                 <Label htmlFor="model" className="font-display">Model</Label>
                 <Input
                   id="model"
-                  placeholder="Camry"
+                  placeholder=""
                   value={model}
                   onChange={(e) => setModel(e.target.value)}
                 />
@@ -275,7 +332,7 @@ const QuoteWizard = () => {
                     </div>
                     <div className="flex justify-between">
                       <span>MOTORCYCLE</span>
-                      <span className="font-bold">$100</span>
+                      <span className="font-bold">$125</span>
                     </div>
                   </div>
                 </div>
@@ -295,13 +352,24 @@ const QuoteWizard = () => {
             <div className="space-y-4">
               {vehicleOptions.map((option) => (
                 <div key={option.id} className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id={option.id}
-                    checked={selectedOptions.includes(option.id)}
-                    onChange={() => toggleOption(option.id)}
-                    className="rounded"
-                  />
+                  <div className="relative">
+                    <input
+                      type="checkbox"
+                      id={option.id}
+                      checked={selectedOptions.includes(option.id)}
+                      onChange={() => toggleOption(option.id)}
+                      className="sr-only"
+                    />
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center cursor-pointer ${
+                      selectedOptions.includes(option.id) 
+                        ? 'border-red-500 bg-red-500' 
+                        : 'border-muted-foreground'
+                    }`}>
+                      {selectedOptions.includes(option.id) && (
+                        <div className="w-2 h-2 rounded-full bg-white"></div>
+                      )}
+                    </div>
+                  </div>
                   <Label htmlFor={option.id} className="flex-1 cursor-pointer">
                     <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
                       <span className="font-display">{option.label}</span>
@@ -394,13 +462,46 @@ const QuoteWizard = () => {
                   <RadioGroupItem value="mobile" id="mobile" />
                   <Label htmlFor="mobile" className="cursor-pointer">
                     <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50 min-w-[300px]">
-                      <span className="font-display">Mobile Service</span>
-                      <span className="font-bold text-primary">+$25</span>
+                      <span className="font-display">Mobile Service (Auto-calc distance)</span>
+                      <span className="font-bold text-primary">Dynamic Fee</span>
                     </div>
                   </Label>
                 </div>
               </div>
             </RadioGroup>
+
+            {serviceMode === "mobile" && (
+              <div className="mt-6 space-y-4">
+                <div>
+                  <Label htmlFor="address" className="font-display">Customer Address *</Label>
+                  <div className="relative">
+                    <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                    <Input
+                      id="address"
+                      placeholder="Street, City, State, ZIP"
+                      value={customerAddress}
+                      onChange={(e) => setCustomerAddress(e.target.value)}
+                      className="pl-10"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                {distance && (
+                  <div className="bg-primary/10 rounded-lg px-4 py-2">
+                    <span className="text-sm font-medium">
+                      Distance: {distance} mi • Mobile Fee: ${calculateMobileFee(distance)}
+                    </span>
+                  </div>
+                )}
+                
+                {customerAddress && !distance && (
+                  <div className="text-sm text-muted-foreground">
+                    Calculating distance...
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         );
 
@@ -409,7 +510,7 @@ const QuoteWizard = () => {
           <div className="space-y-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Contact Information</h2>
-              <p className="text-muted-foreground">How can we reach you?</p>
+              <p className="text-muted-foreground">How can I reach you?</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -480,10 +581,10 @@ const QuoteWizard = () => {
                       ) : null;
                     })}
 
-                  {serviceMode === "mobile" && (
+                  {serviceMode === "mobile" && distance && (
                     <div className="flex justify-between items-center text-sm">
-                      <span>Mobile Service</span>
-                      <span>+$25</span>
+                      <span>Mobile Service ({distance} mi)</span>
+                      <span>+${calculateMobileFee(distance)}</span>
                     </div>
                   )}
                   
