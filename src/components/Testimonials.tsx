@@ -194,36 +194,36 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-muted/30">
+    <section id="testimonials" className="py-12 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               What Our Customers Say
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
               Don't just take our word for it. Here's what our satisfied customers 
               have to say about their detailing experience.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="p-6 bg-background border border-border">
-                <div className="space-y-4">
+              <Card key={testimonial.id} className="p-4 bg-background border border-border">
+                <div className="space-y-3">
                   <div className="flex items-center gap-1">
                     {renderStars(testimonial.rating)}
                   </div>
                   
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     "{testimonial.text}"
                   </p>
                   
-                  <div className="border-t border-border pt-4">
-                    <div className="font-semibold text-foreground">
+                  <div className="border-t border-border pt-3">
+                    <div className="font-semibold text-foreground text-sm">
                       {testimonial.name}
                     </div>
-                    <div className="text-sm text-muted-foreground">
+                    <div className="text-xs text-muted-foreground">
                       {testimonial.location}
                     </div>
                   </div>
