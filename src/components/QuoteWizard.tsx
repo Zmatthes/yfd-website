@@ -20,9 +20,14 @@ const QuoteWizard = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [serviceMode, setServiceMode] = useState<"drop-off" | "mobile">("drop-off");
+  const [customerAddress, setCustomerAddress] = useState("");
+  const [distance, setDistance] = useState<number | null>(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+
+  // Shop address for distance calculations
+  const shopAddress = "17284 E 102nd Place, Commerce City, CO 80022";
 
   const servicePrices = {
     "interior-exterior": {
