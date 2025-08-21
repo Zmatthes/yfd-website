@@ -159,7 +159,7 @@ const Testimonials = () => {
     },
     {
       id: 23,
-      name: "Satisfied Customer",
+      name: "Steve",
       rating: 5,
       text: "My daughter and her husband both used Zach the last year or two. They also had new interiors and exteriors once Zach was done. It had been on my radar to get this done. The Grandkids are in my car quite a bit and it showed. Now stricter rules are being enforced as to what they eat and drink in my vehicle. Same holds true for me also. No longer a reason to not take others in my car- it looks that good!! Zach took most of the day to complete my interior detail. And I got the same results as my family got with their cars. Need a new car (kinda). Your Favorite Detailer is the service to use to get to that look. Thanks Zach!",
       location: "Denver Metro"
@@ -175,7 +175,7 @@ const Testimonials = () => {
       id: 25,
       name: "Elizabeth Balderas",
       rating: 5,
-      text: "Excellent service and attention to detail. Highly recommend Zach for any detailing needs!",
+      text: "",
       location: "Denver Metro"
     }
   ];
@@ -215,16 +215,15 @@ const Testimonials = () => {
                     {renderStars(testimonial.rating)}
                   </div>
                   
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    "{testimonial.text}"
-                  </p>
+                  {testimonial.text && (
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      "{testimonial.text}"
+                    </p>
+                  )}
                   
                   <div className="border-t border-border pt-3">
                     <div className="font-semibold text-foreground text-sm">
                       {testimonial.name}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      {testimonial.location}
                     </div>
                   </div>
                 </div>
