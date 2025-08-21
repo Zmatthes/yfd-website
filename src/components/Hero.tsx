@@ -46,7 +46,7 @@ const Hero = () => {
           {/* Description */}
           <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
             Premium automotive detailing services in Commerce City and throughout the Denver Metro area. 
-            We guarantee to not only meet, but exceed your expectations.
+            Professional quality service that exceeds expectations.
           </p>
 
           {/* Action Buttons */}

@@ -7,11 +7,13 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Car, Clock, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 
-type VehicleType = "2-door" | "4-door" | "truck" | "full-suv";
+type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "motorcycle";
+type ServiceType = "interior-exterior" | "vip-interior" | "vip-exterior";
 
 const QuoteWizard = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [vehicleType, setVehicleType] = useState<VehicleType | null>(null);
+  const [serviceType, setServiceType] = useState<ServiceType | null>(null);
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
@@ -22,31 +24,54 @@ const QuoteWizard = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
-  const basePrices = {
-    "2-door": 250,
-    "4-door": 300,
-    "truck": 325,
-    "full-suv": 350
+  const servicePrices = {
+    "interior-exterior": {
+      "2-door": 250,
+      "4-door": 300,
+      "truck": 325,
+      "full-suv": 350
+    },
+    "vip-interior": {
+      "2-door": 200,
+      "4-door": 225,
+      "truck": 250,
+      "full-suv": 275
+    },
+    "vip-exterior": {
+      "2-door": 60,
+      "4-door": 75,
+      "truck": 100,
+      "full-suv": 125,
+      "motorcycle": 100
+    }
   };
 
   const vehicleOptions = [
     { id: "3rd-row", label: "3rd Row Seating", price: 25 },
-    { id: "oversized", label: "Oversized/Lifted", price: 25 },
+    { id: "oversized", label: "Oversized/Lifted", price: 20 },
     { id: "commercial", label: "Work/Commercial Use", price: 25 }
   ];
 
-  const addOns = [
-    { id: "engine-bay", label: "Engine Bay Detail", price: 40 },
-    { id: "headlights", label: "Headlight Restoration", price: 60 },
-    { id: "shampoo", label: "Carpet/Mat Shampoo", price: 50 },
-    { id: "leather", label: "Leather Clean & Condition", price: 35 }
+  const exteriorAddOns = [
+    { id: "clay-bar", label: "Clay Bar", price: 25 },
+    { id: "bug-removal", label: "Bug Removal", price: 10 }
   ];
 
-  const totalSteps = 5;
+  const interiorAddOns = [
+    { id: "dog-hair", label: "Dog Hair Removal", price: 25 },
+    { id: "engine-bay", label: "Engine Bay Detail", price: 30 },
+    { id: "headlights", label: "Headlight Restoration", price: 100 }
+  ];
+
+  const totalSteps = 6;
   const progress = (currentStep / totalSteps) * 100;
 
   const calculateTotal = () => {
-    let total = vehicleType ? basePrices[vehicleType] : 0;
+    let total = 0;
+    
+    if (vehicleType && serviceType) {
+      total = servicePrices[serviceType][vehicleType] || 0;
+    }
     
     selectedOptions.forEach(optionId => {
       const option = vehicleOptions.find(o => o.id === optionId);
@@ -54,7 +79,9 @@ const QuoteWizard = () => {
     });
 
     selectedAddOns.forEach(addOnId => {
-      const addOn = addOns.find(a => a.id === addOnId);
+      const exteriorAddOn = exteriorAddOns.find(a => a.id === addOnId);
+      const interiorAddOn = interiorAddOns.find(a => a.id === addOnId);
+      const addOn = exteriorAddOn || interiorAddOn;
       if (addOn) total += addOn.price;
     });
 
@@ -134,13 +161,19 @@ const QuoteWizard = () => {
                 onValueChange={(value) => setVehicleType(value as VehicleType)}
                 className="grid md:grid-cols-2 gap-4"
               >
-                {Object.entries(basePrices).map(([type, price]) => (
+                {["2-door", "4-door", "mid-suv", "truck", "full-suv", "motorcycle"].map((type) => (
                   <div key={type} className="flex items-center space-x-2">
                     <RadioGroupItem value={type} id={type} />
                     <Label htmlFor={type} className="flex-1 cursor-pointer">
                       <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
-                        <span className="font-display">{type.toUpperCase().replace('-', ' ')}</span>
-                        <span className="font-bold text-primary">${price}</span>
+                        <span className="font-display">
+                          {type === "2-door" ? "2 DOOR CAR" :
+                           type === "4-door" ? "4 DOOR CAR" :
+                           type === "mid-suv" ? "MID-SIZE SUV" :
+                           type === "truck" ? "TRUCK" :
+                           type === "full-suv" ? "SUV / HEAVY DUTY TRUCK" :
+                           "MOTORCYCLE"}
+                        </span>
                       </div>
                     </Label>
                   </div>
@@ -151,6 +184,102 @@ const QuoteWizard = () => {
         );
 
       case 2:
+        return (
+          <div className="space-y-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Service Type</h2>
+              <p className="text-muted-foreground">Choose your service package</p>
+            </div>
+
+            <RadioGroup value={serviceType || ""} onValueChange={(value) => setServiceType(value as ServiceType)}>
+              <div className="space-y-6">
+                {/* Interior & Exterior */}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="interior-exterior" id="interior-exterior" />
+                    <Label htmlFor="interior-exterior" className="text-lg font-bold font-display">INTERIOR & EXTERIOR</Label>
+                  </div>
+                  <div className="ml-6 space-y-2">
+                    <div className="flex justify-between">
+                      <span>2 DOOR CAR</span>
+                      <span className="font-bold">$250</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="font-bold">$300</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>TRUCK</span>
+                      <span className="font-bold">$325</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>SUV / HEAVY DUTY TRUCK</span>
+                      <span className="font-bold">$350</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* VIP Interior */}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="vip-interior" id="vip-interior" />
+                    <Label htmlFor="vip-interior" className="text-lg font-bold font-display">VIP INTERIOR</Label>
+                  </div>
+                  <div className="ml-6 space-y-2">
+                    <div className="flex justify-between">
+                      <span>2 DOOR CAR</span>
+                      <span className="font-bold">$200</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="font-bold">$225</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>TRUCK / HEAVY DUTY TRUCK</span>
+                      <span className="font-bold">$250</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>SUV</span>
+                      <span className="font-bold">$275</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* VIP Exterior */}
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="vip-exterior" id="vip-exterior" />
+                    <Label htmlFor="vip-exterior" className="text-lg font-bold font-display">VIP EXTERIOR</Label>
+                  </div>
+                  <div className="ml-6 space-y-2">
+                    <div className="flex justify-between">
+                      <span>2 DOOR CAR</span>
+                      <span className="font-bold">$60</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="font-bold">$75</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>TRUCK</span>
+                      <span className="font-bold">$100</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>SUV / HEAVY DUTY TRUCK</span>
+                      <span className="font-bold">$125</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>MOTORCYCLE</span>
+                      <span className="font-bold">$100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </RadioGroup>
+          </div>
+        );
+
+      case 3:
         return (
           <div className="space-y-8">
             <div className="text-center">
@@ -180,7 +309,7 @@ const QuoteWizard = () => {
           </div>
         );
 
-      case 3:
+      case 4:
         return (
           <div className="space-y-8">
             <div className="text-center">
@@ -188,29 +317,55 @@ const QuoteWizard = () => {
               <p className="text-muted-foreground">Optional services to enhance your detail</p>
             </div>
 
-            <div className="space-y-4">
-              {addOns.map((addOn) => (
-                <div key={addOn.id} className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id={addOn.id}
-                    checked={selectedAddOns.includes(addOn.id)}
-                    onChange={() => toggleAddOn(addOn.id)}
-                    className="rounded"
-                  />
-                  <Label htmlFor={addOn.id} className="flex-1 cursor-pointer">
-                    <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
-                      <span className="font-display">{addOn.label}</span>
-                      <span className="font-bold text-primary">+${addOn.price}</span>
-                    </div>
-                  </Label>
-                </div>
-              ))}
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Exterior Add-ons */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold font-display">Exterior</h3>
+                {exteriorAddOns.map((addOn) => (
+                  <div key={addOn.id} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id={addOn.id}
+                      checked={selectedAddOns.includes(addOn.id)}
+                      onChange={() => toggleAddOn(addOn.id)}
+                      className="rounded"
+                    />
+                    <Label htmlFor={addOn.id} className="flex-1 cursor-pointer">
+                      <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
+                        <span className="font-display">{addOn.label}</span>
+                        <span className="font-bold text-primary">+${addOn.price}</span>
+                      </div>
+                    </Label>
+                  </div>
+                ))}
+              </div>
+
+              {/* Interior Add-ons */}
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold font-display">Interior</h3>
+                {interiorAddOns.map((addOn) => (
+                  <div key={addOn.id} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      id={addOn.id}
+                      checked={selectedAddOns.includes(addOn.id)}
+                      onChange={() => toggleAddOn(addOn.id)}
+                      className="rounded"
+                    />
+                    <Label htmlFor={addOn.id} className="flex-1 cursor-pointer">
+                      <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
+                        <span className="font-display">{addOn.label}</span>
+                        <span className="font-bold text-primary">+${addOn.price}</span>
+                      </div>
+                    </Label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         );
 
-      case 4:
+      case 5:
         return (
           <div className="space-y-8">
             <div className="text-center">
@@ -244,7 +399,7 @@ const QuoteWizard = () => {
           </div>
         );
 
-      case 5:
+      case 6:
         return (
           <div className="space-y-8">
             <div className="text-center">
@@ -292,11 +447,11 @@ const QuoteWizard = () => {
               <Card className="p-6 bg-gradient-card">
                 <h3 className="text-xl font-bold font-display mb-4">Quote Summary</h3>
                 
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span>Base Service</span>
-                    <span className="font-semibold">${vehicleType ? basePrices[vehicleType] : 0}</span>
-                  </div>
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <span>Base Service</span>
+                      <span className="font-semibold">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
+                    </div>
                   
                   {selectedOptions.map(optionId => {
                     const option = vehicleOptions.find(o => o.id === optionId);
@@ -308,15 +463,17 @@ const QuoteWizard = () => {
                     ) : null;
                   })}
 
-                  {selectedAddOns.map(addOnId => {
-                    const addOn = addOns.find(a => a.id === addOnId);
-                    return addOn ? (
-                      <div key={addOnId} className="flex justify-between items-center text-sm">
-                        <span>{addOn.label}</span>
-                        <span>+${addOn.price}</span>
-                      </div>
-                    ) : null;
-                  })}
+                    {selectedAddOns.map(addOnId => {
+                      const exteriorAddOn = exteriorAddOns.find(a => a.id === addOnId);
+                      const interiorAddOn = interiorAddOns.find(a => a.id === addOnId);
+                      const addOn = exteriorAddOn || interiorAddOn;
+                      return addOn ? (
+                        <div key={addOnId} className="flex justify-between items-center text-sm">
+                          <span>{addOn.label}</span>
+                          <span>+${addOn.price}</span>
+                        </div>
+                      ) : null;
+                    })}
 
                   {serviceMode === "mobile" && (
                     <div className="flex justify-between items-center text-sm">
@@ -334,17 +491,17 @@ const QuoteWizard = () => {
                 </div>
 
                 <div className="mt-6">
-                  <Button 
-                    variant="hero" 
-                    size="lg" 
-                    className="w-full"
-                    onClick={() => {
-                      window.location.href = "tel:+1234567890";
-                    }}
-                  >
-                    <Phone className="mr-2 h-5 w-5" />
-                    Call to Book: (123) 456-7890
-                  </Button>
+                    <Button 
+                      variant="hero" 
+                      size="lg" 
+                      className="w-full"
+                      onClick={() => {
+                        window.location.href = "tel:+13038104626";
+                      }}
+                    >
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call to Book: (303) 810-4626
+                    </Button>
                 </div>
 
                 <p className="text-xs text-muted-foreground mt-4 text-center">
@@ -399,7 +556,7 @@ const QuoteWizard = () => {
             <Button 
               variant={currentStep === totalSteps ? "hero" : "default"}
               onClick={nextStep}
-              disabled={currentStep === totalSteps || (currentStep === 1 && !vehicleType)}
+              disabled={currentStep === totalSteps || (currentStep === 1 && !vehicleType) || (currentStep === 2 && !serviceType)}
             >
               {currentStep === totalSteps ? "Get Quote" : "Next"}
               <ChevronRight className="ml-2 h-4 w-4" />

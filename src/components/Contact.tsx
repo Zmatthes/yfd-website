@@ -28,10 +28,10 @@ const Contact = () => {
                 Have your quote ready? Give us a call or send a text to schedule your appointment.
               </p>
               <a 
-                href="tel:+1234567890" 
+                href="tel:+13038104626" 
                 className="inline-block bg-gradient-accent text-white px-8 py-4 rounded-lg text-2xl font-bold hover:scale-105 transition-smooth shadow-luxury font-display"
               >
-                (123) 456-7890
+                (303) 810-4626
               </a>
             </Card>
 
@@ -66,7 +66,7 @@ const Contact = () => {
                 FOLLOW OUR WORK
               </h4>
               <a 
-                href="https://instagram.com/your.favorite.detailer" 
+                href="https://www.instagram.com/your.favorite.detailer/" 
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary font-semibold hover:underline text-lg"
@@ -76,12 +76,12 @@ const Contact = () => {
             </Card>
           </div>
 
-          <div className="mt-12 p-6 bg-muted/30 rounded-lg">
-            <p className="text-muted-foreground text-sm">
-              <strong>Mobile Service Available:</strong> We come to you throughout the Denver Metro area. 
-              Additional mobile fee may apply based on location. Drop-off service always preferred for best results.
-            </p>
-          </div>
+            <div className="mt-12 p-6 bg-muted/30 rounded-lg">
+              <p className="text-muted-foreground text-sm">
+                <strong>Mobile Service Available:</strong> I come to you throughout the Denver Metro area. 
+                Additional mobile fee may apply based on location. Drop-off service always preferred for best results.
+              </p>
+            </div>
         </div>
       </div>
     </section>

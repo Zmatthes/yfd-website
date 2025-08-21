@@ -67,10 +67,10 @@ const Services = () => {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Our Premium Services
+              Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              From basic washes to complete paint correction, we offer comprehensive automotive 
+              From basic washes to complete paint correction, I offer comprehensive automotive 
               detailing services to keep your vehicle looking its absolute best.
             </p>
           </div>
@@ -134,15 +134,8 @@ const Services = () => {
           {/* CTA */}
           <div className="text-center">
             <p className="text-lg text-muted-foreground mb-6">
-              Need a custom package? We'll create a service plan tailored to your specific needs.
+              Need a custom package?
             </p>
-            <Button 
-              variant="hero" 
-              size="lg"
-              onClick={scrollToContact}
-            >
-              Request Custom Quote
-            </Button>
           </div>
         </div>
       </div>
