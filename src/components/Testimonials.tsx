@@ -138,7 +138,7 @@ const Testimonials = () => {
     },
     {
       id: 20,
-      name: "Bill Gray",
+      name: "Bill Cray",
       rating: 5,
       text: "Unfortunately for Zack, he got the business (referred to me by a friend) to detail my 21 year old 330xi BMW that has been used as a daily, family hauler, and weekend warrior track car. Needless to say, it needed TONS of attention. He spent about 11 hours on that car, and when I picked it up, I felt guilty driving it. It hasn't looked that good in the 10 years that I've owned it. The black leather seats look and feel amazing. The black paint has depth and most importantly, no swirl marks. Very happy with the end result for the money paid, and can confidently refer him to my friends, and to my clients. Well done Zack, and thanks again!",
       location: "Denver Metro"
