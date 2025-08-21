@@ -128,6 +128,55 @@ const Testimonials = () => {
       rating: 5,
       text: "Zach did such an amazing job on my car! Genuinely it hasn't looked this clean since I first bought it. I used to live in Portland and got it detailed at this one place a couple times and they charged more and did a lesser job. Will definitely be coming back!",
       location: "Denver Metro"
+    },
+    {
+      id: 19,
+      name: "Jorge C",
+      rating: 5,
+      text: "Zach's detailing business is professionalism through and through. I'm in the process of selling my 2008 Jeep and she looks like she's a 16 year old vehicle no doubt. Zach cleaned up the car, got the interiors looking spot free and clean, detailed the front engine, and removed tons of dog hair. If I have any complaints--it's that he got me to fall in love with my car all over again. It literally looked the first day I bought it. Zach's prices are unbeatable and for the services he provides to your car, I have no doubt he'll be my detail guy from here on out.",
+      location: "Denver Metro"
+    },
+    {
+      id: 20,
+      name: "Bill Gray",
+      rating: 5,
+      text: "Unfortunately for Zack, he got the business (referred to me by a friend) to detail my 21 year old 330xi BMW that has been used as a daily, family hauler, and weekend warrior track car. Needless to say, it needed TONS of attention. He spent about 11 hours on that car, and when I picked it up, I felt guilty driving it. It hasn't looked that good in the 10 years that I've owned it. The black leather seats look and feel amazing. The black paint has depth and most importantly, no swirl marks. Very happy with the end result for the money paid, and can confidently refer him to my friends, and to my clients. Well done Zack, and thanks again!",
+      location: "Denver Metro"
+    },
+    {
+      id: 21,
+      name: "Bob Tunnell",
+      rating: 5,
+      text: "Zach did an amazing job on both my F25 X3 and F87 M2 and his prices are very reasonable. (too cheap actually, but don't tell him! :) I've had good detailing from a number of companies before, but Zach's attention to detail, use of quality products, and thoroughness is second to none!",
+      location: "Denver Metro"
+    },
+    {
+      id: 22,
+      name: "Colin Pratt",
+      rating: 5,
+      text: "Extremely detailed oriented and makes sure his customers are happy with their vehicle. The car had not been detailed in over 6 years and after the detailing it looked like a brand new car being driven off a dealerships lot. The time efficiency was remarkable with taking less than a day. Every crevice of the car was spotless. Even got the smoothie that was spelt 3 years ago between the door and seat. Will definitely recommend and use again!",
+      location: "Denver Metro"
+    },
+    {
+      id: 23,
+      name: "Satisfied Customer",
+      rating: 5,
+      text: "My daughter and her husband both used Zach the last year or two. They also had new interiors and exteriors once Zach was done. It had been on my radar to get this done. The Grandkids are in my car quite a bit and it showed. Now stricter rules are being enforced as to what they eat and drink in my vehicle. Same holds true for me also. No longer a reason to not take others in my car- it looks that good!! Zach took most of the day to complete my interior detail. And I got the same results as my family got with their cars. Need a new car (kinda). Your Favorite Detailer is the service to use to get to that look. Thanks Zach!",
+      location: "Denver Metro"
+    },
+    {
+      id: 24,
+      name: "Alex M",
+      rating: 5,
+      text: "zach at your favorite detailer is by far the best in the business! Very professional and takes pride in what he does. If you want your car looking,feeling, and smelling brand new I definitely recommend this business you will not be disappointed!",
+      location: "Denver Metro"
+    },
+    {
+      id: 25,
+      name: "Elizabeth Balderas",
+      rating: 5,
+      text: "Excellent service and attention to detail. Highly recommend Zach for any detailing needs!",
+      location: "Denver Metro"
     }
   ];
 
