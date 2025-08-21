@@ -67,7 +67,7 @@ const QuoteWizard = () => {
     { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
   ];
 
-  // Simple area-based distance calculation
+  // Enhanced area-based distance calculation
   const calculateDistanceByArea = (address: string) => {
     const addressLower = address.toLowerCase();
     
@@ -98,18 +98,36 @@ const QuoteWizard = () => {
       return Math.floor(Math.random() * 10) + 15;
     }
     
-    // Farther metro areas - 25-35 miles
+    // Farther metro areas - 25-50 miles
     if (addressLower.includes('boulder') || 
         addressLower.includes('longmont') || 
         addressLower.includes('golden') || 
         addressLower.includes('lakewood') || 
         addressLower.includes('80301') || 
         addressLower.includes('80215')) {
-      return Math.floor(Math.random() * 10) + 25;
+      return Math.floor(Math.random() * 15) + 25;
     }
     
-    // Default for unknown areas
-    return 20;
+    // Very far areas - 50-75 miles
+    if (addressLower.includes('fort collins') || 
+        addressLower.includes('colorado springs') || 
+        addressLower.includes('castle rock') || 
+        addressLower.includes('parker') || 
+        addressLower.includes('80525') || 
+        addressLower.includes('80903')) {
+      return Math.floor(Math.random() * 25) + 50;
+    }
+    
+    // Extremely far areas - 75-100 miles
+    if (addressLower.includes('pueblo') || 
+        addressLower.includes('greeley') || 
+        addressLower.includes('81001') || 
+        addressLower.includes('80631')) {
+      return Math.floor(Math.random() * 25) + 75;
+    }
+    
+    // Default for unknown areas - assume moderate distance
+    return 30;
   };
 
   const calculateMobileFee = (distance: number) => {
@@ -120,11 +138,11 @@ const QuoteWizard = () => {
   };
 
   useEffect(() => {
-    if (serviceMode === "mobile" && customerAddress.trim()) {
+    if (serviceMode === "mobile" && customerAddress.trim().length > 3) {
       const timeoutId = setTimeout(() => {
         const dist = calculateDistanceByArea(customerAddress);
         setDistance(dist);
-      }, 100); // Much faster response
+      }, 300); // Slight delay for better UX
       
       return () => clearTimeout(timeoutId);
     } else {
@@ -436,6 +454,7 @@ const QuoteWizard = () => {
                       placeholder="Street, City, State, ZIP"
                       value={customerAddress}
                       onChange={(e) => setCustomerAddress(e.target.value)}
+                      onInput={(e) => setCustomerAddress((e.target as HTMLInputElement).value)}
                       className="pl-10"
                       required
                     />
