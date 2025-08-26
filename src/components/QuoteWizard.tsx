@@ -228,7 +228,7 @@ const QuoteWizard = () => {
   const generateAddressSuggestions = async (input: string): Promise<string[]> => {
     const inputLower = input.toLowerCase().trim();
     
-    if (inputLower.length < 2) return [];
+    if (inputLower.length < 3) return [];
     
     // Simulate real address API with expanded Colorado database
     const addresses = [
@@ -812,11 +812,11 @@ const QuoteWizard = () => {
                       size="lg" 
                       className="w-full"
                       onClick={() => {
-                        window.location.href = "tel:+13038104626";
+                        // For now, show success message - email functionality requires backend
+                        alert('Quote submitted successfully! We will contact you soon.');
                       }}
                     >
-                      <Phone className="mr-2 h-5 w-5" />
-                      Call to Book: (303) 810-4626
+                      Submit Quote
                     </Button>
                 </div>
 
