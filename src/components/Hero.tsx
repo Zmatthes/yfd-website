@@ -23,31 +23,12 @@ const Hero = () => {
                   className="max-w-full max-h-[80vh] w-auto h-auto object-contain opacity-20 blur-[2px] grayscale"
                 />
                 
-                {/* Clean logo that gets revealed */}
+                {/* Clean logo with simple glow animation */}
                 <img 
                   src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
                   alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
-                  className="absolute inset-0 max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-water-reveal"
+                  className="absolute inset-0 max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-red-glow-pulse"
                 />
-                
-                {/* Water splash effect */}
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                  {/* Main water splash */}
-                  <div className="absolute top-0 left-1/2 w-32 h-32 transform -translate-x-1/2 -translate-y-8 animate-water-splash">
-                    <div className="w-full h-full bg-gradient-to-br from-blue-200/60 to-blue-400/40 rounded-full blur-sm"></div>
-                    <div className="absolute inset-2 bg-gradient-to-br from-blue-100/80 to-blue-300/60 rounded-full blur-xs"></div>
-                  </div>
-                  
-                  {/* Water droplets */}
-                  <div className="absolute top-8 left-1/2 w-3 h-3 bg-blue-300/70 rounded-full animate-water-drop-1"></div>
-                  <div className="absolute top-12 left-1/2 w-2 h-2 bg-blue-400/60 rounded-full animate-water-drop-2"></div>
-                  <div className="absolute top-6 left-1/2 w-4 h-4 bg-blue-200/50 rounded-full animate-water-drop-3"></div>
-                  
-                  {/* Water streams */}
-                  <div className="absolute top-16 left-1/4 w-1 h-20 bg-gradient-to-b from-blue-300/60 to-transparent animate-water-stream-1"></div>
-                  <div className="absolute top-20 left-3/4 w-1 h-16 bg-gradient-to-b from-blue-400/50 to-transparent animate-water-stream-2"></div>
-                  <div className="absolute top-18 left-1/2 w-1 h-24 bg-gradient-to-b from-blue-300/70 to-transparent animate-water-stream-3"></div>
-                </div>
               </div>
             </div>
           </div>
