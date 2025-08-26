@@ -69,7 +69,7 @@ const QuoteBuilder = () => {
       },
       'vip-both': {
         'motorcycle': 0, // Not applicable
-        '2-door': 250,
+        '2-door': 275,
         '4-door-suv': 300,
         'truck': 325,
         'heavy-duty': 350,
@@ -170,7 +170,7 @@ const QuoteBuilder = () => {
     return (
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-display">
                 SELECT SERVICE TYPE
@@ -180,29 +180,86 @@ const QuoteBuilder = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-              {availableServices.map((service) => (
-                <Card 
-                  key={service.id}
-                  className="p-8 bg-gradient-card border-border hover:shadow-luxury transition-smooth cursor-pointer hover:scale-105"
-                  onClick={() => {
-                    setServiceType(service.id as ServiceType);
-                    setStep(3);
-                  }}
-                >
-                  <div className="text-center">
-                    <h3 className="text-2xl font-bold text-primary mb-4 font-display">
-                      {service.name}
-                    </h3>
-                    <p className="text-muted-foreground mb-4">
-                      {service.description}
-                    </p>
-                    <div className="text-3xl font-bold text-foreground font-display">
-                      ${getBasePrice() || 'N/A'}
-                    </div>
-                  </div>
-                </Card>
-              ))}
+            {/* Pricing Table */}
+            <div className="bg-gradient-card rounded-2xl p-8 border border-border shadow-luxury mb-8">
+              <h3 className="text-2xl font-bold text-center text-foreground mb-8 font-display">
+                Service Pricing for {vehicleOptions.find(v => v.id === vehicleType)?.name}
+              </h3>
+              
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-border">
+                      <th className="text-left py-4 px-6 text-foreground font-display text-lg">Service</th>
+                      <th className="text-center py-4 px-6 text-foreground font-display text-lg">Price</th>
+                      <th className="text-center py-4 px-6 text-foreground font-display text-lg">Select</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {availableServices.map((service) => {
+                      const tempServiceType = service.id as ServiceType;
+                      const price = (() => {
+                        const prices: Record<ServiceType, Record<VehicleType, number>> = {
+                          'vip-exterior': {
+                            'motorcycle': 100,
+                            '2-door': 60,
+                            '4-door-suv': 75,
+                            'truck': 100,
+                            'heavy-duty': 125,
+                          },
+                          'vip-interior': {
+                            'motorcycle': 0,
+                            '2-door': 200,
+                            '4-door-suv': 225,
+                            'truck': 250,
+                            'heavy-duty': 275,
+                          },
+                          'vip-both': {
+                            'motorcycle': 0,
+                            '2-door': 275,
+                            '4-door-suv': 300,
+                            'truck': 325,
+                            'heavy-duty': 350,
+                          },
+                        };
+                        return prices[tempServiceType][vehicleType!] || 0;
+                      })();
+
+                      return (
+                        <tr key={service.id} className="border-b border-border/50 hover:bg-muted/20 transition-colors">
+                          <td className="py-6 px-6">
+                            <div>
+                              <h4 className="text-lg font-bold text-foreground font-display mb-2">
+                                {service.name}
+                              </h4>
+                              <p className="text-sm text-muted-foreground">
+                                {service.description}
+                              </p>
+                            </div>
+                          </td>
+                          <td className="py-6 px-6 text-center">
+                            <div className="text-2xl font-bold text-red-500 font-display">
+                              ${price || 'N/A'}
+                            </div>
+                          </td>
+                          <td className="py-6 px-6 text-center">
+                            <Button 
+                              variant="hero"
+                              onClick={() => {
+                                setServiceType(service.id as ServiceType);
+                                setStep(3);
+                              }}
+                              className="px-8"
+                            >
+                              Select
+                            </Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
             </div>
 
             <div className="text-center">
@@ -248,7 +305,7 @@ const QuoteBuilder = () => {
                       <h4 className="font-semibold text-foreground font-display">
                         {addOn.name}
                       </h4>
-                      <span className="text-primary font-bold font-display">
+                      <span className="text-red-500 font-bold font-display">
                         +${addOn.price}
                       </span>
                     </div>
@@ -266,14 +323,14 @@ const QuoteBuilder = () => {
                   <span className="text-muted-foreground">
                     {serviceOptions.find(s => s.id === serviceType)?.name}
                   </span>
-                  <span className="text-foreground font-semibold">
+                  <span className="text-red-500 font-semibold">
                     ${getBasePrice()}
                   </span>
                 </div>
                 {selectedAddOns.length > 0 && (
                   <div className="flex justify-between items-center text-lg">
                     <span className="text-muted-foreground">Add-ons</span>
-                    <span className="text-foreground font-semibold">
+                    <span className="text-red-500 font-semibold">
                       +${getAddOnPrice()}
                     </span>
                   </div>
@@ -281,7 +338,7 @@ const QuoteBuilder = () => {
                 <div className="border-t border-border pt-2">
                   <div className="flex justify-between items-center text-2xl font-bold">
                     <span className="text-foreground font-display">Total:</span>
-                    <span className="text-primary font-display">${getTotalPrice()}</span>
+                    <span className="text-red-500 font-display">${getTotalPrice()}</span>
                   </div>
                 </div>
               </div>
@@ -342,7 +399,7 @@ const QuoteBuilder = () => {
                 )}
                 <div className="border-t border-border pt-2 flex justify-between text-xl font-bold">
                   <span className="font-display">Total:</span>
-                  <span className="text-primary font-display">${getTotalPrice()}</span>
+                  <span className="text-red-500 font-display">${getTotalPrice()}</span>
                 </div>
               </div>
             </div>
