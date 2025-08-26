@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://yourfavoritedetailer.lovable.app/</loc>
+    <lastmod>2025-01-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://yourfavoritedetailer.lovable.app/lovable-uploads/d34ba8a6-ed4b-4664-b442-513875ab6db2.png</image:loc>
+      <image:title>Professional Mobile Auto Detailing Denver Metro - Red Mazda Hand Wash Service</image:title>
+      <image:caption>Your Favorite Detailer providing premium mobile auto detailing services in Commerce City and Denver Metro area</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yourfavoritedetailer.lovable.app/lovable-uploads/ee308bcf-7014-42ad-8fa4-5a0fbbaeff49.png</image:loc>
+      <image:title>Professional Car Polisher Ceramic Coating Application Denver</image:title>
+      <image:caption>Premium ceramic coating and paint correction services by Your Favorite Detailer</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://yourfavoritedetailer.lovable.app/lovable-uploads/367e242d-3174-4725-a363-95da1535aada.png</image:loc>
+      <image:title>Classic Chevrolet Restoration Detail Work Denver Vintage Car Specialist</image:title>
+      <image:caption>Expert classic and vintage car detailing services in Denver Metro area</image:caption>
+    </image:image>
+  </url>
+</urlset>

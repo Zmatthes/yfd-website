@@ -13,8 +13,8 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={heroImage} 
-          alt="Perfectly detailed luxury car with pristine paint finish"
+          src="/lovable-uploads/d34ba8a6-ed4b-4664-b442-513875ab6db2.png" 
+          alt="Professional mobile auto detailing Denver Metro - Red Mazda luxury vehicle hand wash service by Your Favorite Detailer Commerce City"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
@@ -45,8 +45,8 @@ const Hero = () => {
 
           {/* Description */}
           <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Premium automotive detailing services in Commerce City and throughout the Denver Metro area. 
-            Professional quality service that exceeds expectations.
+            Premium mobile automotive detailing services in Commerce City serving the entire Denver Metro area. 
+            Professional ceramic coating, paint correction, and complete detailing that exceeds expectations every time.
           </p>
 
           {/* Action Buttons */}

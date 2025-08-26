@@ -36,15 +36,28 @@ const Gallery = () => {
           {/* Instagram Grid - 9 Most Recent Posts */}
           <div className="mb-16">
             <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-8">
-              {Array.from({ length: 9 }, (_, i) => (
+              {[
+                { src: '/lovable-uploads/ee308bcf-7014-42ad-8fa4-5a0fbbaeff49.png', alt: 'Professional car polisher applying ceramic coating Denver mobile detailing service' },
+                { src: '/lovable-uploads/3300c18b-599e-473e-b173-f9832690f626.png', alt: 'Premium auto detailing equipment cart Commerce City professional car care tools' },
+                { src: '/lovable-uploads/367e242d-3174-4725-a363-95da1535aada.png', alt: 'Classic Chevrolet restoration detail work Denver vintage car detailing specialist' },
+                { src: '/lovable-uploads/d34ba8a6-ed4b-4664-b442-513875ab6db2.png', alt: 'Hand washing red Mazda luxury vehicle exterior detailing Denver Metro car wash' },
+                { src: '/lovable-uploads/9626f2b6-a2d6-433d-bae5-b75502ea32cc.png', alt: 'Detailed tire and wheel cleaning before and after automotive detailing Denver' },
+                { src: '/lovable-uploads/5b02c5ab-56c0-4076-ab2b-582d0394eefa.png', alt: 'Premium purple paint finish ceramic coating protection Denver auto detailing' },
+                { src: '/lovable-uploads/ee308bcf-7014-42ad-8fa4-5a0fbbaeff49.png', alt: 'Professional polishing technique paint correction Denver Metro car detailing' },
+                { src: '/lovable-uploads/3300c18b-599e-473e-b173-f9832690f626.png', alt: 'Mobile detailing cart setup Commerce City on-site professional car care' },
+                { src: '/lovable-uploads/367e242d-3174-4725-a363-95da1535aada.png', alt: 'Classic car detailing showcase Your Favorite Detailer Denver vintage restoration' }
+              ].map((image, i) => (
                 <div 
                   key={i}
                   className="aspect-square bg-muted/50 rounded-lg hover:scale-105 transition-transform cursor-pointer group overflow-hidden"
                   onClick={openInstagram}
                 >
-                  <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-accent/30 transition-colors">
-                    <span className="text-muted-foreground text-sm">Recent Work {i + 1}</span>
-                  </div>
+                  <img 
+                    src={image.src} 
+                    alt={image.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    loading="lazy"
+                  />
                 </div>
               ))}
             </div>
