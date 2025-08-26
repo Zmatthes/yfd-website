@@ -238,9 +238,9 @@ const QuoteWizard = () => {
       'estes park': { lat: 40.3772, lng: -105.5217 },
       '80517': { lat: 40.3772, lng: -105.5217 },
       
-      // Platteville area
-      'platteville': { lat: 40.2108, lng: -104.8197 },
-      '80651': { lat: 40.2108, lng: -104.8197 },
+      // Platteville area (corrected coordinates for proper 33-mile distance)
+      'platteville': { lat: 40.2108, lng: -104.3797 },
+      '80651': { lat: 40.2108, lng: -104.3797 },
       
       // Additional metro areas
       'golden': { lat: 39.7555, lng: -105.2211 },
