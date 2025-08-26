@@ -162,7 +162,11 @@ const QuoteWizard = () => {
       'fort collins': { lat: 40.5853, lng: -105.0844 },
       'colorado springs': { lat: 38.8339, lng: -104.8214 },
       'pueblo': { lat: 38.2544, lng: -104.6091 },
-      'greeley': { lat: 40.4233, lng: -104.7694 }
+      'greeley': { lat: 40.4233, lng: -104.7694 },
+      
+      // Platteville area
+      'platteville': { lat: 40.2108, lng: -104.8197 },
+      '80651': { lat: 40.2108, lng: -104.8197 }
     };
     
     // Find best match
