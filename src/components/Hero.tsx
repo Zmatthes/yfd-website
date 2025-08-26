@@ -13,8 +13,8 @@ const Hero = () => {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/lovable-uploads/d34ba8a6-ed4b-4664-b442-513875ab6db2.png" 
-          alt="Professional mobile auto detailing Denver Metro - Red Mazda luxury vehicle hand wash service by Your Favorite Detailer Commerce City"
+          src="/lovable-uploads/6d91d324-3fc1-468f-be7f-e00f473b9879.png" 
+          alt="Professional mobile auto detailing Denver Metro - Honda CR-V luxury vehicle transformation by Your Favorite Detailer Commerce City"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />

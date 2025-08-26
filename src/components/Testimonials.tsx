@@ -194,41 +194,82 @@ const Testimonials = () => {
   };
 
   return (
-    <section id="testimonials" className="py-12 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="testimonials" className="py-20 bg-muted/30 relative overflow-hidden">
+      {/* Background Images */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 w-32 h-32 rounded-full overflow-hidden">
+          <img src="/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png" alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="absolute top-40 right-20 w-24 h-24 rounded-full overflow-hidden">
+          <img src="/lovable-uploads/be8ba91a-95ad-4b7b-b75c-7004a72370b4.png" alt="" className="w-full h-full object-cover" />
+        </div>
+        <div className="absolute bottom-20 left-1/4 w-28 h-28 rounded-full overflow-hidden">
+          <img src="/lovable-uploads/065f0a56-5345-4df8-b680-8d20947446a9.png" alt="" className="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               What Our Customers Say
             </h2>
-            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Don't just take our word for it. Here's what our satisfied customers 
-              have to say about their detailing experience.
+              have to say about their detailing experience with Your Favorite Detailer.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {testimonials.map((testimonial) => (
-              <Card key={testimonial.id} className="p-4 bg-background border border-border">
-                <div className="space-y-3">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.filter(t => t.text).slice(0, 12).map((testimonial) => (
+              <Card key={testimonial.id} className="p-6 bg-gradient-card border-border hover:shadow-luxury transition-smooth group">
+                <div className="space-y-4">
                   <div className="flex items-center gap-1">
                     {renderStars(testimonial.rating)}
                   </div>
                   
-                  {testimonial.text && (
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      "{testimonial.text}"
-                    </p>
-                  )}
+                  <p className="text-muted-foreground leading-relaxed line-clamp-4">
+                    "{testimonial.text}"
+                  </p>
                   
-                  <div className="border-t border-border pt-3">
-                    <div className="font-semibold text-foreground text-sm">
+                  <div className="border-t border-border pt-4">
+                    <div className="font-semibold text-foreground">
                       {testimonial.name}
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {testimonial.location}
                     </div>
                   </div>
                 </div>
               </Card>
             ))}
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center mt-16">
+            <p className="text-lg text-muted-foreground mb-6">
+              Ready to experience the same level of quality? Join our satisfied customers today!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
+              >
+                Book Your Detail
+              </button>
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('before-after');
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="px-8 py-3 border border-border rounded-lg hover:bg-muted transition-colors font-semibold"
+              >
+                See Our Work
+              </button>
+            </div>
           </div>
         </div>
       </div>

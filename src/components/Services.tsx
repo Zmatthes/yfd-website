@@ -21,7 +21,8 @@ const Services = () => {
         "6 Month Paint Sealant Applied To Paint & Wheels For Protection & Hydrophobicity", 
         "Tire Shine Applied (No Tire Shine Can Be Requested)"
       ],
-      popular: false
+      popular: false,
+      image: "/lovable-uploads/42983910-9c3d-4af2-9640-79fa6841ca85.png"
     },
     {
       icon: Sparkles,
@@ -36,21 +37,24 @@ const Services = () => {
         "Leather / Plastics Conditioned", 
         "Door Jams Cleaned"
       ],
-      popular: false
+      popular: false,
+      image: "/lovable-uploads/da9a4062-23f4-4a28-8275-9f3af9f2b233.png"
     },
     {
       icon: Brush,
       title: "Paint Correction",
       description: "Professional paint correction to remove swirl marks, scratches, and restore paint clarity.",
       features: ["Swirl mark removal", "Scratch correction", "Paint restoration", "Multi-stage polishing", "Protection application"],
-      popular: false
+      popular: false,
+      image: "/lovable-uploads/2d4da362-1900-4dd7-aa13-b5d1bce1f751.png"
     },
     {
       icon: Droplet,
       title: "Ceramic Coating",
       description: "Long-lasting ceramic coating protection for superior paint protection and easy maintenance.",
       features: ["Paint preparation", "Ceramic application", "Curing process", "2-year protection", "Hydrophobic finish"],
-      popular: false
+      popular: false,
+      image: "/lovable-uploads/1dee44ec-18e0-40dd-a213-fd82464a4206.png"
     }
   ];
 
@@ -74,59 +78,71 @@ const Services = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
             {services.map((service, index) => (
               <Card 
                 key={index}
-                className={`relative p-8 bg-gradient-card border-border hover:shadow-luxury transition-smooth group cursor-pointer ${
+                className={`relative overflow-hidden bg-gradient-card border-border hover:shadow-luxury transition-smooth group cursor-pointer ${
                   service.popular ? 'ring-2 ring-primary/50' : ''
                 }`}
               >
                 {service.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
                     <span className="bg-gradient-accent text-white px-4 py-1 rounded-full text-sm font-semibold">
                       Most Popular
                     </span>
                   </div>
                 )}
 
-                <div className="flex flex-col h-full">
-                  {/* Icon */}
-                  <div className="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-bounce">
-                    <service.icon className="h-8 w-8 text-primary" />
+                {/* Image Header */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={service.image} 
+                    alt={`${service.title} professional transformation by Your Favorite Detailer`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  
+                  {/* Icon overlay */}
+                  <div className="absolute top-4 left-4 w-12 h-12 bg-primary/90 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                    <service.icon className="h-6 w-6 text-white" />
                   </div>
+                </div>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-foreground mb-4">
-                      {service.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {service.description}
-                    </p>
+                <div className="p-8">
+                  <div className="flex flex-col h-full">
+                    {/* Content */}
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-foreground mb-4">
+                        {service.title}
+                      </h3>
+                      <p className="text-muted-foreground mb-6 leading-relaxed">
+                        {service.description}
+                      </p>
 
-                    {/* Features */}
-                    <ul className="space-y-2 mb-6">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
+                      {/* Features */}
+                      <ul className="space-y-2 mb-6">
+                        {service.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-center text-sm text-muted-foreground">
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Action */}
+                    <Button 
+                      variant={service.popular ? "hero" : "luxury"}
+                      className="w-full mt-auto"
+                      onClick={() => {
+                        const element = document.getElementById('quote-wizard');
+                        element?.scrollIntoView({ behavior: 'smooth' });
+                      }}
+                    >
+                      Get Quote
+                    </Button>
                   </div>
-
-                  {/* Action */}
-                  <Button 
-                    variant={service.popular ? "hero" : "luxury"}
-                    className="w-full mt-auto"
-                    onClick={() => {
-                      const element = document.getElementById('quote-wizard');
-                      element?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                  >
-                    Get Quote
-                  </Button>
                 </div>
               </Card>
             ))}

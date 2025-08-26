@@ -37,15 +37,15 @@ const Gallery = () => {
           <div className="mb-16">
             <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4 mb-8">
               {[
-                { src: '/lovable-uploads/ee308bcf-7014-42ad-8fa4-5a0fbbaeff49.png', alt: 'Professional car polisher applying ceramic coating Denver mobile detailing service' },
-                { src: '/lovable-uploads/3300c18b-599e-473e-b173-f9832690f626.png', alt: 'Premium auto detailing equipment cart Commerce City professional car care tools' },
-                { src: '/lovable-uploads/367e242d-3174-4725-a363-95da1535aada.png', alt: 'Classic Chevrolet restoration detail work Denver vintage car detailing specialist' },
-                { src: '/lovable-uploads/d34ba8a6-ed4b-4664-b442-513875ab6db2.png', alt: 'Hand washing red Mazda luxury vehicle exterior detailing Denver Metro car wash' },
-                { src: '/lovable-uploads/9626f2b6-a2d6-433d-bae5-b75502ea32cc.png', alt: 'Detailed tire and wheel cleaning before and after automotive detailing Denver' },
-                { src: '/lovable-uploads/5b02c5ab-56c0-4076-ab2b-582d0394eefa.png', alt: 'Premium purple paint finish ceramic coating protection Denver auto detailing' },
-                { src: '/lovable-uploads/ee308bcf-7014-42ad-8fa4-5a0fbbaeff49.png', alt: 'Professional polishing technique paint correction Denver Metro car detailing' },
-                { src: '/lovable-uploads/3300c18b-599e-473e-b173-f9832690f626.png', alt: 'Mobile detailing cart setup Commerce City on-site professional car care' },
-                { src: '/lovable-uploads/367e242d-3174-4725-a363-95da1535aada.png', alt: 'Classic car detailing showcase Your Favorite Detailer Denver vintage restoration' }
+                { src: '/lovable-uploads/9efe2697-fc17-4dad-9e42-85ecb959afd9.png', alt: 'Professional car transformation before and after Denver mobile detailing service' },
+                { src: '/lovable-uploads/b27f11cd-e924-4747-a35e-f4c8f1d03195.png', alt: 'Luxury vehicle interior and exterior detailing Commerce City professional results' },
+                { src: '/lovable-uploads/e038490e-e179-4949-9ecf-f05ed59d82f4.png', alt: 'Premium auto detailing transformation Your Favorite Detailer Denver Metro' },
+                { src: '/lovable-uploads/78eee3c6-b987-4d73-abe0-027c68842b3e.png', alt: 'Professional vehicle restoration detailing work Denver automotive care' },
+                { src: '/lovable-uploads/54387e23-2161-4189-aaae-449d2bdeda26.png', alt: 'Expert car cleaning and detailing transformation Commerce City mobile service' },
+                { src: '/lovable-uploads/84408e06-20d5-4323-85f8-690a274489a2.png', alt: 'High-end vehicle detailing before and after Denver Metro professional results' },
+                { src: '/lovable-uploads/a4721bde-4e71-41e3-836f-7f23bdc64318.png', alt: 'Comprehensive auto detailing transformation Your Favorite Detailer showcase' },
+                { src: '/lovable-uploads/1c325991-263e-41c9-9670-4f8aecb105cb.png', alt: 'Professional automotive detailing excellence Denver mobile car care service' },
+                { src: '/lovable-uploads/de98b512-b6cc-4163-9dbd-f027cfebc2a8.png', alt: 'Premium vehicle transformation detailing Commerce City professional quality work' }
               ].map((image, i) => (
                 <div 
                   key={i}
