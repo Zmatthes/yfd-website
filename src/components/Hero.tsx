@@ -17,24 +17,15 @@ const Hero = () => {
           alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
           className="w-full h-full object-contain object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/90" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
-        
-        {/* Text background blocks */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-full max-w-4xl mx-auto px-4">
-            <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-              {/* This will contain the text content */}
-            </div>
-          </div>
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30" />
       </div>
 
       {/* Content */}
       <div className="relative z-20 container mx-auto px-4 text-center max-w-4xl">
-        <div className="animate-fade-in bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+        <div className="animate-fade-in bg-black/30 backdrop-blur-[2px] rounded-2xl p-8 border border-white/20">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-card/30 backdrop-blur-sm border border-border/50 rounded-full px-4 py-2 mb-6">
+          <div className="inline-flex items-center space-x-2 bg-black/40 backdrop-blur-sm border border-white/30 rounded-full px-4 py-2 mb-6">
             <MapPin className="h-4 w-4 text-primary" />
             <span className="text-sm text-white font-medium">Serving Denver Metro Area</span>
           </div>

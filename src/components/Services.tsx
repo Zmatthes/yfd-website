@@ -102,11 +102,6 @@ const Services = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* Icon overlay */}
-                  <div className="absolute top-4 left-4 w-12 h-12 bg-primary/90 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                    <service.icon className="h-6 w-6 text-white" />
-                  </div>
                 </div>
 
                 <div className="p-8">
