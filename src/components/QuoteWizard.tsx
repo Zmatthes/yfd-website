@@ -27,7 +27,6 @@ const QuoteWizard = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
-  const [mapboxToken, setMapboxToken] = useState("");
 
   // Shop address for distance calculations
   const shopAddress = "17284 E 102nd Place, Commerce City, CO 80022";
@@ -81,36 +80,15 @@ const QuoteWizard = () => {
     const shopLng = -104.7918;
 
     try {
-      // Use user-provided Mapbox token or fallback
-      const token = mapboxToken || 'pk.eyJ1IjoidGVzdCIsImEiOiJjbDR0ZXN0In0.test'; // Placeholder
-      
-      // Geocode the customer address using Mapbox
-      const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address + ', Colorado')}.json?access_token=${token}&country=US&limit=1`;
-      
-      const response = await fetch(geocodeUrl);
-      const data = await response.json();
-      
-      if (data.features && data.features.length > 0) {
-        const [lng, lat] = data.features[0].center;
-        const distance = haversineDistance(shopLat, shopLng, lat, lng);
-        return Math.round(distance);
-      } else {
-        // Fallback to our hardcoded coordinates if geocoding fails
-        const estimatedCoords = estimateCoordinates(address);
-        if (estimatedCoords) {
-          const distance = haversineDistance(shopLat, shopLng, estimatedCoords.lat, estimatedCoords.lng);
-          return Math.round(distance);
-        }
-        return calculateDistanceByArea(address);
-      }
-    } catch (error) {
-      console.error('Geocoding error:', error);
-      // Fallback to our existing coordinate estimation
+      // Fallback to hardcoded coordinates for now until Supabase is set up
       const estimatedCoords = estimateCoordinates(address);
       if (estimatedCoords) {
         const distance = haversineDistance(shopLat, shopLng, estimatedCoords.lat, estimatedCoords.lng);
         return Math.round(distance);
       }
+      return calculateDistanceByArea(address);
+    } catch (error) {
+      console.error("Distance calculation error:", error);
       return calculateDistanceByArea(address);
     }
   };
@@ -809,21 +787,6 @@ const QuoteWizard = () => {
 
             {serviceMode === "mobile" && (
               <div className="mt-6 space-y-4">
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <p className="text-sm text-blue-800 mb-2">
-                    <strong>For accurate distance calculation, please enter your Mapbox public token.</strong>
-                  </p>
-                  <p className="text-xs text-blue-600 mb-3">
-                    Get your free token at <a href="https://mapbox.com/" target="_blank" rel="noopener noreferrer" className="underline">mapbox.com</a> (Account → Tokens)
-                  </p>
-                  <Input
-                    placeholder="Enter your Mapbox public token (pk.ey...)"
-                    value={mapboxToken}
-                    onChange={(e) => setMapboxToken(e.target.value)}
-                    className="text-xs"
-                  />
-                </div>
-                
                 <div>
                   <Label htmlFor="address" className="font-display">Customer Address *</Label>
                   <div className="relative">
@@ -899,11 +862,29 @@ const QuoteWizard = () => {
               <Card className="p-6 bg-gradient-card">
                 <h3 className="text-xl font-bold font-display mb-4">Quote Summary</h3>
                 
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span>Base Service</span>
-                      <span className="font-semibold text-red-500">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
-                    </div>
+                {/* Vehicle Details */}
+                <div className="mb-4 p-3 bg-muted/20 rounded-lg">
+                  <h4 className="font-semibold mb-2">Vehicle Details</h4>
+                  <p className="text-sm text-muted-foreground">
+                    {year} {make} {model} {vehicleType && `(${vehicleType.replace('-', ' ').toUpperCase()})`}
+                  </p>
+                </div>
+
+                {/* Service Details */}
+                <div className="mb-4 p-3 bg-muted/20 rounded-lg">
+                  <h4 className="font-semibold mb-2">Service Selected</h4>
+                  <p className="text-sm text-muted-foreground">
+                    {serviceType === 'interior-exterior' ? 'Interior & Exterior' :
+                     serviceType === 'vip-interior' ? 'VIP Interior' :
+                     serviceType === 'vip-exterior' ? 'VIP Exterior' : 'No service selected'}
+                  </p>
+                </div>
+
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span>Base Service</span>
+                    <span className="font-semibold text-red-500">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
+                  </div>
 
                     {selectedAddOns.map(addOnId => {
                       const exteriorAddOn = exteriorAddOns.find(a => a.id === addOnId);
