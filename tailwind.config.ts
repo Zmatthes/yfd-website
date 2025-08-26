@@ -123,9 +123,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'slide-up': 'slide-up 0.5s ease-out',
-				'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
+				'glow-pulse': 'glow-pulse 4s ease-in-out infinite',
 				'shine': 'shine 2s ease-in-out infinite',
-				'float': 'float 6s ease-in-out infinite'
+				'float': 'float 10s ease-in-out infinite'
 			}
 		}
 	},
