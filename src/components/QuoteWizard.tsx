@@ -900,7 +900,7 @@ const QuoteWizard = () => {
 
                   {serviceMode === "mobile" && distance && (
                     <div className="flex justify-between items-center text-sm">
-                      <span>Mobile Service ({distance} mi)</span>
+                      <span>Mobile Service ({distance * 2} mi round trip)</span>
                       <span className="text-red-500">+${calculateMobileFee(distance)}</span>
                     </div>
                   )}
