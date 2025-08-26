@@ -113,11 +113,11 @@ const BeforeAfter = () => {
             </Button>
 
             {/* Main Image */}
-            <div className="w-full bg-background">
+            <div className="w-full bg-background flex justify-center">
               <img
                 src={currentTransformation.image}
                 alt={`Transformation ${currentIndex + 1}`}
-                className="w-full h-auto object-contain"
+                className="max-w-[90%] h-auto object-contain"
               />
             </div>
 
