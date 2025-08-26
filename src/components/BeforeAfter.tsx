@@ -164,27 +164,6 @@ const BeforeAfter = () => {
             </div>
           </Card>
         </div>
-
-        {/* Thumbnail Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8 max-w-4xl mx-auto">
-          {transformations.map((transformation, index) => (
-            <button
-              key={transformation.id}
-              onClick={() => setCurrentIndex(index)}
-              className={`relative aspect-square rounded-lg overflow-hidden transition-all ${
-                index === currentIndex 
-                  ? 'ring-2 ring-primary scale-105' 
-                  : 'hover:scale-105 opacity-70 hover:opacity-100'
-              }`}
-            >
-              <img
-                src={transformation.image}
-                alt={`Transformation ${index + 1}`}
-                className="w-full h-full object-contain"
-              />
-            </button>
-          ))}
-        </div>
       </div>
     </section>
   );
