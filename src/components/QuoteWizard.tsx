@@ -27,6 +27,7 @@ const QuoteWizard = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [mapboxToken, setMapboxToken] = useState("");
 
   // Shop address for distance calculations
   const shopAddress = "17284 E 102nd Place, Commerce City, CO 80022";
@@ -69,29 +70,49 @@ const QuoteWizard = () => {
     { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
   ];
 
-  // Real distance calculation using haversine formula
-  const calculateDistance = (address: string): Promise<number> => {
-    return new Promise((resolve, reject) => {
-      if (!address.trim()) {
-        resolve(0);
-        return;
-      }
+  // Real distance calculation using Mapbox Geocoding API
+  const calculateDistance = async (address: string): Promise<number> => {
+    if (!address.trim()) {
+      return 0;
+    }
 
-      // Shop coordinates (17284 E 102nd Place, Commerce City, CO 80022)
-      const shopLat = 39.8631;
-      const shopLng = -104.7918;
+    // Shop coordinates (17284 E 102nd Place, Commerce City, CO 80022)
+    const shopLat = 39.8631;
+    const shopLng = -104.7918;
 
-      // Try to geocode the address using a simple coordinate estimation
-      const estimatedCoords = estimateCoordinates(address);
+    try {
+      // Use user-provided Mapbox token or fallback
+      const token = mapboxToken || 'pk.eyJ1IjoidGVzdCIsImEiOiJjbDR0ZXN0In0.test'; // Placeholder
       
+      // Geocode the customer address using Mapbox
+      const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address + ', Colorado')}.json?access_token=${token}&country=US&limit=1`;
+      
+      const response = await fetch(geocodeUrl);
+      const data = await response.json();
+      
+      if (data.features && data.features.length > 0) {
+        const [lng, lat] = data.features[0].center;
+        const distance = haversineDistance(shopLat, shopLng, lat, lng);
+        return Math.round(distance);
+      } else {
+        // Fallback to our hardcoded coordinates if geocoding fails
+        const estimatedCoords = estimateCoordinates(address);
+        if (estimatedCoords) {
+          const distance = haversineDistance(shopLat, shopLng, estimatedCoords.lat, estimatedCoords.lng);
+          return Math.round(distance);
+        }
+        return calculateDistanceByArea(address);
+      }
+    } catch (error) {
+      console.error('Geocoding error:', error);
+      // Fallback to our existing coordinate estimation
+      const estimatedCoords = estimateCoordinates(address);
       if (estimatedCoords) {
         const distance = haversineDistance(shopLat, shopLng, estimatedCoords.lat, estimatedCoords.lng);
-        resolve(Math.round(distance));
-      } else {
-        // Fallback to area-based calculation
-        resolve(calculateDistanceByArea(address));
+        return Math.round(distance);
       }
-    });
+      return calculateDistanceByArea(address);
+    }
   };
 
   // Estimate coordinates based on known Colorado locations
@@ -788,6 +809,21 @@ const QuoteWizard = () => {
 
             {serviceMode === "mobile" && (
               <div className="mt-6 space-y-4">
+                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                  <p className="text-sm text-blue-800 mb-2">
+                    <strong>For accurate distance calculation, please enter your Mapbox public token.</strong>
+                  </p>
+                  <p className="text-xs text-blue-600 mb-3">
+                    Get your free token at <a href="https://mapbox.com/" target="_blank" rel="noopener noreferrer" className="underline">mapbox.com</a> (Account → Tokens)
+                  </p>
+                  <Input
+                    placeholder="Enter your Mapbox public token (pk.ey...)"
+                    value={mapboxToken}
+                    onChange={(e) => setMapboxToken(e.target.value)}
+                    className="text-xs"
+                  />
+                </div>
+                
                 <div>
                   <Label htmlFor="address" className="font-display">Customer Address *</Label>
                   <div className="relative">
