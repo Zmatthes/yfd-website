@@ -15,23 +15,32 @@ const Hero = () => {
         <img 
           src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
           alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
+        
+        {/* Text background blocks */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-full max-w-4xl mx-auto px-4">
+            <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+              {/* This will contain the text content */}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center max-w-4xl">
-        <div className="animate-fade-in">
+      <div className="relative z-20 container mx-auto px-4 text-center max-w-4xl">
+        <div className="animate-fade-in bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
           {/* Badge */}
-          <div className="inline-flex items-center space-x-2 bg-card/20 backdrop-blur-sm border border-border/30 rounded-full px-4 py-2 mb-6">
+          <div className="inline-flex items-center space-x-2 bg-card/30 backdrop-blur-sm border border-border/50 rounded-full px-4 py-2 mb-6">
             <MapPin className="h-4 w-4 text-primary" />
-            <span className="text-sm text-foreground">Serving Denver Metro Area</span>
+            <span className="text-sm text-white font-medium">Serving Denver Metro Area</span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-logo tracking-wider">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-logo tracking-wider drop-shadow-lg">
             YOUR FAVORITE
             <span className="text-transparent bg-gradient-accent bg-clip-text block">
               DETAILER
@@ -39,12 +48,12 @@ const Hero = () => {
           </h1>
 
           {/* Tagline */}
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 font-medium">
+          <p className="text-xl md:text-2xl text-gray-100 mb-8 font-medium drop-shadow-md">
             "If you have the time, we have the shine!"
           </p>
 
           {/* Description */}
-          <p className="text-lg text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
             Premium mobile automotive detailing services in Commerce City serving the entire Denver Metro area. 
             Professional ceramic coating, paint correction, and complete detailing that exceeds expectations every time.
           </p>
@@ -55,7 +64,7 @@ const Hero = () => {
               variant="hero" 
               size="xl"
               onClick={() => scrollToSection('quote-wizard')}
-              className="group"
+              className="group shadow-xl"
             >
               Get Free Quote
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -64,22 +73,23 @@ const Hero = () => {
               variant="luxury" 
               size="xl"
               onClick={() => scrollToSection('services')}
+              className="shadow-xl"
             >
               View Services
             </Button>
           </div>
 
           {/* Social Proof */}
-          <div className="flex items-center justify-center space-x-6 text-gray-300">
+          <div className="flex items-center justify-center space-x-6 text-gray-200">
             <div className="flex items-center space-x-1">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-primary text-primary" />
+                  <Star key={i} className="h-5 w-5 fill-primary text-primary drop-shadow-sm" />
                 ))}
               </div>
-              <span className="ml-2 text-sm">5.0 Rating</span>
+              <span className="ml-2 text-sm font-medium">5.0 Rating</span>
             </div>
-            <div className="w-px h-6 bg-border" />
+            <div className="w-px h-6 bg-white/30" />
             <div className="text-sm">
               <span className="font-semibold">@your.favorite.detailer</span>
             </div>
