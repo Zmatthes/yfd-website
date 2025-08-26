@@ -9,7 +9,7 @@ import { Progress } from "@/components/ui/progress";
 import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "motorcycle";
-type ServiceType = "interior-exterior" | "vip-interior" | "vip-exterior";
+type ServiceType = "full-detail" | "interior-only" | "exterior-only";
 
 const QuoteWizard = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -32,21 +32,21 @@ const QuoteWizard = () => {
   const shopAddress = "17284 E 102nd Place, Commerce City, CO 80022";
 
   const servicePrices = {
-    "interior-exterior": {
+    "full-detail": {
       "2-door": 275,
       "4-door": 300,
       "mid-suv": 300,
       "truck": 325,
       "full-suv": 350
     },
-    "vip-interior": {
+    "interior-only": {
       "2-door": 215,
       "4-door": 225,
       "mid-suv": 225,
       "truck": 250,
       "full-suv": 275
     },
-    "vip-exterior": {
+    "exterior-only": {
       "2-door": 60,
       "4-door": 75,
       "mid-suv": 75,
@@ -611,12 +611,12 @@ const QuoteWizard = () => {
 
             <RadioGroup value={serviceType || ""} onValueChange={(value) => setServiceType(value as ServiceType)}>
               <div className="space-y-6">
-                {/* Interior & Exterior */}
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="interior-exterior" id="interior-exterior" />
-                    <Label htmlFor="interior-exterior" className="text-xl font-bold font-display">INTERIOR & EXTERIOR</Label>
-                  </div>
+                 {/* Full Detail */}
+                 <div className="space-y-2">
+                   <div className="flex items-center space-x-2">
+                     <RadioGroupItem value="full-detail" id="full-detail" />
+                     <Label htmlFor="full-detail" className="text-xl font-bold font-display">FULL DETAIL</Label>
+                   </div>
                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
                       <span className="text-base font-medium">2 DOOR CAR</span>
@@ -637,12 +637,12 @@ const QuoteWizard = () => {
                   </div>
                 </div>
 
-                {/* VIP Interior */}
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="vip-interior" id="vip-interior" />
-                    <Label htmlFor="vip-interior" className="text-xl font-bold font-display">VIP INTERIOR</Label>
-                  </div>
+                 {/* Interior Only */}
+                 <div className="space-y-2">
+                   <div className="flex items-center space-x-2">
+                     <RadioGroupItem value="interior-only" id="interior-only" />
+                     <Label htmlFor="interior-only" className="text-xl font-bold font-display">INTERIOR ONLY</Label>
+                   </div>
                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
                       <span className="text-base font-medium">2 DOOR CAR</span>
@@ -663,12 +663,12 @@ const QuoteWizard = () => {
                   </div>
                 </div>
 
-                {/* VIP Exterior */}
-                <div className="space-y-2">
-                  <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="vip-exterior" id="vip-exterior" />
-                    <Label htmlFor="vip-exterior" className="text-xl font-bold font-display">VIP EXTERIOR</Label>
-                  </div>
+                 {/* Exterior Only */}
+                 <div className="space-y-2">
+                   <div className="flex items-center space-x-2">
+                     <RadioGroupItem value="exterior-only" id="exterior-only" />
+                     <Label htmlFor="exterior-only" className="text-xl font-bold font-display">EXTERIOR ONLY</Label>
+                   </div>
                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
                       <span className="text-base font-medium">2 DOOR CAR</span>
@@ -873,11 +873,11 @@ const QuoteWizard = () => {
                 {/* Service Details */}
                 <div className="mb-4 p-3 bg-muted/20 rounded-lg">
                   <h4 className="font-semibold mb-2">Service Selected</h4>
-                  <p className="text-sm text-muted-foreground">
-                    {serviceType === 'interior-exterior' ? 'Interior & Exterior' :
-                     serviceType === 'vip-interior' ? 'VIP Interior' :
-                     serviceType === 'vip-exterior' ? 'VIP Exterior' : 'No service selected'}
-                  </p>
+                   <p className="text-sm text-muted-foreground">
+                     {serviceType === 'full-detail' ? 'Full Detail' :
+                      serviceType === 'interior-only' ? 'Interior Only' :
+                      serviceType === 'exterior-only' ? 'Exterior Only' : 'No service selected'}
+                   </p>
                 </div>
 
                 <div className="space-y-3">
