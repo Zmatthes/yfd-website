@@ -15,30 +15,37 @@ const Hero = () => {
         <div className="relative z-10 container mx-auto px-4 flex items-center justify-center min-h-screen">
           <div className="w-full max-w-4xl mx-auto animate-fade-in flex items-center justify-center">
             <div className="relative group">
-              {/* Dirty/faded version of logo underneath */}
-              <img 
-                src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
-                alt="Your Favorite Detailer logo"
-                className="relative max-w-full max-h-[80vh] w-auto h-auto object-contain opacity-40 blur-[1px] grayscale"
-              />
-              
-              {/* Clean version that gets revealed */}
-              <img 
-                src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
-                alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
-                className="absolute inset-0 max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-pressure-wash"
-              />
-              
-              {/* Water spray effect */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-0 left-0 w-full h-full animate-spray-sweep opacity-60">
-                  <div className="h-full bg-gradient-to-r from-transparent via-blue-200/30 to-transparent blur-sm animate-spray-particles"></div>
+              {/* Dirty/hidden logo base */}
+              <div className="relative max-w-full max-h-[80vh] w-auto h-auto">
+                <img 
+                  src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
+                  alt="Your Favorite Detailer logo"
+                  className="max-w-full max-h-[80vh] w-auto h-auto object-contain opacity-20 blur-[2px] grayscale"
+                />
+                
+                {/* Clean logo that gets revealed */}
+                <img 
+                  src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
+                  alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
+                  className="absolute inset-0 max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-hand-wash-reveal"
+                />
+                
+                {/* Hand with sponge */}
+                <div className="absolute top-1/2 -left-16 transform -translate-y-1/2 animate-hand-wash-move pointer-events-none">
+                  <div className="relative">
+                    {/* Hand */}
+                    <div className="w-12 h-16 bg-gradient-to-b from-amber-100 to-amber-200 rounded-full border-2 border-amber-300 transform rotate-12"></div>
+                    {/* Sponge */}
+                    <div className="absolute -top-2 -right-2 w-8 h-6 bg-yellow-300 rounded-lg border border-yellow-400 shadow-sm">
+                      <div className="w-full h-full bg-gradient-to-b from-yellow-200 to-yellow-400 rounded-lg"></div>
+                    </div>
+                    {/* Soap bubbles */}
+                    <div className="absolute -top-1 right-2 w-2 h-2 bg-white rounded-full opacity-80 animate-bubble-1"></div>
+                    <div className="absolute top-1 right-4 w-1.5 h-1.5 bg-white rounded-full opacity-60 animate-bubble-2"></div>
+                    <div className="absolute top-3 right-1 w-1 h-1 bg-white rounded-full opacity-70 animate-bubble-3"></div>
+                  </div>
                 </div>
               </div>
-              
-              {/* Water droplets */}
-              <div className="absolute top-1/4 left-1/2 w-1 h-1 bg-blue-400 rounded-full animate-drip opacity-70" style={{animationDelay: '2s'}}></div>
-              <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-blue-300 rounded-full animate-drip opacity-60" style={{animationDelay: '3s'}}></div>
             </div>
           </div>
         </div>
