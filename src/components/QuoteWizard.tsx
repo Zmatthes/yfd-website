@@ -605,8 +605,8 @@ const QuoteWizard = () => {
         return (
           <div className="space-y-8">
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Service Type</h2>
-              <p className="text-muted-foreground">Choose your service package</p>
+              <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Detail Type</h2>
+              <p className="text-muted-foreground">Choose your detail</p>
             </div>
 
             <RadioGroup value={serviceType || ""} onValueChange={(value) => setServiceType(value as ServiceType)}>
