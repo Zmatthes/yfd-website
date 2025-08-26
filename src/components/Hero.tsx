@@ -24,10 +24,6 @@ const Hero = () => {
                 className="relative max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-float hover:scale-105 transition-transform duration-700 cursor-pointer"
               />
               
-              {/* Sparkle effects */}
-              <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-primary rounded-full animate-ping opacity-40" style={{animationDuration: '3s'}}></div>
-              <div className="absolute top-3/4 right-1/4 w-1.5 h-1.5 bg-primary rounded-full animate-ping opacity-30" style={{animationDelay: '2s', animationDuration: '4s'}}></div>
-              <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-primary rounded-full animate-ping opacity-35" style={{animationDelay: '4s', animationDuration: '5s'}}></div>
             </div>
           </div>
         </div>
