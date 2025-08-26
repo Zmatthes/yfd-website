@@ -62,7 +62,7 @@ const QuoteBuilder = () => {
       },
       'vip-interior': {
         'motorcycle': 0, // Not applicable
-        '2-door': 200,
+        '2-door': 215,
         '4-door-suv': 225,
         'truck': 250,
         'heavy-duty': 275,
@@ -198,6 +198,8 @@ const QuoteBuilder = () => {
                   <tbody>
                     {availableServices.map((service) => {
                       const tempServiceType = service.id as ServiceType;
+                      // Use the existing getBasePrice function by temporarily setting serviceType
+                      const originalServiceType = serviceType;
                       const price = (() => {
                         const prices: Record<ServiceType, Record<VehicleType, number>> = {
                           'vip-exterior': {
@@ -209,7 +211,7 @@ const QuoteBuilder = () => {
                           },
                           'vip-interior': {
                             'motorcycle': 0,
-                            '2-door': 200,
+                            '2-door': 215,
                             '4-door-suv': 225,
                             'truck': 250,
                             'heavy-duty': 275,
@@ -238,7 +240,7 @@ const QuoteBuilder = () => {
                             </div>
                           </td>
                           <td className="py-6 px-6 text-center">
-                            <div className="text-2xl font-bold text-red-500 font-display">
+                            <div className="text-3xl font-bold text-red-500 font-display">
                               ${price || 'N/A'}
                             </div>
                           </td>
