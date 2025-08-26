@@ -454,10 +454,13 @@ const QuoteWizard = () => {
   };
 
   const calculateMobileFee = (distance: number) => {
-    if (distance <= 30) {
+    // $25 base fee covers up to 30 miles roundtrip
+    if (distance <= 15) { // 15 miles one-way = 30 miles roundtrip
       return 25;
     }
-    return 25 + (Math.ceil((distance - 30) / 10) * 10);
+    // $0.50 per mile after 30 miles roundtrip
+    const extraMiles = (distance - 15) * 2; // Convert one-way to roundtrip
+    return 25 + (extraMiles * 0.5);
   };
 
   useEffect(() => {
