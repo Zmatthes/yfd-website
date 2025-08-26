@@ -16,7 +16,7 @@ const Services = () => {
       title: "Exterior Detailing",
       description: "Complete exterior detailing with professional techniques and premium products.",
       features: [
-        "2 Bucket Hand Wash of Exterior", 
+        "Hand Wash of Exterior", 
         "Deep Clean of Wheels & Wheel Wells", 
         "6 Month Paint Sealant Applied To Paint & Wheels For Protection & Hydrophobicity", 
         "Tire Shine Applied (No Tire Shine Can Be Requested)"
