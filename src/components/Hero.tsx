@@ -15,15 +15,30 @@ const Hero = () => {
         <div className="relative z-10 container mx-auto px-4 flex items-center justify-center min-h-screen">
           <div className="w-full max-w-4xl mx-auto animate-fade-in flex items-center justify-center">
             <div className="relative group">
-              {/* Glow effect background */}
-              <div className="absolute inset-0 bg-gradient-accent opacity-15 blur-3xl scale-110 animate-glow-pulse"></div>
+              {/* Dirty/faded version of logo underneath */}
+              <img 
+                src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
+                alt="Your Favorite Detailer logo"
+                className="relative max-w-full max-h-[80vh] w-auto h-auto object-contain opacity-40 blur-[1px] grayscale"
+              />
               
+              {/* Clean version that gets revealed */}
               <img 
                 src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
                 alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
-                className="relative max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-float hover:scale-105 transition-transform duration-700 cursor-pointer"
+                className="absolute inset-0 max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-pressure-wash"
               />
               
+              {/* Water spray effect */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-0 w-full h-full animate-spray-sweep opacity-60">
+                  <div className="h-full bg-gradient-to-r from-transparent via-blue-200/30 to-transparent blur-sm animate-spray-particles"></div>
+                </div>
+              </div>
+              
+              {/* Water droplets */}
+              <div className="absolute top-1/4 left-1/2 w-1 h-1 bg-blue-400 rounded-full animate-drip opacity-70" style={{animationDelay: '2s'}}></div>
+              <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-blue-300 rounded-full animate-drip opacity-60" style={{animationDelay: '3s'}}></div>
             </div>
           </div>
         </div>

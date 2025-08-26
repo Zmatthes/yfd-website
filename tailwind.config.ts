@@ -113,15 +113,44 @@ export default {
 					'0%': { transform: 'translateX(-100%)' },
 					'100%': { transform: 'translateX(100%)' }
 				},
-				'float': {
-					'0%': { transform: 'translateY(0px)' },
-					'15%': { transform: 'translateY(-8px)' },
-					'30%': { transform: 'translateY(-12px)' },
-					'45%': { transform: 'translateY(-14px)' },
-					'60%': { transform: 'translateY(-15px)' },
-					'75%': { transform: 'translateY(-15px)' },
-					'90%': { transform: 'translateY(-10px)' },
-					'100%': { transform: 'translateY(0px)' }
+				'pressure-wash': {
+					'0%': { 
+						clipPath: 'inset(0 100% 0 0)',
+						filter: 'blur(1px) grayscale(1) brightness(0.4)'
+					},
+					'20%': { 
+						clipPath: 'inset(0 80% 0 0)',
+						filter: 'blur(0.8px) grayscale(0.8) brightness(0.6)'
+					},
+					'40%': { 
+						clipPath: 'inset(0 60% 0 0)',
+						filter: 'blur(0.5px) grayscale(0.6) brightness(0.8)'
+					},
+					'60%': { 
+						clipPath: 'inset(0 40% 0 0)',
+						filter: 'blur(0.3px) grayscale(0.4) brightness(0.9)'
+					},
+					'80%': { 
+						clipPath: 'inset(0 20% 0 0)',
+						filter: 'blur(0.1px) grayscale(0.2) brightness(1)'
+					},
+					'100%': { 
+						clipPath: 'inset(0 0% 0 0)',
+						filter: 'blur(0px) grayscale(0) brightness(1)'
+					}
+				},
+				'spray-sweep': {
+					'0%': { transform: 'translateX(-100%) skewX(-15deg)' },
+					'100%': { transform: 'translateX(100%) skewX(-15deg)' }
+				},
+				'spray-particles': {
+					'0%, 100%': { opacity: '0.3' },
+					'50%': { opacity: '0.8' }
+				},
+				'drip': {
+					'0%': { transform: 'translateY(0px) scale(1)', opacity: '0.8' },
+					'50%': { transform: 'translateY(20px) scale(0.8)', opacity: '0.6' },
+					'100%': { transform: 'translateY(40px) scale(0.4)', opacity: '0' }
 				}
 			},
 			animation: {
@@ -131,7 +160,10 @@ export default {
 				'slide-up': 'slide-up 0.5s ease-out',
 				'glow-pulse': 'glow-pulse 4s ease-in-out infinite',
 				'shine': 'shine 2s ease-in-out infinite',
-				'float': 'float 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite'
+				'pressure-wash': 'pressure-wash 4s ease-out 1s 1 forwards',
+				'spray-sweep': 'spray-sweep 4s ease-out 1s 1',
+				'spray-particles': 'spray-particles 0.5s ease-in-out infinite',
+				'drip': 'drip 2s ease-out infinite'
 			}
 		}
 	},
