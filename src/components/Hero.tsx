@@ -10,14 +10,14 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background py-16">
         {/* Clean Logo Display */}
-        <div className="relative z-10 container mx-auto px-4 flex items-center justify-center h-screen">
-          <div className="max-w-2xl mx-auto animate-fade-in">
+        <div className="relative z-10 container mx-auto px-4 flex items-center justify-center min-h-screen">
+          <div className="w-full max-w-4xl mx-auto animate-fade-in flex items-center justify-center">
             <img 
               src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
               alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
-              className="w-full h-auto object-contain drop-shadow-2xl"
+              className="max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl"
             />
           </div>
         </div>
