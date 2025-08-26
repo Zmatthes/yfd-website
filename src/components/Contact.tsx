@@ -53,9 +53,8 @@ const Contact = () => {
                   HOURS
                 </h4>
                 <p className="text-muted-foreground">
-                  By Appointment Only<br/>
-                  Monday - Saturday: 8AM - 6PM<br/>
-                  Sunday: 10AM - 4PM
+                  Appt Only<br/>
+                  Mon - Sun
                 </p>
               </Card>
             </div>
