@@ -54,7 +54,7 @@ const Hero = () => {
             <Button 
               variant="hero" 
               size="xl"
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection('quote-wizard')}
               className="group"
             >
               Get Free Quote

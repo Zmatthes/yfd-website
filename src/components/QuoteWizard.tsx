@@ -31,14 +31,14 @@ const QuoteWizard = () => {
 
   const servicePrices = {
     "interior-exterior": {
-      "2-door": 250,
+      "2-door": 275,
       "4-door": 300,
       "mid-suv": 300,
       "truck": 325,
       "full-suv": 350
     },
     "vip-interior": {
-      "2-door": 200,
+      "2-door": 215,
       "4-door": 225,
       "mid-suv": 225,
       "truck": 250,
@@ -278,19 +278,19 @@ const QuoteWizard = () => {
                   <div className="ml-6 space-y-2">
                     <div className="flex justify-between">
                       <span>2 DOOR CAR</span>
-                      <span className="font-bold">$250</span>
+                      <span className="font-bold text-red-500">$275</span>
                     </div>
                     <div className="flex justify-between">
                       <span>4 DOOR CAR / MID-SIZE SUV</span>
-                      <span className="font-bold">$300</span>
+                      <span className="font-bold text-red-500">$300</span>
                     </div>
                     <div className="flex justify-between">
                       <span>TRUCK</span>
-                      <span className="font-bold">$325</span>
+                      <span className="font-bold text-red-500">$325</span>
                     </div>
                     <div className="flex justify-between">
                       <span>SUV / HEAVY DUTY TRUCK</span>
-                      <span className="font-bold">$350</span>
+                      <span className="font-bold text-red-500">$350</span>
                     </div>
                   </div>
                 </div>
@@ -304,19 +304,19 @@ const QuoteWizard = () => {
                   <div className="ml-6 space-y-2">
                     <div className="flex justify-between">
                       <span>2 DOOR CAR</span>
-                      <span className="font-bold">$200</span>
+                      <span className="font-bold text-red-500">$215</span>
                     </div>
                     <div className="flex justify-between">
                       <span>4 DOOR CAR / MID-SIZE SUV</span>
-                      <span className="font-bold">$225</span>
+                      <span className="font-bold text-red-500">$225</span>
                     </div>
                     <div className="flex justify-between">
                       <span>TRUCK / HEAVY DUTY TRUCK</span>
-                      <span className="font-bold">$250</span>
+                      <span className="font-bold text-red-500">$250</span>
                     </div>
                     <div className="flex justify-between">
                       <span>SUV</span>
-                      <span className="font-bold">$275</span>
+                      <span className="font-bold text-red-500">$275</span>
                     </div>
                   </div>
                 </div>
@@ -330,23 +330,23 @@ const QuoteWizard = () => {
                   <div className="ml-6 space-y-2">
                     <div className="flex justify-between">
                       <span>2 DOOR CAR</span>
-                      <span className="font-bold">$60</span>
+                      <span className="font-bold text-red-500">$60</span>
                     </div>
                     <div className="flex justify-between">
                       <span>4 DOOR CAR / MID-SIZE SUV</span>
-                      <span className="font-bold">$75</span>
+                      <span className="font-bold text-red-500">$75</span>
                     </div>
                     <div className="flex justify-between">
                       <span>TRUCK</span>
-                      <span className="font-bold">$100</span>
+                      <span className="font-bold text-red-500">$100</span>
                     </div>
                     <div className="flex justify-between">
                       <span>SUV / HEAVY DUTY TRUCK</span>
-                      <span className="font-bold">$125</span>
+                      <span className="font-bold text-red-500">$125</span>
                     </div>
                     <div className="flex justify-between">
                       <span>MOTORCYCLE</span>
-                      <span className="font-bold">$125</span>
+                      <span className="font-bold text-red-500">$125</span>
                     </div>
                   </div>
                 </div>
@@ -379,7 +379,7 @@ const QuoteWizard = () => {
                     <Label htmlFor={addOn.id} className="flex-1 cursor-pointer">
                       <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
                         <span className="font-display">{addOn.label}</span>
-                        <span className="font-bold text-primary">+${addOn.price}</span>
+                        <span className="font-bold text-red-500">+${addOn.price}</span>
                       </div>
                     </Label>
                   </div>
@@ -401,7 +401,7 @@ const QuoteWizard = () => {
                     <Label htmlFor={addOn.id} className="flex-1 cursor-pointer">
                       <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
                         <span className="font-display">{addOn.label}</span>
-                        <span className="font-bold text-primary">+${addOn.price}</span>
+                        <span className="font-bold text-red-500">+${addOn.price}</span>
                       </div>
                     </Label>
                   </div>
@@ -524,7 +524,7 @@ const QuoteWizard = () => {
                   <div className="space-y-3">
                     <div className="flex justify-between items-center">
                       <span>Base Service</span>
-                      <span className="font-semibold">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
+                      <span className="font-semibold text-red-500">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
                     </div>
 
                     {selectedAddOns.map(addOnId => {
@@ -534,7 +534,7 @@ const QuoteWizard = () => {
                       return addOn ? (
                         <div key={addOnId} className="flex justify-between items-center text-sm">
                           <span>{addOn.label}</span>
-                          <span>+${addOn.price}</span>
+                          <span className="text-red-500">+${addOn.price}</span>
                         </div>
                       ) : null;
                     })}
@@ -542,14 +542,14 @@ const QuoteWizard = () => {
                   {serviceMode === "mobile" && distance && (
                     <div className="flex justify-between items-center text-sm">
                       <span>Mobile Service ({distance} mi)</span>
-                      <span>+${calculateMobileFee(distance)}</span>
+                      <span className="text-red-500">+${calculateMobileFee(distance)}</span>
                     </div>
                   )}
                   
                   <div className="border-t border-border pt-3">
                     <div className="flex justify-between items-center text-lg font-bold">
                       <span className="font-display">Total:</span>
-                      <span className="text-primary font-display">${calculateTotal()}</span>
+                      <span className="text-red-500 font-display">${calculateTotal()}</span>
                     </div>
                   </div>
                 </div>
@@ -613,7 +613,7 @@ const QuoteWizard = () => {
             <div className="text-center">
               <div className="bg-primary/10 rounded-lg px-4 py-2">
                 <span className="text-sm text-muted-foreground">Current Total: </span>
-                <span className="font-bold text-primary font-display">${calculateTotal()}</span>
+                <span className="font-bold text-red-500 font-display">${calculateTotal()}</span>
               </div>
             </div>
 
