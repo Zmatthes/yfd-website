@@ -44,7 +44,7 @@ const Services = () => {
       icon: Brush,
       title: "Paint Correction",
       description: "Professional paint correction to remove swirl marks, scratches, and restore paint clarity.",
-      features: ["Swirl Removal"],
+      features: ["Swirl Removal", "Tree Sap Removal", "Clay Bar Treatment", "Highly recommend a ceramic coating if getting any sort of paint correction"],
       popular: false,
       image: "/lovable-uploads/55de000b-9398-4de3-a167-332e88c75bda.png"
     },
@@ -52,7 +52,7 @@ const Services = () => {
       icon: Droplet,
       title: "Ceramic Coating",
       description: "Long-lasting ceramic coating protection for superior paint protection and easy maintenance.",
-      features: ["Paint preparation", "Ceramic application", "Curing process", "2-year protection", "Hydrophobic finish"],
+      features: ["1-5 Year Protection (with proper maintenance)", "Extremely hydrophobic properties", "Protect paint from road grime"],
       popular: false,
       image: "/lovable-uploads/3d321eca-bb73-442b-b36d-4599afcaa1a7.png"
     }
