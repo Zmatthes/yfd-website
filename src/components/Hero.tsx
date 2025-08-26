@@ -31,10 +31,10 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-serif">
-            Your Favorite
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-logo tracking-wider">
+            YOUR FAVORITE
             <span className="text-transparent bg-gradient-accent bg-clip-text block">
-              Detailer
+              DETAILER
             </span>
           </h1>
 
