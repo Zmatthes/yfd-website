@@ -54,7 +54,7 @@ const Services = () => {
       description: "Long-lasting ceramic coating protection for superior paint protection and easy maintenance.",
       features: ["Paint preparation", "Ceramic application", "Curing process", "2-year protection", "Hydrophobic finish"],
       popular: false,
-      image: "/lovable-uploads/1dee44ec-18e0-40dd-a213-fd82464a4206.png"
+      image: "/lovable-uploads/3d321eca-bb73-442b-b36d-4599afcaa1a7.png"
     }
   ];
 
