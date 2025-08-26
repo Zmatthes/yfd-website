@@ -38,7 +38,7 @@ const Services = () => {
         "Door Jams Cleaned"
       ],
       popular: false,
-      image: "/lovable-uploads/603f8367-0344-4f70-a24e-395c0a11d4fb.png"
+      image: "/lovable-uploads/41e84014-de8f-48c6-899b-889c012a2c14.png"
     },
     {
       icon: Brush,

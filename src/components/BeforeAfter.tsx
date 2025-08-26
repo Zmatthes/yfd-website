@@ -36,6 +36,11 @@ const beforeAfter29 = "/lovable-uploads/42983910-9c3d-4af2-9640-79fa6841ca85.png
 const beforeAfter30 = "/lovable-uploads/2d4da362-1900-4dd7-aa13-b5d1bce1f751.png";
 const beforeAfter31 = "/lovable-uploads/1dee44ec-18e0-40dd-a213-fd82464a4206.png";
 const beforeAfter32 = "/lovable-uploads/a8d2e74e-4d17-452d-ac10-c40625c794af.png";
+const beforeAfter33 = "/lovable-uploads/80689d22-9a42-4cdf-9d88-e362735ea462.png";
+const beforeAfter34 = "/lovable-uploads/ff1cf1be-2e26-4635-97d9-12fc816dfec1.png";
+const beforeAfter35 = "/lovable-uploads/475fd47e-ae04-4437-981e-c385e7723791.png";
+const beforeAfter36 = "/lovable-uploads/b0fbff2f-7732-4bb8-8dfe-644476bc422c.png";
+const beforeAfter37 = "/lovable-uploads/41e84014-de8f-48c6-899b-889c012a2c14.png";
 
 const transformations = [
   { id: 1, image: beforeAfter1 },
@@ -69,7 +74,12 @@ const transformations = [
   { id: 29, image: beforeAfter29 },
   { id: 30, image: beforeAfter30 },
   { id: 31, image: beforeAfter31 },
-  { id: 32, image: beforeAfter32 }
+  { id: 32, image: beforeAfter32 },
+  { id: 33, image: beforeAfter33 },
+  { id: 34, image: beforeAfter34 },
+  { id: 35, image: beforeAfter35 },
+  { id: 36, image: beforeAfter36 },
+  { id: 37, image: beforeAfter37 }
 ];
 
 const BeforeAfter = () => {
