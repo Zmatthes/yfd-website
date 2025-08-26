@@ -44,7 +44,7 @@ const Services = () => {
       icon: Brush,
       title: "Paint Correction",
       description: "Professional paint correction to remove swirl marks, scratches, and restore paint clarity.",
-      features: ["Swirl mark removal", "Scratch correction", "Paint restoration", "Multi-stage polishing", "Protection application"],
+      features: ["Swirl Removal"],
       popular: false,
       image: "/lovable-uploads/55de000b-9398-4de3-a167-332e88c75bda.png"
     },
