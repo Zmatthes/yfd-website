@@ -22,7 +22,7 @@ const Services = () => {
         "Tire Shine Applied (No Tire Shine Can Be Requested)"
       ],
       popular: false,
-      image: "/lovable-uploads/42983910-9c3d-4af2-9640-79fa6841ca85.png"
+      image: "/lovable-uploads/d6f938e6-fa9e-41ec-b29b-65c1759c5109.png"
     },
     {
       icon: Sparkles,
