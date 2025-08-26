@@ -144,40 +144,213 @@ const QuoteWizard = () => {
 
   // Generate address suggestions based on common Colorado addresses
   const generateAddressSuggestions = (input: string) => {
-    const suggestions = [
-      // Commerce City area
+    const inputLower = input.toLowerCase().trim();
+    
+    // Comprehensive Colorado address database
+    const addresses = [
+      // Commerce City area (80022, 80023)
       "4880 West 102nd Place, Commerce City, CO 80022",
       "4890 West 102nd Place, Commerce City, CO 80022",
       "4900 West 102nd Place, Commerce City, CO 80022",
+      "4910 West 102nd Place, Commerce City, CO 80022",
+      "4920 West 102nd Place, Commerce City, CO 80022",
       "10250 East 104th Avenue, Commerce City, CO 80022",
       "10300 East 104th Avenue, Commerce City, CO 80022",
+      "10350 East 104th Avenue, Commerce City, CO 80022",
       "17200 East 102nd Place, Commerce City, CO 80022",
+      "17250 East 102nd Place, Commerce City, CO 80022",
+      "17300 East 102nd Place, Commerce City, CO 80022",
+      "6200 East 102nd Avenue, Commerce City, CO 80022",
+      "6300 East 102nd Avenue, Commerce City, CO 80022",
+      "7500 Tower Road, Commerce City, CO 80022",
+      "7600 Tower Road, Commerce City, CO 80022",
+      "8000 Rosemary Street, Commerce City, CO 80022",
+      "8100 Rosemary Street, Commerce City, CO 80022",
+      "9500 Prairie View Drive, Commerce City, CO 80022",
       
-      // Thornton area
+      // Thornton area (80241, 80602, 80023)
       "12000 Washington Street, Thornton, CO 80241",
       "12100 Washington Street, Thornton, CO 80241",
+      "12200 Washington Street, Thornton, CO 80241",
       "13600 Colorado Boulevard, Thornton, CO 80602",
+      "13700 Colorado Boulevard, Thornton, CO 80602",
+      "14000 Colorado Boulevard, Thornton, CO 80602",
+      "9500 Grant Street, Thornton, CO 80229",
+      "9600 Grant Street, Thornton, CO 80229",
+      "10200 Huron Street, Thornton, CO 80260",
+      "10300 Huron Street, Thornton, CO 80260",
+      "11500 York Street, Thornton, CO 80233",
+      "11600 York Street, Thornton, CO 80233",
+      "8500 Monaco Street, Thornton, CO 80229",
+      "8600 Monaco Street, Thornton, CO 80229",
       
-      // Denver area
-      "1234 Colfax Avenue, Denver, CO 80218",
-      "5678 Federal Boulevard, Denver, CO 80221",
-      "9012 Broadway, Denver, CO 80209",
+      // Northglenn area (80233, 80234)
+      "11000 Washington Street, Northglenn, CO 80233",
+      "11100 Washington Street, Northglenn, CO 80233",
+      "1200 West 104th Avenue, Northglenn, CO 80234",
+      "1300 West 104th Avenue, Northglenn, CO 80234",
+      "10500 Melody Drive, Northglenn, CO 80234",
+      "10600 Melody Drive, Northglenn, CO 80234",
+      "9800 Tejon Street, Northglenn, CO 80260",
+      "9900 Tejon Street, Northglenn, CO 80260",
       
-      // Westminster
+      // Westminster area (80031, 80030, 80003)
       "7200 Sheridan Boulevard, Westminster, CO 80003",
+      "7300 Sheridan Boulevard, Westminster, CO 80003",
       "8500 Wadsworth Boulevard, Westminster, CO 80031",
+      "8600 Wadsworth Boulevard, Westminster, CO 80031",
+      "9200 Federal Boulevard, Westminster, CO 80031",
+      "9300 Federal Boulevard, Westminster, CO 80031",
+      "10500 Lowell Boulevard, Westminster, CO 80031",
+      "10600 Lowell Boulevard, Westminster, CO 80031",
+      "7500 West 88th Avenue, Westminster, CO 80021",
+      "7600 West 88th Avenue, Westminster, CO 80021",
       
-      // Arvada
+      // Denver area (80211, 80205, 80202, 80218, 80221)
+      "1234 Colfax Avenue, Denver, CO 80218",
+      "1300 Colfax Avenue, Denver, CO 80218",
+      "1400 Colfax Avenue, Denver, CO 80218",
+      "5678 Federal Boulevard, Denver, CO 80221",
+      "5700 Federal Boulevard, Denver, CO 80221",
+      "5800 Federal Boulevard, Denver, CO 80221",
+      "9012 Broadway, Denver, CO 80209",
+      "9100 Broadway, Denver, CO 80209",
+      "9200 Broadway, Denver, CO 80209",
+      "2500 17th Street, Denver, CO 80211",
+      "2600 17th Street, Denver, CO 80211",
+      "3000 Blake Street, Denver, CO 80205",
+      "3100 Blake Street, Denver, CO 80205",
+      "1500 Market Street, Denver, CO 80202",
+      "1600 Market Street, Denver, CO 80202",
+      "4200 Tennyson Street, Denver, CO 80212",
+      "4300 Tennyson Street, Denver, CO 80212",
+      
+      // Arvada area (80003, 80002, 80004)
       "6400 Wadsworth Boulevard, Arvada, CO 80003",
-      "7800 Ralston Road, Arvada, CO 80002"
+      "6500 Wadsworth Boulevard, Arvada, CO 80003",
+      "7800 Ralston Road, Arvada, CO 80002",
+      "7900 Ralston Road, Arvada, CO 80002",
+      "8000 Ralston Road, Arvada, CO 80002",
+      "5200 Ward Road, Arvada, CO 80002",
+      "5300 Ward Road, Arvada, CO 80002",
+      "9500 West 58th Avenue, Arvada, CO 80002",
+      "9600 West 58th Avenue, Arvada, CO 80002",
+      
+      // Wheat Ridge area (80033, 80212)
+      "3800 Wadsworth Boulevard, Wheat Ridge, CO 80033",
+      "3900 Wadsworth Boulevard, Wheat Ridge, CO 80033",
+      "4500 Kipling Street, Wheat Ridge, CO 80033",
+      "4600 Kipling Street, Wheat Ridge, CO 80033",
+      "7200 West 38th Avenue, Wheat Ridge, CO 80033",
+      "7300 West 38th Avenue, Wheat Ridge, CO 80033",
+      
+      // Broomfield area (80020, 80021, 80023)
+      "1200 West Midway Boulevard, Broomfield, CO 80020",
+      "1300 West Midway Boulevard, Broomfield, CO 80020",
+      "500 Interlocken Boulevard, Broomfield, CO 80021",
+      "600 Interlocken Boulevard, Broomfield, CO 80021",
+      "12000 Sheridan Boulevard, Broomfield, CO 80020",
+      "12100 Sheridan Boulevard, Broomfield, CO 80020",
+      
+      // Aurora area (80010, 80011, 80012, 80014)
+      "14200 East Colfax Avenue, Aurora, CO 80011",
+      "14300 East Colfax Avenue, Aurora, CO 80011",
+      "15000 East Hampden Avenue, Aurora, CO 80014",
+      "15100 East Hampden Avenue, Aurora, CO 80014",
+      "1200 South Abilene Street, Aurora, CO 80012",
+      "1300 South Abilene Street, Aurora, CO 80012",
+      "9800 East Montview Boulevard, Aurora, CO 80010",
+      "9900 East Montview Boulevard, Aurora, CO 80010",
+      
+      // Lakewood area (80215, 80226, 80227)
+      "6000 West Colfax Avenue, Lakewood, CO 80214",
+      "6100 West Colfax Avenue, Lakewood, CO 80214",
+      "1200 South Wadsworth Boulevard, Lakewood, CO 80226",
+      "1300 South Wadsworth Boulevard, Lakewood, CO 80226",
+      "8500 West Alameda Avenue, Lakewood, CO 80226",
+      "8600 West Alameda Avenue, Lakewood, CO 80226",
+      
+      // Boulder area (80301, 80302, 80303)
+      "1234 Pearl Street, Boulder, CO 80302",
+      "1300 Pearl Street, Boulder, CO 80302",
+      "2800 Canyon Boulevard, Boulder, CO 80302",
+      "2900 Canyon Boulevard, Boulder, CO 80302",
+      "5500 Arapahoe Avenue, Boulder, CO 80303",
+      "5600 Arapahoe Avenue, Boulder, CO 80303",
+      "3000 28th Street, Boulder, CO 80301",
+      "3100 28th Street, Boulder, CO 80301",
+      
+      // Longmont area (80501, 80503)
+      "1234 Main Street, Longmont, CO 80501",
+      "1300 Main Street, Longmont, CO 80501",
+      "500 South Hover Street, Longmont, CO 80501",
+      "600 South Hover Street, Longmont, CO 80501",
+      "2000 Ken Pratt Boulevard, Longmont, CO 80501",
+      "2100 Ken Pratt Boulevard, Longmont, CO 80501"
     ];
     
-    return suggestions.filter(suggestion => 
-      suggestion.toLowerCase().includes(input.toLowerCase()) ||
-      input.toLowerCase().split(' ').some(word => 
-        suggestion.toLowerCase().includes(word) && word.length > 2
-      )
-    ).slice(0, 5);
+    // Enhanced matching algorithm
+    const matches = addresses.filter(address => {
+      const addressLower = address.toLowerCase();
+      
+      // Exact substring match
+      if (addressLower.includes(inputLower)) {
+        return true;
+      }
+      
+      // Word-based matching
+      const inputWords = inputLower.split(/\s+/).filter(word => word.length > 0);
+      const addressWords = addressLower.split(/\s+/);
+      
+      // Check if all input words are found in the address
+      const allWordsMatch = inputWords.every(inputWord => 
+        addressWords.some(addressWord => 
+          addressWord.includes(inputWord) || inputWord.includes(addressWord)
+        )
+      );
+      
+      if (allWordsMatch) {
+        return true;
+      }
+      
+      // Number matching (for house numbers and streets)
+      const inputNumbers = inputLower.match(/\d+/g) || [];
+      const addressNumbers = addressLower.match(/\d+/g) || [];
+      
+      if (inputNumbers.length > 0) {
+        const numberMatch = inputNumbers.some(inputNum => 
+          addressNumbers.some(addressNum => 
+            addressNum.includes(inputNum) || inputNum.includes(addressNum)
+          )
+        );
+        
+        if (numberMatch) {
+          // Also check for partial street name match
+          const inputStreets = inputLower.replace(/\d+/g, '').trim().split(/\s+/);
+          const hasStreetMatch = inputStreets.some(street => 
+            street.length > 2 && addressLower.includes(street)
+          );
+          
+          if (hasStreetMatch) {
+            return true;
+          }
+        }
+      }
+      
+      return false;
+    });
+    
+    // Sort by relevance (exact matches first, then partial matches)
+    return matches
+      .sort((a, b) => {
+        const aExact = a.toLowerCase().startsWith(inputLower);
+        const bExact = b.toLowerCase().startsWith(inputLower);
+        
+        if (aExact && !bExact) return -1;
+        if (!aExact && bExact) return 1;
+        return 0;
+      })
+      .slice(0, 8); // Show up to 8 suggestions
   };
 
   const calculateMobileFee = (distance: number) => {
@@ -188,18 +361,18 @@ const QuoteWizard = () => {
   };
 
   useEffect(() => {
-    if (serviceMode === "mobile" && customerAddress.trim().length > 3) {
+    if (serviceMode === "mobile" && customerAddress.trim().length > 1) {
       const timeoutId = setTimeout(() => {
         const dist = calculateDistanceByArea(customerAddress);
         setDistance(dist);
         
-        // Generate address suggestions
-        if (customerAddress.trim().length > 2) {
+        // Generate address suggestions for shorter inputs
+        if (customerAddress.trim().length > 1) {
           const suggestions = generateAddressSuggestions(customerAddress);
           setAddressSuggestions(suggestions);
           setShowSuggestions(suggestions.length > 0);
         }
-      }, 300); // Slight delay for better UX
+      }, 100); // Faster response
       
       return () => clearTimeout(timeoutId);
     } else {
@@ -514,7 +687,7 @@ const QuoteWizard = () => {
                       value={customerAddress}
                       onChange={(e) => {
                         setCustomerAddress(e.target.value);
-                        if (e.target.value.trim().length > 2) {
+                        if (e.target.value.trim().length > 1) {
                           const suggestions = generateAddressSuggestions(e.target.value);
                           setAddressSuggestions(suggestions);
                           setShowSuggestions(suggestions.length > 0);
@@ -523,7 +696,7 @@ const QuoteWizard = () => {
                         }
                       }}
                       onFocus={() => {
-                        if (customerAddress.trim().length > 2) {
+                        if (customerAddress.trim().length > 1) {
                           const suggestions = generateAddressSuggestions(customerAddress);
                           setAddressSuggestions(suggestions);
                           setShowSuggestions(suggestions.length > 0);
