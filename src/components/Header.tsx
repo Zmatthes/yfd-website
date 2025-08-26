@@ -11,7 +11,12 @@ const Header = () => {
     <header className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-md border-b border-border">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-3">
+          <img 
+            src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
+            alt="Your Favorite Detailer Logo - Professional Mobile Auto Detailing Denver Metro"
+            className="h-10 w-10"
+          />
           <h1 className="text-xl font-bold text-foreground font-display">Your Favorite Detailer</h1>
         </div>
 

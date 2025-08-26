@@ -31,7 +31,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight font-serif">
             Your Favorite
             <span className="text-transparent bg-gradient-accent bg-clip-text block">
               Detailer

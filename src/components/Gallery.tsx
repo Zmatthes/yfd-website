@@ -4,7 +4,7 @@ import { Instagram, ExternalLink, Camera } from "lucide-react";
 
 const Gallery = () => {
   const openInstagram = () => {
-    window.open('https://www.instagram.com/your.favorite.detailer/', '_blank');
+    window.open('https://instagram.com/your.favorite.detailer', '_blank');
   };
 
   return (
