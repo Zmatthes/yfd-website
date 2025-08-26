@@ -2,10 +2,9 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services"; 
-import QuoteWizard from "@/components/QuoteWizard";
-import BeforeAfter from "@/components/BeforeAfter";
-import Testimonials from "@/components/Testimonials";
 import Gallery from "@/components/Gallery";
+import QuoteWizard from "@/components/QuoteWizard";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -16,10 +15,9 @@ const Index = () => {
       <Hero />
       <About />
       <Services />
-      <QuoteWizard />
-      <BeforeAfter />
-      <Testimonials />
       <Gallery />
+      <QuoteWizard />
+      <Testimonials />
       <Contact />
       <Footer />
     </div>
