@@ -28,7 +28,7 @@ const Footer = () => {
                 <Button 
                   variant="minimal" 
                   size="icon"
-                  onClick={() => window.location.href = 'https://www.instagram.com/your.favorite.detailer/'}
+                  onClick={() => window.open('https://www.instagram.com/your.favorite.detailer/', '_blank', 'noopener,noreferrer')}
                 >
                   <Instagram className="h-5 w-5" />
                 </Button>

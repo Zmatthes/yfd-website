@@ -4,9 +4,7 @@ import { Instagram, ExternalLink, Camera } from "lucide-react";
 
 const Gallery = () => {
   const openInstagram = () => {
-    // Try to open Instagram app first, fallback to web
-    const instagramUrl = 'https://www.instagram.com/your.favorite.detailer/';
-    window.location.href = instagramUrl;
+    window.open('https://www.instagram.com/your.favorite.detailer/', '_blank', 'noopener,noreferrer');
   };
 
   return (
