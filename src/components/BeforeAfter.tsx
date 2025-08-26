@@ -19,62 +19,42 @@ const transformations = [
   {
     id: 1,
     image: beforeAfter1,
-    title: "Exterior Paint Restoration",
-    description: "Complete paint decontamination and protection"
   },
   {
     id: 2,
     image: beforeAfter2,
-    title: "Engine Bay Deep Clean",
-    description: "Professional engine bay detailing and protection"
   },
   {
     id: 3,
     image: beforeAfter3,
-    title: "Floor Mat Restoration",
-    description: "Deep cleaning and sanitization of floor mats"
   },
   {
     id: 4,
     image: beforeAfter4,
-    title: "Floor Mat Deep Clean",
-    description: "Removal of dirt, debris, and stains"
   },
   {
     id: 5,
     image: beforeAfter5,
-    title: "Headlight Restoration",
-    description: "Crystal clear headlight restoration service"
   },
   {
     id: 6,
     image: beforeAfter6,
-    title: "Interior Console Detailing",
-    description: "Leather conditioning and deep cleaning"
   },
   {
     id: 7,
     image: beforeAfter7,
-    title: "Complete Floor Transformation",
-    description: "From neglected to pristine condition"
   },
   {
     id: 8,
     image: beforeAfter8,
-    title: "Floor Mat Rejuvenation",
-    description: "Professional cleaning and restoration"
   },
   {
     id: 9,
     image: beforeAfter9,
-    title: "Interior Cabin Detailing",
-    description: "Complete interior transformation"
   },
   {
     id: 10,
     image: beforeAfter10,
-    title: "Trunk Area Restoration",
-    description: "Deep cleaning of cargo areas"
   }
 ];
 
@@ -133,22 +113,19 @@ const BeforeAfter = () => {
             </Button>
 
             {/* Main Image */}
-            <div className="aspect-[4/3] overflow-hidden">
+            <div className="w-full bg-background p-4">
               <img
                 src={currentTransformation.image}
-                alt={currentTransformation.title}
-                className="w-full h-full object-cover"
+                alt={`Transformation ${currentIndex + 1}`}
+                className="w-full h-auto max-h-[600px] object-contain mx-auto rounded-lg"
               />
             </div>
 
-            {/* Transformation Info */}
-            <div className="p-6 bg-background">
-              <h3 className="text-2xl font-semibold mb-2 text-foreground">
-                {currentTransformation.title}
-              </h3>
-              <p className="text-muted-foreground mb-4">
-                {currentTransformation.description}
-              </p>
+            {/* Navigation Info */}
+            <div className="p-6 bg-background border-t border-border">
+              <div className="text-center text-muted-foreground mb-4">
+                Image {currentIndex + 1} of {transformations.length}
+              </div>
               
               {/* Progress Indicators */}
               <div className="flex justify-center space-x-2 mb-6">
@@ -188,8 +165,8 @@ const BeforeAfter = () => {
             >
               <img
                 src={transformation.image}
-                alt={transformation.title}
-                className="w-full h-full object-cover"
+                alt={`Transformation ${index + 1}`}
+                className="w-full h-full object-contain"
               />
             </button>
           ))}
