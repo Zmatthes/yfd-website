@@ -35,14 +35,14 @@ const Footer = () => {
                 <Button 
                   variant="minimal" 
                   size="icon"
-                  onClick={() => window.open('tel:(303)555-0123', '_blank')}
+                  onClick={() => window.open('tel:(303)810-4626', '_blank')}
                 >
                   <Phone className="h-5 w-5" />
                 </Button>
                 <Button 
                   variant="minimal" 
                   size="icon"
-                  onClick={() => window.open('mailto:info@yourfavoritedetailer.com', '_blank')}
+                  onClick={() => window.open('mailto:zachmatthes@yahoo.com', '_blank')}
                 >
                   <Mail className="h-5 w-5" />
                 </Button>
@@ -90,19 +90,19 @@ const Footer = () => {
                 <div className="flex items-center space-x-3">
                   <Phone className="h-5 w-5 text-primary flex-shrink-0" />
                   <a 
-                    href="tel:(303)555-0123" 
+                    href="tel:(303)810-4626" 
                     className="text-muted-foreground hover:text-foreground transition-smooth"
                   >
-                    (303) 555-0123
+                    (303) 810-4626
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Mail className="h-5 w-5 text-primary flex-shrink-0" />
                   <a 
-                    href="mailto:info@yourfavoritedetailer.com" 
+                    href="mailto:zachmatthes@yahoo.com" 
                     className="text-muted-foreground hover:text-foreground transition-smooth"
                   >
-                    info@yourfavoritedetailer.com
+                    zachmatthes@yahoo.com
                   </a>
                 </div>
               </div>
@@ -117,19 +117,6 @@ const Footer = () => {
               <span>© {currentYear} Your Favorite Detailer. Made with</span>
               <Heart className="h-4 w-4 text-primary fill-current" />
               <span>in Denver, Colorado.</span>
-            </div>
-            
-            <div className="flex items-center space-x-6 text-sm">
-              <span className="text-muted-foreground">
-                Appointment Only Service
-              </span>
-              <Button 
-                variant="hero" 
-                size="sm"
-                onClick={() => scrollToSection('contact')}
-              >
-                Book Now
-              </Button>
             </div>
           </div>
         </div>
