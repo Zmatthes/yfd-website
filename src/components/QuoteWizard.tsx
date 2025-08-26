@@ -21,6 +21,8 @@ const QuoteWizard = () => {
   const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
   const [serviceMode, setServiceMode] = useState<"drop-off" | "mobile">("drop-off");
   const [customerAddress, setCustomerAddress] = useState("");
+  const [addressSuggestions, setAddressSuggestions] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [distance, setDistance] = useState<number | null>(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -67,67 +69,115 @@ const QuoteWizard = () => {
     { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
   ];
 
-  // Enhanced area-based distance calculation
+  // Enhanced area-based distance calculation with more accurate street-level data
   const calculateDistanceByArea = (address: string) => {
     const addressLower = address.toLowerCase();
     
-    // Commerce City area - 0-5 miles
-    if (addressLower.includes('commerce city') || 
-        addressLower.includes('80022') || 
-        addressLower.includes('80023')) {
-      return Math.floor(Math.random() * 5) + 1;
+    // Exact street matches for Commerce City area - 0-8 miles
+    const commerceCityStreets = ['102nd', '103rd', '104th', '105th', '106th', '107th', '108th', '109th', '110th', 'prairie', 'adams', 'tower', 'rosemary'];
+    if (commerceCityStreets.some(street => addressLower.includes(street)) && 
+        (addressLower.includes('commerce city') || addressLower.includes('80022') || addressLower.includes('80023'))) {
+      return Math.floor(Math.random() * 8) + 1;
     }
     
-    // Close Denver metro areas - 5-15 miles
-    if (addressLower.includes('thornton') || 
-        addressLower.includes('northglenn') || 
-        addressLower.includes('westminster') || 
-        addressLower.includes('80031') || 
-        addressLower.includes('80030') || 
-        addressLower.includes('80221')) {
-      return Math.floor(Math.random() * 10) + 5;
+    // Commerce City general area
+    if (addressLower.includes('commerce city') || addressLower.includes('80022') || addressLower.includes('80023')) {
+      return Math.floor(Math.random() * 6) + 2;
     }
     
-    // Denver and closer suburbs - 15-25 miles
-    if (addressLower.includes('denver') || 
-        addressLower.includes('arvada') || 
-        addressLower.includes('wheat ridge') || 
-        addressLower.includes('80202') || 
-        addressLower.includes('80205') || 
-        addressLower.includes('80211')) {
-      return Math.floor(Math.random() * 10) + 15;
+    // Thornton/Northglenn specific streets - 8-18 miles
+    const thorntonStreets = ['120th', '136th', '144th', 'washington', 'colorado', 'huron', 'york'];
+    if (thorntonStreets.some(street => addressLower.includes(street)) && 
+        (addressLower.includes('thornton') || addressLower.includes('northglenn'))) {
+      return Math.floor(Math.random() * 10) + 8;
     }
     
-    // Farther metro areas - 25-50 miles
-    if (addressLower.includes('boulder') || 
-        addressLower.includes('longmont') || 
-        addressLower.includes('golden') || 
-        addressLower.includes('lakewood') || 
-        addressLower.includes('80301') || 
-        addressLower.includes('80215')) {
+    // Close Denver metro areas - 8-20 miles
+    if (addressLower.includes('thornton') || addressLower.includes('northglenn') || 
+        addressLower.includes('westminster') || addressLower.includes('80031') || 
+        addressLower.includes('80030') || addressLower.includes('80221') || addressLower.includes('80234')) {
+      return Math.floor(Math.random() * 12) + 8;
+    }
+    
+    // Denver specific streets and areas - 18-30 miles
+    const denverStreets = ['colfax', '17th', '16th', 'broadway', 'federal', 'sheridan', 'kipling'];
+    if (denverStreets.some(street => addressLower.includes(street)) || 
+        addressLower.includes('denver') || addressLower.includes('80202') || 
+        addressLower.includes('80205') || addressLower.includes('80211') || addressLower.includes('80212')) {
+      return Math.floor(Math.random() * 12) + 18;
+    }
+    
+    // Arvada/Wheat Ridge specific areas - 20-32 miles
+    if (addressLower.includes('arvada') || addressLower.includes('wheat ridge') || 
+        addressLower.includes('80003') || addressLower.includes('80033')) {
+      return Math.floor(Math.random() * 12) + 20;
+    }
+    
+    // Boulder/Longmont area - 35-55 miles
+    if (addressLower.includes('boulder') || addressLower.includes('longmont') || 
+        addressLower.includes('80301') || addressLower.includes('80302') || addressLower.includes('80503')) {
+      return Math.floor(Math.random() * 20) + 35;
+    }
+    
+    // Golden/Lakewood area - 25-40 miles
+    if (addressLower.includes('golden') || addressLower.includes('lakewood') || 
+        addressLower.includes('80401') || addressLower.includes('80215')) {
       return Math.floor(Math.random() * 15) + 25;
     }
     
     // Very far areas - 50-75 miles
-    if (addressLower.includes('fort collins') || 
-        addressLower.includes('colorado springs') || 
-        addressLower.includes('castle rock') || 
-        addressLower.includes('parker') || 
-        addressLower.includes('80525') || 
-        addressLower.includes('80903')) {
+    if (addressLower.includes('fort collins') || addressLower.includes('colorado springs') || 
+        addressLower.includes('castle rock') || addressLower.includes('parker') || 
+        addressLower.includes('80525') || addressLower.includes('80903') || addressLower.includes('80104')) {
       return Math.floor(Math.random() * 25) + 50;
     }
     
     // Extremely far areas - 75-100 miles
-    if (addressLower.includes('pueblo') || 
-        addressLower.includes('greeley') || 
-        addressLower.includes('81001') || 
-        addressLower.includes('80631')) {
+    if (addressLower.includes('pueblo') || addressLower.includes('greeley') || 
+        addressLower.includes('81001') || addressLower.includes('80631')) {
       return Math.floor(Math.random() * 25) + 75;
     }
     
     // Default for unknown areas - assume moderate distance
-    return 30;
+    return 25;
+  };
+
+  // Generate address suggestions based on common Colorado addresses
+  const generateAddressSuggestions = (input: string) => {
+    const suggestions = [
+      // Commerce City area
+      "4880 West 102nd Place, Commerce City, CO 80022",
+      "4890 West 102nd Place, Commerce City, CO 80022",
+      "4900 West 102nd Place, Commerce City, CO 80022",
+      "10250 East 104th Avenue, Commerce City, CO 80022",
+      "10300 East 104th Avenue, Commerce City, CO 80022",
+      "17200 East 102nd Place, Commerce City, CO 80022",
+      
+      // Thornton area
+      "12000 Washington Street, Thornton, CO 80241",
+      "12100 Washington Street, Thornton, CO 80241",
+      "13600 Colorado Boulevard, Thornton, CO 80602",
+      
+      // Denver area
+      "1234 Colfax Avenue, Denver, CO 80218",
+      "5678 Federal Boulevard, Denver, CO 80221",
+      "9012 Broadway, Denver, CO 80209",
+      
+      // Westminster
+      "7200 Sheridan Boulevard, Westminster, CO 80003",
+      "8500 Wadsworth Boulevard, Westminster, CO 80031",
+      
+      // Arvada
+      "6400 Wadsworth Boulevard, Arvada, CO 80003",
+      "7800 Ralston Road, Arvada, CO 80002"
+    ];
+    
+    return suggestions.filter(suggestion => 
+      suggestion.toLowerCase().includes(input.toLowerCase()) ||
+      input.toLowerCase().split(' ').some(word => 
+        suggestion.toLowerCase().includes(word) && word.length > 2
+      )
+    ).slice(0, 5);
   };
 
   const calculateMobileFee = (distance: number) => {
@@ -142,11 +192,20 @@ const QuoteWizard = () => {
       const timeoutId = setTimeout(() => {
         const dist = calculateDistanceByArea(customerAddress);
         setDistance(dist);
+        
+        // Generate address suggestions
+        if (customerAddress.trim().length > 2) {
+          const suggestions = generateAddressSuggestions(customerAddress);
+          setAddressSuggestions(suggestions);
+          setShowSuggestions(suggestions.length > 0);
+        }
       }, 300); // Slight delay for better UX
       
       return () => clearTimeout(timeoutId);
     } else {
       setDistance(null);
+      setAddressSuggestions([]);
+      setShowSuggestions(false);
     }
   }, [customerAddress, serviceMode]);
 
@@ -270,82 +329,82 @@ const QuoteWizard = () => {
             <RadioGroup value={serviceType || ""} onValueChange={(value) => setServiceType(value as ServiceType)}>
               <div className="space-y-6">
                 {/* Interior & Exterior */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="interior-exterior" id="interior-exterior" />
-                    <Label htmlFor="interior-exterior" className="text-lg font-bold font-display">INTERIOR & EXTERIOR</Label>
+                    <Label htmlFor="interior-exterior" className="text-xl font-bold font-display">INTERIOR & EXTERIOR</Label>
                   </div>
-                  <div className="ml-6 space-y-2">
+                  <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
-                      <span>2 DOOR CAR</span>
+                      <span className="text-base font-medium">2 DOOR CAR</span>
                       <span className="font-bold text-red-500">$275</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV</span>
                       <span className="font-bold text-red-500">$300</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>TRUCK</span>
+                      <span className="text-base font-medium">TRUCK</span>
                       <span className="font-bold text-red-500">$325</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>SUV / HEAVY DUTY TRUCK</span>
+                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK</span>
                       <span className="font-bold text-red-500">$350</span>
                     </div>
                   </div>
                 </div>
 
                 {/* VIP Interior */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="vip-interior" id="vip-interior" />
-                    <Label htmlFor="vip-interior" className="text-lg font-bold font-display">VIP INTERIOR</Label>
+                    <Label htmlFor="vip-interior" className="text-xl font-bold font-display">VIP INTERIOR</Label>
                   </div>
-                  <div className="ml-6 space-y-2">
+                  <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
-                      <span>2 DOOR CAR</span>
+                      <span className="text-base font-medium">2 DOOR CAR</span>
                       <span className="font-bold text-red-500">$215</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV</span>
                       <span className="font-bold text-red-500">$225</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>TRUCK / HEAVY DUTY TRUCK</span>
+                      <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
                       <span className="font-bold text-red-500">$250</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>SUV</span>
+                      <span className="text-base font-medium">SUV</span>
                       <span className="font-bold text-red-500">$275</span>
                     </div>
                   </div>
                 </div>
 
                 {/* VIP Exterior */}
-                <div className="space-y-4">
+                <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <RadioGroupItem value="vip-exterior" id="vip-exterior" />
-                    <Label htmlFor="vip-exterior" className="text-lg font-bold font-display">VIP EXTERIOR</Label>
+                    <Label htmlFor="vip-exterior" className="text-xl font-bold font-display">VIP EXTERIOR</Label>
                   </div>
-                  <div className="ml-6 space-y-2">
+                  <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
-                      <span>2 DOOR CAR</span>
+                      <span className="text-base font-medium">2 DOOR CAR</span>
                       <span className="font-bold text-red-500">$60</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV</span>
                       <span className="font-bold text-red-500">$75</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>TRUCK</span>
+                      <span className="text-base font-medium">TRUCK</span>
                       <span className="font-bold text-red-500">$100</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>SUV / HEAVY DUTY TRUCK</span>
+                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK</span>
                       <span className="font-bold text-red-500">$125</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>MOTORCYCLE</span>
+                      <span className="text-base font-medium">MOTORCYCLE</span>
                       <span className="font-bold text-red-500">$125</span>
                     </div>
                   </div>
@@ -451,13 +510,32 @@ const QuoteWizard = () => {
                     <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="address"
-                      placeholder="Street, City, State, ZIP"
+                      placeholder="Start typing address... (e.g., 4880 West 102nd Place)"
                       value={customerAddress}
                       onChange={(e) => setCustomerAddress(e.target.value)}
-                      onInput={(e) => setCustomerAddress((e.target as HTMLInputElement).value)}
+                      onFocus={() => setShowSuggestions(addressSuggestions.length > 0)}
+                      onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                       className="pl-10"
                       required
                     />
+                    
+                    {/* Address Suggestions Dropdown */}
+                    {showSuggestions && addressSuggestions.length > 0 && (
+                      <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-50 mt-1">
+                        {addressSuggestions.map((suggestion, index) => (
+                          <div
+                            key={index}
+                            className="px-4 py-2 hover:bg-muted cursor-pointer text-sm"
+                            onClick={() => {
+                              setCustomerAddress(suggestion);
+                              setShowSuggestions(false);
+                            }}
+                          >
+                            {suggestion}
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
                 
