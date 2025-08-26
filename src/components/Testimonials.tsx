@@ -195,18 +195,6 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="py-20 bg-muted/30 relative overflow-hidden">
-      {/* Background Images */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-32 h-32 rounded-full overflow-hidden">
-          <img src="/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute top-40 right-20 w-24 h-24 rounded-full overflow-hidden">
-          <img src="/lovable-uploads/be8ba91a-95ad-4b7b-b75c-7004a72370b4.png" alt="" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute bottom-20 left-1/4 w-28 h-28 rounded-full overflow-hidden">
-          <img src="/lovable-uploads/065f0a56-5345-4df8-b680-8d20947446a9.png" alt="" className="w-full h-full object-cover" />
-        </div>
-      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
