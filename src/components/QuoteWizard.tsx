@@ -510,28 +510,43 @@ const QuoteWizard = () => {
                     <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
                     <Input
                       id="address"
-                      placeholder="Start typing address... (e.g., 4880 West 102nd Place)"
+                      placeholder="Start typing address..."
                       value={customerAddress}
-                      onChange={(e) => setCustomerAddress(e.target.value)}
-                      onFocus={() => setShowSuggestions(addressSuggestions.length > 0)}
-                      onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                      onChange={(e) => {
+                        setCustomerAddress(e.target.value);
+                        if (e.target.value.trim().length > 2) {
+                          const suggestions = generateAddressSuggestions(e.target.value);
+                          setAddressSuggestions(suggestions);
+                          setShowSuggestions(suggestions.length > 0);
+                        } else {
+                          setShowSuggestions(false);
+                        }
+                      }}
+                      onFocus={() => {
+                        if (customerAddress.trim().length > 2) {
+                          const suggestions = generateAddressSuggestions(customerAddress);
+                          setAddressSuggestions(suggestions);
+                          setShowSuggestions(suggestions.length > 0);
+                        }
+                      }}
                       className="pl-10"
                       required
                     />
                     
                     {/* Address Suggestions Dropdown */}
                     {showSuggestions && addressSuggestions.length > 0 && (
-                      <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-50 mt-1">
+                      <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-50 mt-1 max-h-60 overflow-y-auto">
                         {addressSuggestions.map((suggestion, index) => (
                           <div
                             key={index}
-                            className="px-4 py-2 hover:bg-muted cursor-pointer text-sm"
-                            onClick={() => {
+                            className="px-4 py-3 hover:bg-muted cursor-pointer text-sm border-b border-border last:border-b-0"
+                            onMouseDown={(e) => {
+                              e.preventDefault(); // Prevent input blur
                               setCustomerAddress(suggestion);
                               setShowSuggestions(false);
                             }}
                           >
-                            {suggestion}
+                            <div className="font-medium">{suggestion}</div>
                           </div>
                         ))}
                       </div>
