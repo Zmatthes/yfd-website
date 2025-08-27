@@ -37,6 +37,10 @@ const Gallery = () => {
           <div className="mb-16">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
               {[
+                { src: '/lovable-uploads/6a6ffac2-7774-46ed-9789-1628a20a3ba1.png', alt: 'Professional wheel and tire detailing transformation before and after Denver mobile service' },
+                { src: '/lovable-uploads/9366cb2d-acfd-4f99-b380-9d6f9d2cea96.png', alt: 'Expert vehicle interior detailing transformation Commerce City professional results' },
+                { src: '/lovable-uploads/54c53ae2-45c5-47f0-a788-9c3044cae41a.png', alt: 'Premium floor mat cleaning and restoration Your Favorite Detailer Denver Metro' },
+                { src: '/lovable-uploads/a0e187fb-2ea1-41a9-8424-03ed0459e934.png', alt: 'Comprehensive automotive detail work transformation Denver professional service' },
                 { src: '/lovable-uploads/9efe2697-fc17-4dad-9e42-85ecb959afd9.png', alt: 'Professional car transformation before and after Denver mobile detailing service' },
                 { src: '/lovable-uploads/b27f11cd-e924-4747-a35e-f4c8f1d03195.png', alt: 'Luxury vehicle interior and exterior detailing Commerce City professional results' },
                 { src: '/lovable-uploads/e038490e-e179-4949-9ecf-f05ed59d82f4.png', alt: 'Premium auto detailing transformation Your Favorite Detailer Denver Metro' },
