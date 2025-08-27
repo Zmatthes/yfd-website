@@ -53,23 +53,6 @@ const Gallery = () => {
               </Button>
             </div>
           </div>
-
-          {/* Call to Action */}
-          <div className="text-center mt-12">
-            <p className="text-lg text-muted-foreground mb-6">
-              Ready to see your vehicle transformed? Book your appointment today!
-            </p>
-            <Button 
-              variant="hero" 
-              size="lg"
-              onClick={() => {
-                const element = document.getElementById('contact');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}
-            >
-              Schedule Your Detail
-            </Button>
-          </div>
         </div>
       </div>
     </section>
