@@ -14,14 +14,8 @@ const Gallery = () => {
     { src: '/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png', alt: 'Professional vehicle interior cleaning transformation Commerce City auto detailing' },
     { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png', alt: 'Honda CR-V exterior wash and detail before after Denver mobile service' },
     { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png', alt: 'Black car exterior detailing transformation before after Your Favorite Detailer' },
-    { src: '/lovable-uploads/559036ff-7056-4dd3-b111-325e7772d9ea.png', alt: 'Vehicle trim and molding restoration before after Denver professional detailing' },
-    { src: '/lovable-uploads/df092f52-3cc8-4f20-8a7a-677ef40ad9da.png', alt: 'Center console cup holder cleaning transformation Commerce City mobile detailing' },
-    { src: '/lovable-uploads/4fada073-13d0-45b4-a42d-65d25bd1908f.png', alt: 'Volkswagen steering wheel and dashboard cleaning before after Denver service' },
-    { src: '/lovable-uploads/a1d9292e-cdc5-4f39-bf41-6d97e9c98930.png', alt: 'Vehicle dashboard and gauge cluster detailing Your Favorite Detailer transformation' },
-    { src: '/lovable-uploads/3c1b1d48-acc4-4043-bb17-d06253c3ca5b.png', alt: 'Subaru floor mat and interior cleaning before after Commerce City professional work' },
-    { src: '/lovable-uploads/e74162a9-5848-4f56-ba0a-908ff290916f.png', alt: 'Air conditioning vent cleaning transformation Denver Metro mobile detailing service' },
-    { src: '/lovable-uploads/50196e7d-e181-45cd-88e7-c3ee3124143c.png', alt: 'Vehicle cup holder deep cleaning before after Your Favorite Detailer results' },
-    { src: '/lovable-uploads/61e8cba7-bb33-4f52-8de5-b2d7ac6717a4.png', alt: 'Tundra floor mat restoration and cleaning Commerce City professional detailing' }
+    { src: '/lovable-uploads/053edb8e-0a47-4a2d-97da-d5b292f1e158.png', alt: 'Honda CR-V exterior wash and detail before after Denver mobile service' },
+    { src: '/lovable-uploads/ffdf9eb8-8354-4b0f-acbf-320475dd0cc1.png', alt: 'Black car exterior detailing transformation before after Your Favorite Detailer' }
   ];
 
   const nextImage = () => {
