@@ -36,13 +36,13 @@ const Gallery = () => {
               ].map((image, i) => (
                 <div 
                   key={i}
-                  className="aspect-square bg-muted/50 rounded-lg hover:scale-105 transition-transform cursor-pointer group overflow-hidden"
+                  className="aspect-[4/3] bg-muted/50 rounded-lg hover:scale-105 transition-transform cursor-pointer group overflow-hidden"
                   onClick={openInstagram}
                 >
                   <img 
                     src={image.src} 
                     alt={image.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
