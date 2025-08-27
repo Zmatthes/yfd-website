@@ -16,21 +16,10 @@ const Gallery = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Our Work Speaks for Itself
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mb-8">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               See the dramatic transformations and attention to detail that make us Denver's 
               favorite automotive detailing service.
             </p>
-            
-            {/* Instagram Link */}
-            <Button 
-              variant="hero"
-              onClick={openInstagram}
-              className="group"
-            >
-              <Instagram className="h-5 w-5" />
-              Follow @your.favorite.detailer
-              <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
           </div>
 
           {/* Gallery Grid - All Transformation Photos */}
@@ -58,11 +47,9 @@ const Gallery = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                onClick={openInstagram}
                 className="group"
               >
-                See More on Instagram
-                <ExternalLink className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                See More
               </Button>
             </div>
           </div>
