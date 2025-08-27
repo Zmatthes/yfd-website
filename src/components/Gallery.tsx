@@ -1,8 +1,29 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Instagram, ExternalLink, Camera } from "lucide-react";
+import { Instagram, ExternalLink, Camera, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 const Gallery = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const images = [
+    { src: '/lovable-uploads/c69fc324-772a-40f9-ba6c-30d415cab15e.png', alt: 'Jeep floor mat cleaning transformation before and after Denver mobile detailing service' },
+    { src: '/lovable-uploads/aa258f0a-05e3-41d4-b750-a2b53d2f8fba.png', alt: 'Vehicle interior seat cleaning before and after Commerce City professional detailing' },
+    { src: '/lovable-uploads/a62b8403-66d2-47a0-aed8-69fc36ab6b05.png', alt: 'Complete vehicle interior detailing transformation Your Favorite Detailer Denver' },
+    { src: '/lovable-uploads/2fc18210-7a41-441b-960a-0b162fcc16b5.png', alt: 'Jeep rubber floor mat restoration before after Denver Metro detailing service' },
+    { src: '/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png', alt: 'Professional vehicle interior cleaning transformation Commerce City auto detailing' },
+    { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png', alt: 'Honda CR-V exterior wash and detail before after Denver mobile service' },
+    { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png', alt: 'Black car exterior detailing transformation before after Your Favorite Detailer' }
+  ];
+
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   const openInstagram = () => {
     window.open('https://www.instagram.com/your.favorite.detailer/', '_blank', 'noopener,noreferrer');
   };
@@ -22,34 +43,67 @@ const Gallery = () => {
             </p>
           </div>
 
-          {/* Gallery Grid - All Transformation Photos */}
+          {/* Slideshow */}
           <div className="mb-16">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-              {[
-                { src: '/lovable-uploads/c69fc324-772a-40f9-ba6c-30d415cab15e.png', alt: 'Jeep floor mat cleaning transformation before and after Denver mobile detailing service' },
-                { src: '/lovable-uploads/aa258f0a-05e3-41d4-b750-a2b53d2f8fba.png', alt: 'Vehicle interior seat cleaning before and after Commerce City professional detailing' },
-                { src: '/lovable-uploads/a62b8403-66d2-47a0-aed8-69fc36ab6b05.png', alt: 'Complete vehicle interior detailing transformation Your Favorite Detailer Denver' },
-                { src: '/lovable-uploads/2fc18210-7a41-441b-960a-0b162fcc16b5.png', alt: 'Jeep rubber floor mat restoration before after Denver Metro detailing service' },
-                { src: '/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png', alt: 'Professional vehicle interior cleaning transformation Commerce City auto detailing' },
-                { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png', alt: 'Honda CR-V exterior wash and detail before after Denver mobile service' },
-                { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png', alt: 'Black car exterior detailing transformation before after Your Favorite Detailer' }
-              ].map((image, i) => (
-                <div 
-                  key={i}
-                  className="aspect-[4/3] bg-muted/50 rounded-lg hover:scale-105 transition-transform cursor-pointer group overflow-hidden"
-                  onClick={openInstagram}
+            <Card className="relative overflow-hidden bg-background border-border shadow-lg">
+              {/* Main Image */}
+              <div className="relative aspect-[16/10] max-w-4xl mx-auto">
+                <img 
+                  src={images[currentIndex].src} 
+                  alt={images[currentIndex].alt}
+                  className="w-full h-full object-contain"
+                />
+                
+                {/* Navigation Arrows */}
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  onClick={prevImage}
+                >
+                  <ChevronLeft className="h-6 w-6" />
+                </Button>
+                
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-background/80 backdrop-blur-sm hover:bg-background"
+                  onClick={nextImage}
+                >
+                  <ChevronRight className="h-6 w-6" />
+                </Button>
+              </div>
+              
+              {/* Image Counter */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-background/80 backdrop-blur-sm rounded-full px-4 py-2">
+                <span className="text-sm font-medium">
+                  {currentIndex + 1} / {images.length}
+                </span>
+              </div>
+            </Card>
+
+            {/* Thumbnail Navigation */}
+            <div className="flex justify-center mt-6 gap-2 flex-wrap">
+              {images.map((image, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`w-16 h-12 rounded-lg overflow-hidden border-2 transition-all ${
+                    index === currentIndex 
+                      ? 'border-primary ring-2 ring-primary/20' 
+                      : 'border-border hover:border-primary/50'
+                  }`}
                 >
                   <img 
                     src={image.src} 
-                    alt={image.alt}
-                    className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                    loading="lazy"
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
                   />
-                </div>
+                </button>
               ))}
             </div>
             
-            <div className="text-center">
+            <div className="text-center mt-8">
               <Button 
                 variant="outline" 
                 size="lg"
