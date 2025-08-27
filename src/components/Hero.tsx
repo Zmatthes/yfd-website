@@ -40,12 +40,6 @@ const Hero = () => {
       <section className="py-20 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <div className="animate-fade-in">
-            {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-card border border-border rounded-full px-6 py-3 mb-8 shadow-lg">
-              <MapPin className="h-4 w-4 text-primary" />
-              <span className="text-sm text-foreground font-medium">Serving Denver Metro Area</span>
-            </div>
-
             {/* Main Heading */}
             <h1 className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight font-logo tracking-wider">
               YOUR FAVORITE
@@ -55,9 +49,15 @@ const Hero = () => {
             </h1>
 
             {/* Tagline */}
-            <p className="text-2xl md:text-3xl text-muted-foreground mb-10 font-medium italic">
+            <p className="text-2xl md:text-3xl text-muted-foreground mb-8 font-medium italic">
               "If you have the time, we have the shine!"
             </p>
+
+            {/* Badge */}
+            <div className="inline-flex items-center space-x-2 bg-card border border-border rounded-full px-6 py-3 mb-10 shadow-lg">
+              <MapPin className="h-4 w-4 text-primary" />
+              <span className="text-sm text-foreground font-medium">Serving Denver Metro Area</span>
+            </div>
 
             {/* Description */}
             <p className="text-lg text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
