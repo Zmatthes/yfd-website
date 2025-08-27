@@ -55,11 +55,11 @@ const Gallery = () => {
           <div className="mb-16">
             <Card className="relative overflow-hidden bg-background border-border shadow-lg">
               {/* Main Image */}
-              <div className="relative aspect-[16/10] max-w-4xl mx-auto">
+              <div className="relative max-w-4xl mx-auto">
                 <img 
                   src={images[currentIndex].src} 
                   alt={images[currentIndex].alt}
-                  className="w-full h-full object-contain"
+                  className="w-full h-auto max-h-[70vh] object-contain mx-auto"
                 />
                 
                 {/* Navigation Arrows */}
