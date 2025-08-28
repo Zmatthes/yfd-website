@@ -17,7 +17,7 @@ const Header = () => {
             alt="Your Favorite Detailer Logo - Professional Mobile Auto Detailing Denver Metro"
             className="h-10 w-10"
           />
-          <h1 className="text-xl font-bold text-foreground font-display">Your Favorite Detailer</h1>
+          <h1 className="text-xl font-bold text-foreground font-display">Your Favorite <span className="text-red-500">Detailer</span></h1>
         </div>
 
         {/* Navigation */}
@@ -38,7 +38,7 @@ const Header = () => {
             onClick={() => scrollToSection('gallery')}
             className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
-            Gallery
+            Our Work
           </button>
           <button 
             onClick={() => scrollToSection('contact')}

@@ -819,7 +819,7 @@ const QuoteWizard = () => {
           <div className="space-y-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Contact Information</h2>
-              <p className="text-muted-foreground">How can I reach you?</p>
+              <p className="text-muted-foreground">How can we reach you?</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">

@@ -10,10 +10,10 @@ const Contact = () => {
           {/* Header */}
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-display">
-              Feel free to reach out with any questions
+              Contact Us
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Ready to schedule your detail? Call or text us with your quote details.
+              Feel free to reach out with any questions. Ready to schedule your detail? Call or text us with your quote details.
             </p>
           </div>
 
@@ -50,7 +50,7 @@ const Contact = () => {
                   HOURS
                 </h4>
                 <p className="text-muted-foreground">
-                  Appointment only<br/>
+                  Appointment Only<br/>
                   Mon - Sun
                 </p>
               </Card>
@@ -74,7 +74,7 @@ const Contact = () => {
 
             <div className="mt-12 p-6 bg-muted/30 rounded-lg">
               <p className="text-muted-foreground text-sm">
-                <strong>Mobile Service Available:</strong> I come to you throughout the Denver Metro area. 
+                <strong>Mobile Service Available:</strong> We come to you throughout the Denver Metro area. 
                 Additional mobile fee may apply based on location. Drop-off service always preferred for best results.
               </p>
             </div>

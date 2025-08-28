@@ -18,7 +18,7 @@ const Footer = () => {
             {/* Brand */}
             <div className="lg:col-span-2">
               <h3 className="text-2xl font-bold text-foreground mb-4">
-                Your Favorite Detailer
+                Your Favorite <span className="text-red-500">Detailer</span>
               </h3>
               <p className="text-muted-foreground mb-6 leading-relaxed max-w-md">
                 "If you have the time, we have the shine!" Serving the Denver Metro area 
@@ -58,7 +58,7 @@ const Footer = () => {
                 {[
                   { name: 'Services', id: 'services' },
                   { name: 'Pricing', id: 'pricing' },
-                  { name: 'Gallery', id: 'gallery' },
+                  { name: 'Our Work', id: 'gallery' },
                   { name: 'About', id: 'about' },
                   { name: 'Contact', id: 'contact' }
                 ].map((link) => (

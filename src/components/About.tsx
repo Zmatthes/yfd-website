@@ -20,14 +20,14 @@ const About = () => {
                   About Your Favorite Detailer
                 </h2>
                 <p className="text-lg text-muted-foreground leading-relaxed mb-6">
-                  Located in Commerce City and serving the entire Denver Metro area, I specialize in 
-                  both location-based and mobile detailing services. My commitment to excellence and 
-                  customer satisfaction has made me the go-to choice for automotive enthusiasts and 
+                  Located in Commerce City and serving the entire Denver Metro area, we specialize in 
+                  both location-based and mobile detailing services. Our commitment to excellence and 
+                  customer satisfaction has made us the go-to choice for automotive enthusiasts and 
                   everyday drivers alike.
                 </p>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  I pride myself on honest communication, transparent pricing, and delivering 
-                  results that exceed expectations. Every vehicle receives my full attention and 
+                  We pride ourselves on honest communication, transparent pricing, and delivering 
+                  results that exceed expectations. Every vehicle receives our full attention and 
                   professional care, ensuring your car looks better than the day you bought it.
                 </p>
               </div>
