@@ -17,9 +17,16 @@ const Footer = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Brand */}
             <div className="lg:col-span-2">
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                Your Favorite <span className="text-red-500">Detailer</span>
-              </h3>
+              <div className="flex items-center gap-3 mb-4">
+                <img 
+                  src="/lovable-uploads/1dee44ec-18e0-40dd-a213-fd82464a4206.png" 
+                  alt="Your Favorite Detailer Logo" 
+                  className="h-12 w-12"
+                />
+                <h3 className="text-2xl font-bold text-foreground">
+                  Your Favorite <span className="text-red-500">Detailer</span>
+                </h3>
+              </div>
               <p className="text-muted-foreground mb-6 leading-relaxed max-w-md">
                 "If you have the time, we have the shine!" Serving the Denver Metro area 
                 with premium automotive detailing services that exceed expectations.

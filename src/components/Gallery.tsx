@@ -14,8 +14,8 @@ const Gallery = () => {
     { src: '/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png', alt: 'Professional vehicle interior cleaning transformation Commerce City auto detailing' },
     { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png', alt: 'Honda CR-V exterior wash and detail before after Denver mobile service' },
     { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png', alt: 'Black car exterior detailing transformation before after Your Favorite Detailer' },
-    { src: '/lovable-uploads/053edb8e-0a47-4a2d-97da-d5b292f1e158.png', alt: 'Honda CR-V exterior wash and detail before after Denver mobile service' },
-    { src: '/lovable-uploads/ffdf9eb8-8354-4b0f-acbf-320475dd0cc1.png', alt: 'Black car exterior detailing transformation before after Your Favorite Detailer' }
+    { src: '/lovable-uploads/2947a2f9-0114-4f8b-8328-90defdfaa615.png', alt: 'Vehicle interior cleaning before after Denver professional detailing service' },
+    { src: '/lovable-uploads/281f810c-9383-4f71-865c-87b7f0c75a91.png', alt: 'Complete car detailing transformation Your Favorite Detailer Denver Metro' }
   ];
 
   const nextImage = () => {

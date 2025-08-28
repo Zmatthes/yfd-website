@@ -13,7 +13,7 @@ const Contact = () => {
               Contact Us
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Feel free to reach out with any questions. Ready to schedule your detail? Call or text us with your quote details.
+              Feel free to reach out with any questions.
             </p>
           </div>
 
