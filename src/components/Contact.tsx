@@ -10,7 +10,7 @@ const Contact = () => {
           {/* Header */}
           <div className="mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 font-display">
-              CONTACT US
+              Feel free to reach out with any questions
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Ready to schedule your detail? Call or text us with your quote details.
@@ -24,9 +24,6 @@ const Contact = () => {
               <h3 className="text-3xl font-bold text-foreground mb-4 font-display">
                 CALL OR TEXT
               </h3>
-              <p className="text-muted-foreground mb-6 text-lg">
-                Have your quote ready? Give us a call or send a text to schedule your appointment.
-              </p>
               <a 
                 href="tel:+13038104626" 
                 className="inline-block bg-gradient-accent text-white px-8 py-4 rounded-lg text-2xl font-bold hover:scale-105 transition-smooth shadow-luxury font-display"
@@ -53,7 +50,7 @@ const Contact = () => {
                   HOURS
                 </h4>
                 <p className="text-muted-foreground">
-                  Appt Only<br/>
+                  Appointment only<br/>
                   Mon - Sun
                 </p>
               </Card>

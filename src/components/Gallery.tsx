@@ -110,8 +110,10 @@ const Gallery = () => {
                 variant="outline" 
                 size="lg"
                 className="group"
+                onClick={openInstagram}
               >
-                See More
+                <Instagram className="w-4 h-4 mr-2" />
+                See More on Instagram
               </Button>
             </div>
           </div>

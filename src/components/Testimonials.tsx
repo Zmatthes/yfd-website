@@ -209,7 +209,7 @@ const Testimonials = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.filter(t => t.text).slice(0, 12).map((testimonial) => (
+            {testimonials.filter(t => t.text).map((testimonial) => (
               <Card key={testimonial.id} className="p-6 bg-gradient-card border-border hover:shadow-luxury transition-smooth group">
                 <div className="space-y-4">
                   <div className="flex items-center gap-1">
@@ -238,24 +238,15 @@ const Testimonials = () => {
             <p className="text-lg text-muted-foreground mb-6">
               Ready to experience the same level of quality? Join our satisfied customers today!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <button 
                 onClick={() => {
-                  const element = document.getElementById('contact');
+                  const element = document.getElementById('quote-wizard');
                   element?.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors font-semibold"
               >
-                Book Your Detail
-              </button>
-              <button 
-                onClick={() => {
-                  const element = document.getElementById('before-after');
-                  element?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="px-8 py-3 border border-border rounded-lg hover:bg-muted transition-colors font-semibold"
-              >
-                See Our Work
+                Get a Quote
               </button>
             </div>
           </div>
