@@ -7,6 +7,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { submitQuote } from "@/lib/supabase";
+import { toast } from "sonner";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "motorcycle";
 type ServiceType = "full-detail" | "interior-only" | "exterior-only";
@@ -918,9 +920,26 @@ const QuoteWizard = () => {
                       variant="hero" 
                       size="lg" 
                       className="w-full"
-                      onClick={() => {
-                        // For now, show success message - email functionality requires backend
-                        alert('Quote submitted successfully! We will contact you soon.');
+                      onClick={async () => {
+                        try {
+                          await submitQuote({
+                            name,
+                            email,
+                            phone,
+                            vehicle_year: year,
+                            vehicle_make: make,
+                            vehicle_model: model,
+                            service_type: serviceType || '',
+                            add_ons: selectedAddOns,
+                            estimated_total: calculateTotal(),
+                            additional_notes: serviceMode === 'mobile' ? `Mobile service to: ${customerAddress}` : 'Drop-off service'
+                          });
+                          
+                          toast.success("Quote submitted successfully! We'll be in touch soon.");
+                        } catch (error) {
+                          console.error("Error submitting quote:", error);
+                          toast.error("Failed to submit quote. Please try again or call us directly.");
+                        }
                       }}
                     >
                       Submit Quote
