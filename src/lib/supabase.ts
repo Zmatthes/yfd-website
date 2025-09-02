@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
-// Use Lovable's native Supabase integration
-const supabaseUrl = "https://your-project-url.supabase.co"  // This will be auto-configured by Lovable
-const supabaseAnonKey = "your-anon-key"  // This will be auto-configured by Lovable
+// Use your actual Supabase project credentials
+const supabaseUrl = "https://jsgyoqpzhgzhwnwfekjh.supabase.co"
+const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzZ3lvcXB6aGd6aHdud2Zla2poIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4MzgwNDUsImV4cCI6MjA3MjQxNDA0NX0.NFMZR3m1ZmWMTsjHNlAAI6fnqDJ8v9ZV7sE6tgIPxkk"
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 
