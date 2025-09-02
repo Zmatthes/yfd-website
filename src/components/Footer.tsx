@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Instagram, Phone, Mail, MapPin, Heart } from "lucide-react";
+import { Instagram, Phone, Mail, MapPin, Heart, Facebook } from "lucide-react";
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
@@ -42,16 +42,16 @@ const Footer = () => {
                 <Button 
                   variant="minimal" 
                   size="icon"
-                  onClick={() => window.open('tel:(303)810-4626', '_blank')}
+                  onClick={() => window.open('https://www.facebook.com/yourfavoritedetailerCO', '_blank', 'noopener,noreferrer')}
                 >
-                  <Phone className="h-5 w-5" />
+                  <Facebook className="h-5 w-5" />
                 </Button>
                 <Button 
                   variant="minimal" 
                   size="icon"
-                  onClick={() => window.open('mailto:zachmatthes@yahoo.com', '_blank')}
+                  onClick={() => window.open('tel:(303)810-4626', '_blank')}
                 >
-                  <Mail className="h-5 w-5" />
+                  <Phone className="h-5 w-5" />
                 </Button>
               </div>
             </div>

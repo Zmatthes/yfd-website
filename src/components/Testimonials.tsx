@@ -26,9 +26,16 @@ const Testimonials = () => {
     },
     {
       id: 4,
-      name: "Carly B",
+      name: "Carly Black",
       rating: 5,
       text: "Zach did an amazing job for us! He spent a whole day on making our car look brand new! If you are looking to have your car detailed he is the guy to call!",
+      location: "Denver Metro"
+    },
+    {
+      id: 26,
+      name: "Trevor Smith",
+      rating: 5,
+      text: "Amazing job! My car looks brand new!",
       location: "Denver Metro"
     },
     {

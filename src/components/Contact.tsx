@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Phone, MapPin, Clock, Instagram } from "lucide-react";
+import { Phone, MapPin, Clock, Instagram, Facebook } from "lucide-react";
 
 const Contact = () => {
   return (
@@ -57,18 +57,31 @@ const Contact = () => {
             </div>
 
             <Card className="p-8 bg-primary/5 border-primary/20">
-              <Instagram className="h-8 w-8 text-primary mx-auto mb-4" />
-              <h4 className="text-xl font-semibold text-foreground mb-2 font-display">
+              <div className="flex justify-center space-x-4 mb-4">
+                <Instagram className="h-8 w-8 text-primary" />
+                <Facebook className="h-8 w-8 text-primary" />
+              </div>
+              <h4 className="text-xl font-semibold text-foreground mb-4 font-display">
                 FOLLOW OUR WORK
               </h4>
-              <a 
-                href="https://www.instagram.com/your.favorite.detailer/" 
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary font-semibold hover:underline text-lg"
-              >
-                @your.favorite.detailer
-              </a>
+              <div className="space-y-2">
+                <a 
+                  href="https://www.instagram.com/your.favorite.detailer/" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-primary font-semibold hover:underline"
+                >
+                  @your.favorite.detailer
+                </a>
+                <a 
+                  href="https://www.facebook.com/yourfavoritedetailerCO" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-primary font-semibold hover:underline"
+                >
+                  Your Favorite Detailer CO
+                </a>
+              </div>
             </Card>
           </div>
 

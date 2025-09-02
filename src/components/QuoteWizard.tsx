@@ -996,11 +996,11 @@ const QuoteWizard = () => {
             </div>
 
             <Button 
-              variant={currentStep === totalSteps ? "hero" : "default"}
+              variant="default"
               onClick={nextStep}
               disabled={currentStep === totalSteps || (currentStep === 1 && !vehicleType) || (currentStep === 2 && !serviceType)}
             >
-              {currentStep === totalSteps ? "Get Quote" : "Next"}
+              Next
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
