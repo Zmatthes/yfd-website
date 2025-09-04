@@ -23,6 +23,8 @@ export type QuoteSubmission = {
 
 export const submitQuote = async (quoteData: Omit<QuoteSubmission, 'id' | 'created_at'>) => {
   try {
+    console.log("Attempting to insert quote into database...");
+    
     // Insert quote into database
     const { data, error } = await supabase
       .from('quotes')
@@ -30,15 +32,28 @@ export const submitQuote = async (quoteData: Omit<QuoteSubmission, 'id' | 'creat
       .select()
       .single()
 
-    if (error) throw error
+    if (error) {
+      console.error("Database insertion failed:", error);
+      throw error;
+    }
 
-    // Send email notification
-    const { error: emailError } = await supabase.functions.invoke('quote-email', {
-      body: { quoteData }
-    })
+    console.log("Quote saved to database successfully:", data);
 
-    if (emailError) {
-      console.error('Email sending failed:', emailError)
+    // Try to send email notification (don't fail if this doesn't work)
+    try {
+      console.log("Attempting to send email notification...");
+      const { error: emailError } = await supabase.functions.invoke('quote-email', {
+        body: { quoteData }
+      });
+
+      if (emailError) {
+        console.error('Email sending failed:', emailError);
+        // Don't throw here - quote was saved successfully
+      } else {
+        console.log("Email sent successfully");
+      }
+    } catch (emailError) {
+      console.error('Email function failed:', emailError);
       // Don't throw here - quote was saved successfully
     }
 
