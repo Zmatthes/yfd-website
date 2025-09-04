@@ -38,25 +38,6 @@ export const submitQuote = async (quoteData: Omit<QuoteSubmission, 'id' | 'creat
     }
 
     console.log("Quote saved to database successfully:", data);
-
-    // Try to send email notification (don't fail if this doesn't work)
-    try {
-      console.log("Attempting to send email notification...");
-      const { error: emailError } = await supabase.functions.invoke('quote-email', {
-        body: { quoteData }
-      });
-
-      if (emailError) {
-        console.error('Email sending failed:', emailError);
-        // Don't throw here - quote was saved successfully
-      } else {
-        console.log("Email sent successfully");
-      }
-    } catch (emailError) {
-      console.error('Email function failed:', emailError);
-      // Don't throw here - quote was saved successfully
-    }
-
     return { data, success: true }
   } catch (error) {
     console.error('Error submitting quote:', error)
