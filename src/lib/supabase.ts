@@ -33,7 +33,7 @@ export const submitQuote = async (quoteData: Omit<QuoteSubmission, 'id' | 'creat
     if (error) throw error
 
     // Send email notification
-    const { error: emailError } = await supabase.functions.invoke('send-quote-email', {
+    const { error: emailError } = await supabase.functions.invoke('quote-email', {
       body: { quoteData }
     })
 
