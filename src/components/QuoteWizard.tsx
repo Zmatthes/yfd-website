@@ -921,25 +921,31 @@ const QuoteWizard = () => {
                       size="lg" 
                       className="w-full"
                       onClick={async () => {
-                        try {
-                          await submitQuote({
-                            name,
-                            email,
-                            phone,
-                            vehicle_year: year,
-                            vehicle_make: make,
-                            vehicle_model: model,
-                            service_type: serviceType || '',
-                            add_ons: selectedAddOns,
-                            estimated_total: calculateTotal(),
-                            additional_notes: serviceMode === 'mobile' ? `Mobile service to: ${customerAddress}` : 'Drop-off service'
-                          });
-                          
-                          toast.success("Quote submitted successfully! We'll be in touch soon.");
-                        } catch (error) {
-                          console.error("Error submitting quote:", error);
-                          toast.error("Failed to submit quote. Please try again or call us directly.");
-                        }
+                         try {
+                           console.log("Starting quote submission...");
+                           const quoteData = {
+                             name,
+                             email,
+                             phone,
+                             vehicle_year: year,
+                             vehicle_make: make,
+                             vehicle_model: model,
+                             service_type: serviceType || '',
+                             add_ons: selectedAddOns,
+                             estimated_total: calculateTotal(),
+                             additional_notes: serviceMode === 'mobile' ? `Mobile service to: ${customerAddress}` : 'Drop-off service'
+                           };
+                           console.log("Quote data:", quoteData);
+                           
+                           const result = await submitQuote(quoteData);
+                           console.log("Quote submitted successfully:", result);
+                           
+                           toast.success("Quote submitted successfully! We'll be in touch soon.");
+                         } catch (error) {
+                           console.error("Error submitting quote:", error);
+                           console.error("Error details:", JSON.stringify(error, null, 2));
+                           toast.error("Failed to submit quote. Please try again or call us directly.");
+                         }
                       }}
                     >
                       Submit Quote
