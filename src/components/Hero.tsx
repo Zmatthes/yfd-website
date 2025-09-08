@@ -93,7 +93,7 @@ const Hero = () => {
             </div>
 
             {/* Social Proof */}
-            <div className="flex items-center justify-center space-x-8 text-muted-foreground">
+            <div className="flex items-center justify-center text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
@@ -101,10 +101,6 @@ const Hero = () => {
                   ))}
                 </div>
                 <span className="ml-2 text-lg font-semibold">5.0 Rating</span>
-              </div>
-              <div className="w-px h-8 bg-border" />
-              <div className="text-lg">
-                <span className="font-semibold">@your.favorite.detailer</span>
               </div>
             </div>
           </div>

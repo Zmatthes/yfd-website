@@ -6,9 +6,10 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
-import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
+import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin, Check } from "lucide-react";
 import { submitQuote } from "@/lib/supabase";
 import { toast } from "sonner";
+import QuoteSuccess from "./QuoteSuccess";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "motorcycle";
 type ServiceType = "full-detail" | "interior-only" | "exterior-only";
@@ -29,6 +30,7 @@ const QuoteWizard = () => {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Shop address for distance calculations
   const shopAddress = "17284 E 102nd Place, Commerce City, CO 80022";
@@ -909,8 +911,8 @@ const QuoteWizard = () => {
                   
                   <div className="border-t border-border pt-3">
                     <div className="flex justify-between items-center text-lg font-bold">
-                      <span className="font-display">Total:</span>
-                      <span className="text-red-500 font-display">${calculateTotal()}</span>
+                      <span className="text-foreground font-display">Total:</span>
+                      <span className="text-primary font-display">${calculateTotal()}</span>
                     </div>
                   </div>
                 </div>
@@ -937,10 +939,10 @@ const QuoteWizard = () => {
                            };
                            console.log("Quote data:", quoteData);
                            
-                           const result = await submitQuote(quoteData);
-                           console.log("Quote submitted successfully:", result);
-                           
-                           toast.success("Quote submitted successfully! We'll be in touch soon.");
+                            const result = await submitQuote(quoteData);
+                            console.log("Quote submitted successfully:", result);
+                            
+                            setShowSuccess(true);
                          } catch (error) {
                            console.error("Error submitting quote:", error);
                            console.error("Error details:", JSON.stringify(error, null, 2));
@@ -964,6 +966,34 @@ const QuoteWizard = () => {
         return null;
     }
   };
+
+  const resetQuoteWizard = () => {
+    setCurrentStep(1);
+    setVehicleType(null);
+    setYear("");
+    setMake("");
+    setModel("");
+    setServiceType(null);
+    setSelectedAddOns([]);
+    setServiceMode("drop-off");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setCustomerAddress("");
+    setShowSuccess(false);
+  };
+
+  if (showSuccess) {
+    return (
+      <section id="quote-wizard" className="py-20 bg-background min-h-screen">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <QuoteSuccess onStartOver={resetQuoteWizard} />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="quote-wizard" className="py-20 bg-background min-h-screen">
@@ -997,7 +1027,7 @@ const QuoteWizard = () => {
             <div className="text-center">
               <div className="bg-primary/10 rounded-lg px-4 py-2">
                 <span className="text-sm text-muted-foreground">Current Total: </span>
-                <span className="font-bold text-red-500 font-display">${calculateTotal()}</span>
+                <span className="font-bold text-primary font-display">${calculateTotal()}</span>
               </div>
             </div>
 
