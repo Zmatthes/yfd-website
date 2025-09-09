@@ -12,7 +12,7 @@ import { toast } from "sonner";
 import QuoteSuccess from "./QuoteSuccess";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "motorcycle";
-type ServiceType = "full-detail" | "interior-only" | "exterior-only";
+type ServiceType = "full-detail" | "interior-only" | "exterior-only" | "restore-protect";
 
 const QuoteWizard = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -57,6 +57,14 @@ const QuoteWizard = () => {
       "truck": 100,
       "full-suv": 125,
       "motorcycle": 125
+    },
+    "restore-protect": {
+      "2-door": 0, // Placeholder - awaiting pricing
+      "4-door": 0, // Placeholder - awaiting pricing
+      "mid-suv": 0, // Placeholder - awaiting pricing
+      "truck": 0, // Placeholder - awaiting pricing
+      "full-suv": 0, // Placeholder - awaiting pricing
+      "motorcycle": 0 // Placeholder - awaiting pricing
     }
   };
 
@@ -695,9 +703,46 @@ const QuoteWizard = () => {
                       <span className="font-bold text-red-500">$125</span>
                     </div>
                   </div>
-                </div>
-              </div>
-            </RadioGroup>
+                 </div>
+
+                 {/* Restore & Protect Detail */}
+                 <div className="space-y-2">
+                   <div className="flex items-center space-x-2">
+                     <RadioGroupItem value="restore-protect" id="restore-protect" />
+                     <Label htmlFor="restore-protect" className="text-xl font-bold font-display">RESTORE & PROTECT DETAIL</Label>
+                   </div>
+                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
+                     <div className="flex justify-between">
+                       <span className="text-base font-medium">2 DOOR CAR</span>
+                       <span className="font-bold text-red-500">TBD</span>
+                     </div>
+                     <div className="flex justify-between">
+                       <span className="text-base font-medium">4 DOOR CAR</span>
+                       <span className="font-bold text-red-500">TBD</span>
+                     </div>
+                     <div className="flex justify-between">
+                       <span className="text-base font-medium">MID-SIZE SUV</span>
+                       <span className="font-bold text-red-500">TBD</span>
+                     </div>
+                     <div className="flex justify-between">
+                       <span className="text-base font-medium">TRUCK</span>
+                       <span className="font-bold text-red-500">TBD</span>
+                     </div>
+                     <div className="flex justify-between">
+                       <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK</span>
+                       <span className="font-bold text-red-500">TBD</span>
+                     </div>
+                     <div className="flex justify-between">
+                       <span className="text-base font-medium">MOTORCYCLE</span>
+                       <span className="font-bold text-red-500">TBD</span>
+                     </div>
+                   </div>
+                   <div className="ml-8 text-sm text-muted-foreground italic">
+                     The most in-depth exterior service for ultimate paint restoration and protection
+                   </div>
+                 </div>
+               </div>
+             </RadioGroup>
           </div>
         );
 
@@ -880,7 +925,8 @@ const QuoteWizard = () => {
                    <p className="text-sm text-muted-foreground">
                      {serviceType === 'full-detail' ? 'Full Detail' :
                       serviceType === 'interior-only' ? 'Interior Only' :
-                      serviceType === 'exterior-only' ? 'Exterior Only' : 'No service selected'}
+                      serviceType === 'exterior-only' ? 'Exterior Only' :
+                      serviceType === 'restore-protect' ? 'Restore & Protect Detail' : 'No service selected'}
                    </p>
                 </div>
 
