@@ -10,14 +10,16 @@ import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin, Check } from "luc
 import { submitQuote } from "@/lib/supabase";
 import { toast } from "sonner";
 import QuoteSuccess from "./QuoteSuccess";
+import RestoreProtectDetail from "./RestoreProtectDetail";
 
-type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "motorcycle";
+type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "heavy-duty" | "motorcycle";
 type ServiceType = "full-detail" | "interior-only" | "exterior-only" | "restore-protect";
 
 const QuoteWizard = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [vehicleType, setVehicleType] = useState<VehicleType | null>(null);
   const [serviceType, setServiceType] = useState<ServiceType | null>(null);
+  const [showRestoreProtect, setShowRestoreProtect] = useState(false);
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
@@ -59,12 +61,12 @@ const QuoteWizard = () => {
       "motorcycle": 125
     },
     "restore-protect": {
-      "2-door": 0, // Placeholder - awaiting pricing
-      "4-door": 0, // Placeholder - awaiting pricing
-      "mid-suv": 0, // Placeholder - awaiting pricing
-      "truck": 0, // Placeholder - awaiting pricing
-      "full-suv": 0, // Placeholder - awaiting pricing
-      "motorcycle": 0 // Placeholder - awaiting pricing
+      "2-door": 650,
+      "4-door": 700,
+      "mid-suv": 750,
+      "truck": 900,
+      "full-suv": 1000,
+      "motorcycle": 650
     }
   };
 
@@ -528,8 +530,30 @@ const QuoteWizard = () => {
     return total;
   };
 
-  const nextStep = () => {
-    if (currentStep < totalSteps) setCurrentStep(currentStep + 1);
+  const nextStep = async () => {
+    if (serviceType === "restore-protect" && currentStep === 2) {
+      setShowRestoreProtect(true);
+      return;
+    }
+    
+    if (currentStep < totalSteps) {
+      if (currentStep === 4 && serviceMode === "mobile" && customerAddress) {
+        const dist = await calculateDistance(customerAddress);
+        setDistance(dist);
+      }
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const handleRestoreProtectContinue = (vehicleType: VehicleType, basePrice: number) => {
+    setVehicleType(vehicleType);
+    setShowRestoreProtect(false);
+    setCurrentStep(3);
+  };
+
+  const handleRestoreProtectBack = () => {
+    setShowRestoreProtect(false);
+    setServiceType(null);
   };
 
   const prevStep = () => {
@@ -711,34 +735,11 @@ const QuoteWizard = () => {
                      <RadioGroupItem value="restore-protect" id="restore-protect" />
                      <Label htmlFor="restore-protect" className="text-xl font-bold font-display">RESTORE & PROTECT DETAIL</Label>
                    </div>
-                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">2 DOOR CAR</span>
-                       <span className="font-bold text-red-500">TBD</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">4 DOOR CAR</span>
-                       <span className="font-bold text-red-500">TBD</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">MID-SIZE SUV</span>
-                       <span className="font-bold text-red-500">TBD</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">TRUCK</span>
-                       <span className="font-bold text-red-500">TBD</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK</span>
-                       <span className="font-bold text-red-500">TBD</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">MOTORCYCLE</span>
-                       <span className="font-bold text-red-500">TBD</span>
-                     </div>
-                   </div>
-                   <div className="ml-8 text-sm text-muted-foreground italic">
+                   <div className="ml-8 text-sm text-muted-foreground italic mb-2">
                      The most in-depth exterior service for ultimate paint restoration and protection
+                   </div>
+                   <div className="ml-8 text-sm text-primary font-semibold">
+                     Click to see details and pricing →
                    </div>
                  </div>
                </div>
@@ -1030,15 +1031,14 @@ const QuoteWizard = () => {
   };
 
   if (showSuccess) {
-    return (
-      <section id="quote-wizard" className="py-20 bg-background min-h-screen">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <QuoteSuccess onStartOver={resetQuoteWizard} />
-          </div>
-        </div>
-      </section>
-    );
+    return <QuoteSuccess onStartOver={resetQuoteWizard} />;
+  }
+
+  if (showRestoreProtect) {
+    return <RestoreProtectDetail 
+      onBack={handleRestoreProtectBack}
+      onContinue={handleRestoreProtectContinue}
+    />;
   }
 
   return (
