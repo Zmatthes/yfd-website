@@ -64,8 +64,9 @@ const QuoteWizard = () => {
       "2-door": 650,
       "4-door": 700,
       "mid-suv": 750,
-      "truck": 900,
-      "full-suv": 1000,
+      "truck": 850,
+      "full-suv": 950,
+      "heavy-duty": 1050,
       "motorcycle": 650
     }
   };
@@ -80,7 +81,8 @@ const QuoteWizard = () => {
 
   const interiorAddOns = [
     { id: "dog-hair", label: "Dog Hair Removal", price: 25 },
-    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
+    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 },
+    { id: "interior-detail", label: "Interior Detail (50% off with Restore & Protect)", price: 250 }
   ];
 
   // Real distance calculation using Mapbox Geocoding API
@@ -520,7 +522,14 @@ const QuoteWizard = () => {
       const exteriorAddOn = exteriorAddOns.find(a => a.id === addOnId);
       const interiorAddOn = interiorAddOns.find(a => a.id === addOnId);
       const addOn = exteriorAddOn || interiorAddOn;
-      if (addOn) total += addOn.price;
+      if (addOn) {
+        // Apply 50% discount on interior detail if paired with restore-protect
+        if (serviceType === "restore-protect" && addOnId === "interior-detail") {
+          total += addOn.price * 0.5;
+        } else {
+          total += addOn.price;
+        }
+      }
     });
 
     if (serviceMode === "mobile" && distance) {
@@ -944,7 +953,15 @@ const QuoteWizard = () => {
                       return addOn ? (
                         <div key={addOnId} className="flex justify-between items-center text-sm">
                           <span>{addOn.label}</span>
-                          <span className="text-red-500">+${addOn.price}</span>
+                          {serviceType === "restore-protect" && addOnId === "interior-detail" ? (
+                            <div className="text-right">
+                              <span className="text-muted-foreground line-through">${addOn.price}</span>
+                              <span className="text-red-500 ml-2">+${addOn.price * 0.5}</span>
+                              <div className="text-xs text-green-600">50% off</div>
+                            </div>
+                          ) : (
+                            <span className="text-red-500">+${addOn.price}</span>
+                          )}
                         </div>
                       ) : null;
                     })}
@@ -1071,10 +1088,12 @@ const QuoteWizard = () => {
             </Button>
 
             <div className="text-center">
-              <div className="bg-primary/10 rounded-lg px-4 py-2">
-                <span className="text-sm text-muted-foreground">Current Total: </span>
-                <span className="font-bold text-primary font-display">${calculateTotal()}</span>
-              </div>
+              {serviceType !== "restore-protect" && (
+                <div className="bg-primary/10 rounded-lg px-4 py-2">
+                  <span className="text-sm text-muted-foreground">Current Total: </span>
+                  <span className="font-bold text-primary font-display">${calculateTotal()}</span>
+                </div>
+              )}
             </div>
 
             <Button 

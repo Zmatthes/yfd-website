@@ -19,15 +19,25 @@ const RestoreProtectDetail = ({ onBack, onContinue }: RestoreProtectDetailProps)
     "2-door": { label: "2 Door Car", price: 650 },
     "4-door": { label: "4 Door Car/Small Truck", price: 700 },
     "mid-suv": { label: "Mid Size SUV", price: 750 },
-    "truck": { label: "Truck", price: 900 },
-    "full-suv": { label: "SUV", price: 1000 },
-    "heavy-duty": { label: "Heavy Duty Truck/Van", price: 1100 }
+    "truck": { label: "Truck", price: 850 },
+    "full-suv": { label: "SUV", price: 950 },
+    "heavy-duty": { label: "Heavy Duty Truck/Van", price: 1050 }
   };
 
+  const [selectedAddOns, setSelectedAddOns] = useState<string[]>([]);
+  
   const addOns = [
     { id: "topper-shell", label: "Topper Shell", price: 100 },
     { id: "cargo-roof-box", label: "Cargo Roof Box", price: 60 }
   ];
+
+  const toggleAddOn = (addOnId: string) => {
+    setSelectedAddOns(prev => 
+      prev.includes(addOnId) 
+        ? prev.filter(id => id !== addOnId)
+        : [...prev, addOnId]
+    );
+  };
 
   const handleContinue = () => {
     if (selectedVehicle) {
@@ -92,10 +102,10 @@ const RestoreProtectDetail = ({ onBack, onContinue }: RestoreProtectDetailProps)
                       id={key}
                       className="peer sr-only"
                     />
-                    <Label
-                      htmlFor={key}
-                      className="flex items-center justify-between p-4 rounded-lg border-2 cursor-pointer hover:bg-muted/50 peer-checked:border-primary peer-checked:bg-primary/5 transition-all"
-                    >
+                     <Label
+                       htmlFor={key}
+                       className="flex items-center justify-between p-4 rounded-lg border-2 cursor-pointer hover:bg-muted/50 peer-checked:border-primary peer-checked:bg-primary/10 transition-all"
+                     >
                       <span className="font-medium text-foreground">{label}</span>
                       <span className="text-primary font-bold">${price}</span>
                     </Label>
@@ -112,7 +122,15 @@ const RestoreProtectDetail = ({ onBack, onContinue }: RestoreProtectDetailProps)
             </h3>
             <div className="grid gap-3 md:grid-cols-2">
               {addOns.map((addon) => (
-                <div key={addon.id} className="flex items-center justify-between p-3 bg-muted/30 rounded-lg">
+                <div 
+                  key={addon.id} 
+                  className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all border-2 ${
+                    selectedAddOns.includes(addon.id) 
+                      ? 'bg-primary/10 border-primary' 
+                      : 'bg-muted/30 border-transparent hover:bg-muted/50'
+                  }`}
+                  onClick={() => toggleAddOn(addon.id)}
+                >
                   <span className="text-foreground">{addon.label}</span>
                   <span className="text-primary font-semibold">+${addon.price}</span>
                 </div>
@@ -133,7 +151,7 @@ const RestoreProtectDetail = ({ onBack, onContinue }: RestoreProtectDetailProps)
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <span>Professional ceramic coating application</span>
+                <span>Professional ceramic coating application to all exterior paint surfaces including wheels</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
