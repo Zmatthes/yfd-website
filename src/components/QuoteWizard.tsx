@@ -20,6 +20,7 @@ const QuoteWizard = () => {
   const [vehicleType, setVehicleType] = useState<VehicleType | null>(null);
   const [serviceType, setServiceType] = useState<ServiceType | null>(null);
   const [showServiceDetail, setShowServiceDetail] = useState(false);
+  const [showDetailServices, setShowDetailServices] = useState(false);
   const [selectedDetailService, setSelectedDetailService] = useState<"ceramic-coating" | "paint-correction" | null>(null);
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
@@ -82,8 +83,7 @@ const QuoteWizard = () => {
 
   const interiorAddOns = [
     { id: "dog-hair", label: "Dog Hair Removal", price: 25 },
-    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 },
-    { id: "interior-detail", label: "Interior Detail (50% off with Restore & Protect)", price: 250 }
+    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
   ];
 
   // Real distance calculation using Mapbox Geocoding API
@@ -556,6 +556,18 @@ const QuoteWizard = () => {
     }
   };
 
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const handleDetailServicesClick = () => {
+    if (year && make && model && vehicleType) {
+      setShowDetailServices(true);
+    }
+  };
+
   const handleServiceDetailContinue = (vehicleType: VehicleType, basePrice: number) => {
     setVehicleType(vehicleType);
     setShowServiceDetail(false);
@@ -567,9 +579,6 @@ const QuoteWizard = () => {
     setServiceType(null);
   };
 
-  const prevStep = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
-  };
 
   const toggleAddOn = (addOnId: string) => {
     setSelectedAddOns(prev => 
@@ -740,17 +749,20 @@ const QuoteWizard = () => {
                   </div>
                  </div>
 
-                 {/* Restore & Protect Detail */}
+                 {/* Ceramic Coating & Paint Correction */}
                  <div className="space-y-2">
-                   <div className="flex items-center space-x-2">
-                     <RadioGroupItem value="restore-protect" id="restore-protect" />
-                     <Label htmlFor="restore-protect" className="text-xl font-bold font-display">RESTORE & PROTECT DETAIL</Label>
+                   <Button
+                     onClick={handleDetailServicesClick}
+                     disabled={!year || !make || !model || !vehicleType}
+                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 text-xl font-bold"
+                   >
+                     CERAMIC COATING & PAINT CORRECTION
+                   </Button>
+                   <div className="text-sm text-muted-foreground italic mb-2">
+                     Premium protection and restoration services
                    </div>
-                   <div className="ml-8 text-sm text-muted-foreground italic mb-2">
-                     The most in-depth exterior service for ultimate paint restoration and protection
-                   </div>
-                   <div className="ml-8 text-sm text-primary font-semibold">
-                     Click to see details and pricing →
+                   <div className="text-sm text-primary font-semibold">
+                     Click to see details and request a quote
                    </div>
                  </div>
                </div>
@@ -1062,6 +1074,90 @@ const QuoteWizard = () => {
     />;
   }
 
+  if (showDetailServices) {
+    return (
+      <div className="min-h-screen bg-background py-8">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <Card className="p-8">
+            <div className="text-center mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Premium Detail Services
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                Choose from our premium ceramic coating and paint correction services
+              </p>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 mb-8">
+              <Card 
+                className="p-6 cursor-pointer hover:shadow-lg transition-all border-2 hover:border-primary/50"
+                onClick={() => {
+                  setSelectedDetailService("ceramic-coating");
+                  setShowDetailServices(false);
+                  setShowServiceDetail(true);
+                }}
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-3">Ceramic Coating</h3>
+                <p className="text-muted-foreground mb-4">
+                  Professional ceramic coating application for ultimate paint protection
+                </p>
+                <Button className="w-full">
+                  Click to see details and request a quote
+                </Button>
+              </Card>
+
+              <Card 
+                className="p-6 cursor-pointer hover:shadow-lg transition-all border-2 hover:border-primary/50"
+                onClick={() => {
+                  setSelectedDetailService("paint-correction");
+                  setShowDetailServices(false);
+                  setShowServiceDetail(true);
+                }}
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-3">Paint Correction</h3>
+                <p className="text-muted-foreground mb-4">
+                  Multi-stage paint correction to remove swirls and restore paint clarity
+                </p>
+                <Button className="w-full">
+                  Click to see details and request a quote
+                </Button>
+              </Card>
+
+              <Card 
+                className="p-6 cursor-pointer hover:shadow-lg transition-all border-2 hover:border-primary/50"
+                onClick={() => {
+                  setServiceType("interior-only");
+                  setCurrentStep(3);
+                  setShowDetailServices(false);
+                }}
+              >
+                <h3 className="text-xl font-semibold text-foreground mb-3">Interior Detail</h3>
+                <p className="text-muted-foreground mb-4">
+                  Complete interior cleaning and conditioning service
+                </p>
+                <Button className="w-full">
+                  Click to see details and request a quote
+                </Button>
+              </Card>
+            </div>
+
+            <div className="flex justify-between">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => setShowDetailServices(false)}
+                className="flex items-center gap-2"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Back
+              </Button>
+            </div>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <section id="quote-wizard" className="py-20 bg-background min-h-screen">
       <div className="container mx-auto px-4">
@@ -1103,7 +1199,7 @@ const QuoteWizard = () => {
             <Button 
               variant="default"
               onClick={nextStep}
-              disabled={currentStep === totalSteps || (currentStep === 1 && !vehicleType) || (currentStep === 2 && !serviceType)}
+              disabled={currentStep === totalSteps || (currentStep === 1 && !vehicleType) || (currentStep === 2 && (!serviceType || !year || !make || !model))}
             >
               Next
               <ChevronRight className="ml-2 h-4 w-4" />
