@@ -77,6 +77,17 @@ const Services = () => {
             </p>
           </div>
 
+          {/* Mobile Service Note */}
+          <div className="text-center mb-12 p-6 bg-primary/5 rounded-lg border border-primary/20">
+            <h4 className="text-lg font-semibold text-foreground mb-2">
+              Mobile Service Available
+            </h4>
+            <p className="text-muted-foreground">
+              All services available at your location throughout the Denver Metro area. 
+              Mobile service fee may apply depending on distance.
+            </p>
+          </div>
+
           {/* Services Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
             {services.map((service, index) => (

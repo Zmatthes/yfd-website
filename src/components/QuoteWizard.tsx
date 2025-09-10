@@ -10,16 +10,17 @@ import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin, Check } from "luc
 import { submitQuote } from "@/lib/supabase";
 import { toast } from "sonner";
 import QuoteSuccess from "./QuoteSuccess";
-import RestoreProtectDetail from "./RestoreProtectDetail";
+import ServiceDetail from "./ServiceDetail";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "heavy-duty" | "motorcycle";
-type ServiceType = "full-detail" | "interior-only" | "exterior-only" | "restore-protect";
+type ServiceType = "full-detail" | "interior-only" | "exterior-only" | "ceramic-coating" | "paint-correction";
 
 const QuoteWizard = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [vehicleType, setVehicleType] = useState<VehicleType | null>(null);
   const [serviceType, setServiceType] = useState<ServiceType | null>(null);
-  const [showRestoreProtect, setShowRestoreProtect] = useState(false);
+  const [showServiceDetail, setShowServiceDetail] = useState(false);
+  const [selectedDetailService, setSelectedDetailService] = useState<"ceramic-coating" | "paint-correction" | null>(null);
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
   const [model, setModel] = useState("");
@@ -523,8 +524,8 @@ const QuoteWizard = () => {
       const interiorAddOn = interiorAddOns.find(a => a.id === addOnId);
       const addOn = exteriorAddOn || interiorAddOn;
       if (addOn) {
-        // Apply 50% discount on interior detail if paired with restore-protect
-        if (serviceType === "restore-protect" && addOnId === "interior-detail") {
+        // Apply 50% discount on interior detail if paired with ceramic-coating or paint-correction
+        if ((serviceType === "ceramic-coating" || serviceType === "paint-correction") && addOnId === "interior-detail") {
           total += addOn.price * 0.5;
         } else {
           total += addOn.price;
@@ -540,8 +541,9 @@ const QuoteWizard = () => {
   };
 
   const nextStep = async () => {
-    if (serviceType === "restore-protect" && currentStep === 2) {
-      setShowRestoreProtect(true);
+    if ((serviceType === "ceramic-coating" || serviceType === "paint-correction") && currentStep === 2) {
+      setSelectedDetailService(serviceType);
+      setShowServiceDetail(true);
       return;
     }
     
@@ -554,14 +556,14 @@ const QuoteWizard = () => {
     }
   };
 
-  const handleRestoreProtectContinue = (vehicleType: VehicleType, basePrice: number) => {
+  const handleServiceDetailContinue = (vehicleType: VehicleType, basePrice: number) => {
     setVehicleType(vehicleType);
-    setShowRestoreProtect(false);
+    setShowServiceDetail(false);
     setCurrentStep(3);
   };
 
-  const handleRestoreProtectBack = () => {
-    setShowRestoreProtect(false);
+  const handleServiceDetailBack = () => {
+    setShowServiceDetail(false);
     setServiceType(null);
   };
 
@@ -936,7 +938,8 @@ const QuoteWizard = () => {
                      {serviceType === 'full-detail' ? 'Full Detail' :
                       serviceType === 'interior-only' ? 'Interior Only' :
                       serviceType === 'exterior-only' ? 'Exterior Only' :
-                      serviceType === 'restore-protect' ? 'Restore & Protect Detail' : 'No service selected'}
+                      serviceType === 'ceramic-coating' ? 'Ceramic Coating' :
+                      serviceType === 'paint-correction' ? 'Paint Correction' : 'No service selected'}
                    </p>
                 </div>
 
@@ -953,7 +956,7 @@ const QuoteWizard = () => {
                       return addOn ? (
                         <div key={addOnId} className="flex justify-between items-center text-sm">
                           <span>{addOn.label}</span>
-                          {serviceType === "restore-protect" && addOnId === "interior-detail" ? (
+                          {(serviceType === "ceramic-coating" || serviceType === "paint-correction") && addOnId === "interior-detail" ? (
                             <div className="text-right">
                               <span className="text-muted-foreground line-through">${addOn.price}</span>
                               <span className="text-red-500 ml-2">+${addOn.price * 0.5}</span>
@@ -1051,10 +1054,11 @@ const QuoteWizard = () => {
     return <QuoteSuccess onStartOver={resetQuoteWizard} />;
   }
 
-  if (showRestoreProtect) {
-    return <RestoreProtectDetail 
-      onBack={handleRestoreProtectBack}
-      onContinue={handleRestoreProtectContinue}
+  if (showServiceDetail && selectedDetailService) {
+    return <ServiceDetail 
+      serviceType={selectedDetailService}
+      onBack={handleServiceDetailBack}
+      onContinue={handleServiceDetailContinue}
     />;
   }
 
@@ -1088,7 +1092,7 @@ const QuoteWizard = () => {
             </Button>
 
             <div className="text-center">
-              {serviceType !== "restore-protect" && (
+              {serviceType !== "ceramic-coating" && serviceType !== "paint-correction" && (
                 <div className="bg-primary/10 rounded-lg px-4 py-2">
                   <span className="text-sm text-muted-foreground">Current Total: </span>
                   <span className="font-bold text-primary font-display">${calculateTotal()}</span>

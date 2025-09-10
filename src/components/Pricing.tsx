@@ -84,63 +84,7 @@ const Pricing = () => {
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  return (
-    <section id="pricing" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Transparent Pricing
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              No hidden fees, no surprises. Choose the package that's right for your vehicle 
-              and budget. All prices include materials and equipment.
-            </p>
-          </div>
-
-
-          {/* Restore & Protect Detail Description */}
-          <div className="bg-gradient-card rounded-2xl p-8 mb-12 border border-primary/20">
-            <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
-              About the Restore & Protect Detail
-            </h3>
-            <div className="max-w-4xl mx-auto">
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                The Restore & Protect Detail is for somebody who wants the most out of their vehicle's appearance. 
-                This is the most in-depth service we offer for the exterior of the vehicle. The goal is to restore 
-                the overall gloss, depth, and color of the vehicle's paint by removing oxidation, swirl marks, 
-                contaminants, light scratches, and marring.
-              </p>
-              <p className="text-muted-foreground mb-6 leading-relaxed">
-                After getting the paint corrected, it will be paired with a durable, easy to maintain ceramic 
-                coating to ensure the paint is refreshed, protected and looking good for years to come. 
-                Pair with our Interior & Exterior Detail to completely restore your vehicle to the best condition possible.
-              </p>
-              <div className="bg-primary/10 rounded-lg p-6 mb-6">
-                <p className="text-foreground font-semibold mb-2">Special Offer:</p>
-                <p className="text-muted-foreground">
-                  Receive 50% off Interior Detail with booking of Restore & Protect Detail. 
-                  All vehicles that receive this service are recommended to join our monthly maintenance program.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Service Note */}
-          <div className="text-center mt-12 p-6 bg-primary/5 rounded-lg border border-primary/20">
-            <h4 className="text-lg font-semibold text-foreground mb-2">
-              Mobile Service Available
-            </h4>
-            <p className="text-muted-foreground">
-              All services available at your location throughout the Denver Metro area. 
-              Mobile service fee may apply depending on distance.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+  return null;
 };
 
 export default Pricing;
