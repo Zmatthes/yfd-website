@@ -144,6 +144,16 @@ const Services = () => {
                       onClick={() => {
                         const element = document.getElementById('quote-wizard');
                         element?.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Navigate to specific section based on service
+                        setTimeout(() => {
+                          if (service.title === "Paint Correction" || service.title === "Ceramic Coating") {
+                            // Will be handled by the quote wizard to show ceramic/paint correction landing
+                            const event = new CustomEvent('navigate-to-ceramic-paint');
+                            window.dispatchEvent(event);
+                          }
+                          // Interior and Exterior detailing will go to normal flow (vehicle selection first)
+                        }, 100);
                       }}
                     >
                       Get Quote

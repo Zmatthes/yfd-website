@@ -511,6 +511,17 @@ const QuoteWizard = () => {
     }
   }, [customerAddress, serviceMode]);
 
+  // Listen for navigation event from Services section
+  useEffect(() => {
+    const handleCeramicPaintNavigation = () => {
+      setShowCeramicPaintLanding(true);
+      setCurrentStep(1);
+    };
+
+    window.addEventListener('navigate-to-ceramic-paint', handleCeramicPaintNavigation);
+    return () => window.removeEventListener('navigate-to-ceramic-paint', handleCeramicPaintNavigation);
+  }, []);
+
   const totalSteps = 5; // Reduced from 6 to 5
   const progress = (currentStep / totalSteps) * 100;
 
