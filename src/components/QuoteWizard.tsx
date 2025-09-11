@@ -11,6 +11,7 @@ import { submitQuote } from "@/lib/supabase";
 import { toast } from "sonner";
 import QuoteSuccess from "./QuoteSuccess";
 import ServiceDetail from "./ServiceDetail";
+import CeramicPaintLanding from "./CeramicPaintLanding";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "heavy-duty" | "motorcycle";
 type ServiceType = "full-detail" | "interior-only" | "exterior-only" | "ceramic-coating" | "paint-correction";
@@ -21,6 +22,7 @@ const QuoteWizard = () => {
   const [serviceType, setServiceType] = useState<ServiceType | null>(null);
   const [showServiceDetail, setShowServiceDetail] = useState(false);
   const [showDetailServices, setShowDetailServices] = useState(false);
+  const [showCeramicPaintLanding, setShowCeramicPaintLanding] = useState(false);
   const [selectedDetailService, setSelectedDetailService] = useState<"ceramic-coating" | "paint-correction" | null>(null);
   const [year, setYear] = useState("");
   const [make, setMake] = useState("");
@@ -564,7 +566,7 @@ const QuoteWizard = () => {
 
   const handleDetailServicesClick = () => {
     if (year && make && model && vehicleType) {
-      setShowDetailServices(true);
+      setShowCeramicPaintLanding(true);
     }
   };
 
@@ -1155,6 +1157,23 @@ const QuoteWizard = () => {
           </Card>
         </div>
       </div>
+    );
+  }
+
+  // Show Ceramic Coating & Paint Correction Landing Page
+  if (showCeramicPaintLanding) {
+    return (
+      <section id="quote-wizard" className="py-20 bg-background min-h-screen">
+        <div className="container mx-auto px-4">
+          <CeramicPaintLanding
+            onBack={() => setShowCeramicPaintLanding(false)}
+            onContact={() => {
+              setShowCeramicPaintLanding(false);
+              setCurrentStep(5); // Go to contact info step
+            }}
+          />
+        </div>
+      </section>
     );
   }
 
