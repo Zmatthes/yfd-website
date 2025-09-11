@@ -750,14 +750,14 @@ const QuoteWizard = () => {
                  </div>
 
                  {/* Ceramic Coating & Paint Correction */}
-                 <div className="space-y-2">
-                   <Button
-                     onClick={handleDetailServicesClick}
-                     disabled={!year || !make || !model || !vehicleType}
-                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 text-xl font-bold"
-                   >
-                     CERAMIC COATING & PAINT CORRECTION
-                   </Button>
+                  <div className="space-y-2">
+                    <Button
+                      onClick={handleDetailServicesClick}
+                      disabled={!year || !make || !model || !vehicleType}
+                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold cursor-pointer"
+                    >
+                      CERAMIC COATING & PAINT CORRECTION
+                    </Button>
                    <div className="text-sm text-muted-foreground italic mb-2">
                      Premium protection and restoration services
                    </div>

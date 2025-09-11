@@ -17,12 +17,12 @@ const MonthlyMaintenance = () => {
     },
     {
       type: "Truck",
-      price: "$120",
+      price: "$125",
       description: "For pickup trucks of all sizes"
     },
     {
       type: "SUV / Van / Heavy Duty Truck",
-      price: "$130",
+      price: "$150",
       description: "Large vehicles and commercial trucks"
     }
   ];
@@ -32,9 +32,7 @@ const MonthlyMaintenance = () => {
     "Wheel and tire cleaning",
     "Interior vacuum and wipe down",
     "Window cleaning inside and out", 
-    "Dashboard and trim protection",
     "Ceramic coating maintenance",
-    "Paint inspection and touch-ups",
     "Priority booking for additional services"
   ];
 
@@ -44,7 +42,7 @@ const MonthlyMaintenance = () => {
   };
 
   return (
-    <section id="monthly-maintenance" className="py-20 bg-muted/30">
+    <section id="monthly-maintenance" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
@@ -84,9 +82,12 @@ const MonthlyMaintenance = () => {
                 <h4 className="text-lg font-semibold text-foreground mb-2">
                   Why Monthly Maintenance?
                 </h4>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground mb-4">
                   Proper maintenance is necessary to ensure your ceramic coating's longevity and performance. 
                   Regular care prevents contamination buildup and maintains the protective barrier that keeps your paint looking perfect.
+                </p>
+                <p className="text-muted-foreground">
+                  Even without a ceramic coating, nothing beats the feeling of a freshly detailed car every month!
                 </p>
               </div>
             </div>
@@ -101,18 +102,8 @@ const MonthlyMaintenance = () => {
                 {maintenancePackages.map((pkg, index) => (
                   <Card 
                     key={index}
-                    className={`p-6 bg-gradient-card border-border hover:shadow-luxury transition-smooth relative ${
-                      pkg.popular ? 'ring-2 ring-primary/50' : ''
-                    }`}
+                    className="p-6 bg-gradient-card border-border hover:shadow-luxury transition-smooth relative"
                   >
-                    {pkg.popular && (
-                      <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                        <span className="bg-gradient-accent text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
-                          <Star className="h-4 w-4" />
-                          Most Popular
-                        </span>
-                      </div>
-                    )}
                     
                     <div className="flex justify-between items-center">
                       <div>
@@ -135,10 +126,11 @@ const MonthlyMaintenance = () => {
               </div>
 
               <div className="mt-8 text-center">
-                <p className="text-sm text-muted-foreground mb-6">
-                  *Mobile service fee not included. All vehicles that receive the Restore & Protect Detail 
-                  are recommended to join the monthly maintenance program.
-                </p>
+                <div className="bg-primary/5 rounded-lg p-4 border border-primary/20 mb-6">
+                  <p className="text-sm text-muted-foreground mb-2">
+                    *Mobile service fee not included. To get monthly maintenance pricing, it must be on a monthly basis, and the vehicle requires a Full Interior & Exterior Detail within a month of starting the program to ensure we are working with a clean slate.
+                  </p>
+                </div>
                 
                 <Button 
                   variant="hero"

@@ -35,6 +35,12 @@ const Header = () => {
             Build Quote
           </button>
           <button 
+            onClick={() => scrollToSection('monthly-maintenance')}
+            className="text-muted-foreground hover:text-foreground transition-smooth font-display"
+          >
+            Monthly Maintenance
+          </button>
+          <button 
             onClick={() => scrollToSection('gallery')}
             className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
