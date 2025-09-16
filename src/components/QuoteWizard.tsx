@@ -88,247 +88,52 @@ const QuoteWizard = () => {
     { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
   ];
 
-  // Real distance calculation using Mapbox Geocoding API
+  // Real distance calculation using Nominatim (OpenStreetMap) geocoding API
   const calculateDistance = async (address: string): Promise<number> => {
     if (!address.trim()) {
       return 0;
     }
 
-    // Shop coordinates (17284 E 102nd Place, Commerce City, CO 80022)
+    // Your shop coordinates (17284 E 102nd Place, Commerce City, CO 80022)
     const shopLat = 39.8631;
     const shopLng = -104.7918;
 
     try {
-      // Fallback to hardcoded coordinates for now until Supabase is set up
-      const estimatedCoords = estimateCoordinates(address);
-      if (estimatedCoords) {
-        const distance = haversineDistance(shopLat, shopLng, estimatedCoords.lat, estimatedCoords.lng);
-        return Math.round(distance);
+      // Use Nominatim API to get coordinates for customer address
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1&countrycodes=us`
+      );
+      
+      if (!response.ok) {
+        throw new Error('Geocoding failed');
       }
-      return calculateDistanceByArea(address);
+      
+      const data = await response.json();
+      
+      if (data && data.length > 0) {
+        const customerLat = parseFloat(data[0].lat);
+        const customerLng = parseFloat(data[0].lon);
+        
+        // Calculate distance using Haversine formula
+        const distance = haversineDistance(shopLat, shopLng, customerLat, customerLng);
+        
+        // Round trip distance (double the one-way distance)
+        const roundTripDistance = Math.round(distance * 2);
+        
+        console.log(`Distance calculation: ${address} -> ${distance.toFixed(1)} miles one-way, ${roundTripDistance} miles round-trip`);
+        
+        return roundTripDistance;
+      } else {
+        console.log('No geocoding results found for address:', address);
+        return 25; // Default fallback distance
+      }
     } catch (error) {
-      console.error("Distance calculation error:", error);
-      return calculateDistanceByArea(address);
+      console.error('Error calculating distance:', error);
+      return 25; // Default fallback distance
     }
   };
 
-  // Estimate coordinates based on known Colorado locations
-  const estimateCoordinates = (address: string) => {
-    const addressLower = address.toLowerCase();
-    
-    // Known Colorado coordinates (approximate centers)
-    const locations = {
-      // Commerce City area
-      'commerce city': { lat: 39.8631, lng: -104.7918 },
-      '80022': { lat: 39.8631, lng: -104.7918 },
-      '80023': { lat: 39.8495, lng: -104.8084 },
-      
-      // Thornton area
-      'thornton': { lat: 39.8681, lng: -104.9719 },
-      '80241': { lat: 39.8681, lng: -104.9719 },
-      '80229': { lat: 39.8492, lng: -105.0178 },
-      
-      // Northglenn
-      'northglenn': { lat: 39.8856, lng: -105.0067 },
-      '80233': { lat: 39.8856, lng: -105.0067 },
-      '80234': { lat: 39.8966, lng: -105.0067 },
-      
-      // Westminster
-      'westminster': { lat: 39.8366, lng: -105.0372 },
-      '80031': { lat: 39.8366, lng: -105.0372 },
-      '80030': { lat: 39.8238, lng: -105.0522 },
-      
-      // Denver areas
-      'denver': { lat: 39.7392, lng: -104.9903 },
-      '80202': { lat: 39.7554, lng: -104.9897 },
-      '80205': { lat: 39.7648, lng: -104.9697 },
-      '80211': { lat: 39.7847, lng: -105.0178 },
-      '80212': { lat: 39.7739, lng: -105.0406 },
-      '80218': { lat: 39.7297, lng: -104.9397 },
-      '80221': { lat: 39.7847, lng: -104.9319 },
-      
-      // Arvada
-      'arvada': { lat: 39.8028, lng: -105.0875 },
-      '80003': { lat: 39.8028, lng: -105.0875 },
-      '80002': { lat: 39.8194, lng: -105.1067 },
-      
-      // Wheat Ridge
-      'wheat ridge': { lat: 39.7661, lng: -105.0772 },
-      '80033': { lat: 39.7661, lng: -105.0772 },
-      
-      // Boulder
-      'boulder': { lat: 40.0150, lng: -105.2705 },
-      '80301': { lat: 40.0150, lng: -105.2705 },
-      '80302': { lat: 40.0176, lng: -105.2811 },
-      
-      // Longmont
-      'longmont': { lat: 40.1672, lng: -105.1019 },
-      '80501': { lat: 40.1672, lng: -105.1019 },
-      
-      // Lakewood (corrected coordinates for accurate distance calculation)
-      'lakewood': { lat: 39.7047, lng: -105.0814 },
-      '80215': { lat: 39.7047, lng: -105.0814 },
-      '80226': { lat: 39.6847, lng: -105.0814 },
-      '80228': { lat: 39.6653, lng: -105.0797 }, // Specific for south Lakewood area
-      
-      // Aurora
-      'aurora': { lat: 39.7294, lng: -104.8319 },
-      '80010': { lat: 39.7294, lng: -104.8319 },
-      '80011': { lat: 39.7619, lng: -104.8197 },
-      '80012': { lat: 39.6847, lng: -104.8197 },
-      
-      // Colorado Springs area
-      'colorado springs': { lat: 38.8339, lng: -104.8214 },
-      '80901': { lat: 38.8339, lng: -104.8214 },
-      '80902': { lat: 38.8439, lng: -104.8614 },
-      '80903': { lat: 38.8539, lng: -104.7914 },
-      '80904': { lat: 38.8039, lng: -104.7814 },
-      '80905': { lat: 38.7839, lng: -104.8414 },
-      '80906': { lat: 38.7639, lng: -104.8614 },
-      '80907': { lat: 38.8739, lng: -104.8314 },
-      '80908': { lat: 38.8139, lng: -104.8714 },
-      '80909': { lat: 38.7439, lng: -104.8314 },
-      '80910': { lat: 38.7739, lng: -104.7414 },
-      '80911': { lat: 38.7339, lng: -104.7714 },
-      '80916': { lat: 38.7039, lng: -104.7314 },
-      '80917': { lat: 38.8939, lng: -104.7414 },
-      '80918': { lat: 38.9039, lng: -104.7714 },
-      '80919': { lat: 38.9339, lng: -104.8014 },
-      '80920': { lat: 38.9539, lng: -104.8514 },
-      '80921': { lat: 38.9739, lng: -104.8914 },
-      '80922': { lat: 38.7239, lng: -104.6714 },
-      '80923': { lat: 38.6839, lng: -104.7114 },
-      '80924': { lat: 38.6539, lng: -104.7514 },
-      '80925': { lat: 38.6839, lng: -104.8114 },
-      '80926': { lat: 38.6439, lng: -104.8514 },
-      '80927': { lat: 38.6139, lng: -104.8914 },
-      '80928': { lat: 38.5839, lng: -104.9314 },
-      '80929': { lat: 38.9939, lng: -104.9314 },
-      '80930': { lat: 38.7639, lng: -104.7014 },
-      '80938': { lat: 38.7339, lng: -104.6514 },
-      
-      // Fort Collins area
-      'fort collins': { lat: 40.5853, lng: -105.0844 },
-      '80521': { lat: 40.5853, lng: -105.0844 },
-      '80524': { lat: 40.5953, lng: -105.1344 },
-      '80525': { lat: 40.5253, lng: -105.0344 },
-      '80526': { lat: 40.5653, lng: -105.0244 },
-      '80528': { lat: 40.6253, lng: -105.1744 },
-      
-      // Pueblo area
-      'pueblo': { lat: 38.2544, lng: -104.6091 },
-      '81001': { lat: 38.2544, lng: -104.6091 },
-      '81003': { lat: 38.2244, lng: -104.5691 },
-      '81004': { lat: 38.2844, lng: -104.5791 },
-      '81005': { lat: 38.3144, lng: -104.6391 },
-      '81006': { lat: 38.2044, lng: -104.6391 },
-      '81007': { lat: 38.1844, lng: -104.6791 },
-      '81008': { lat: 38.3344, lng: -104.6791 },
-      
-      // Greeley area
-      'greeley': { lat: 40.4233, lng: -104.7694 },
-      '80631': { lat: 40.4233, lng: -104.7694 },
-      '80634': { lat: 40.4533, lng: -104.7394 },
-      '80639': { lat: 40.3933, lng: -104.7994 },
-      
-      // Grand Junction area
-      'grand junction': { lat: 39.0639, lng: -108.5506 },
-      '81501': { lat: 39.0639, lng: -108.5506 },
-      '81503': { lat: 39.0839, lng: -108.5806 },
-      '81504': { lat: 39.0439, lng: -108.5206 },
-      '81505': { lat: 39.1039, lng: -108.5906 },
-      '81506': { lat: 39.0239, lng: -108.5106 },
-      '81507': { lat: 39.1239, lng: -108.6206 },
-      
-      // Durango area
-      'durango': { lat: 37.2753, lng: -107.8801 },
-      '81301': { lat: 37.2753, lng: -107.8801 },
-      '81303': { lat: 37.2453, lng: -107.8501 },
-      
-      // Mountain towns
-      'aspen': { lat: 39.1911, lng: -106.8175 },
-      '81611': { lat: 39.1911, lng: -106.8175 },
-      'vail': { lat: 39.6403, lng: -106.3742 },
-      '81657': { lat: 39.6403, lng: -106.3742 },
-      'steamboat springs': { lat: 40.4850, lng: -106.8317 },
-      '80487': { lat: 40.4850, lng: -106.8317 },
-      'breckenridge': { lat: 39.4817, lng: -106.0384 },
-      '80424': { lat: 39.4817, lng: -106.0384 },
-      'estes park': { lat: 40.3772, lng: -105.5217 },
-      '80517': { lat: 40.3772, lng: -105.5217 },
-      
-      // Platteville area (corrected coordinates for proper 33-mile distance)
-      'platteville': { lat: 40.2108, lng: -104.3797 },
-      '80651': { lat: 40.2108, lng: -104.3797 },
-      
-      // Additional metro areas
-      'golden': { lat: 39.7555, lng: -105.2211 },
-      '80401': { lat: 39.7555, lng: -105.2211 },
-      
-      // Specific problematic addresses (fixed coordinates)
-      '2444 s ellis': { lat: 39.6653, lng: -105.0797 }, // Eclipse Solar LLC - corrected for ~30 mile distance
-      'ellis st': { lat: 39.6653, lng: -105.0797 },
-      'castle rock': { lat: 39.3722, lng: -104.8561 },
-      '80104': { lat: 39.3722, lng: -104.8561 },
-      'parker': { lat: 39.5186, lng: -104.7614 },
-      '80134': { lat: 39.5186, lng: -104.7614 },
-      'broomfield': { lat: 39.9205, lng: -105.0867 },
-      '80020': { lat: 39.9205, lng: -105.0867 },
-      'brighton': { lat: 39.9853, lng: -104.8203 },
-      '80601': { lat: 39.9853, lng: -104.8203 },
-      'littleton': { lat: 39.6133, lng: -105.0167 },
-      '80120': { lat: 39.6133, lng: -105.0167 },
-      'centennial': { lat: 39.5908, lng: -104.8769 },
-      '80111': { lat: 39.5908, lng: -104.8769 },
-      'loveland': { lat: 40.3978, lng: -105.0750 },
-      '80537': { lat: 40.3978, lng: -105.0750 },
-      'englewood': { lat: 39.6478, lng: -104.9878 },
-      '80110': { lat: 39.6478, lng: -104.9878 },
-      'lafayette': { lat: 39.9936, lng: -105.0897 },
-      '80026': { lat: 39.9936, lng: -105.0897 },
-      'louisville': { lat: 39.9778, lng: -105.1319 },
-      '80027': { lat: 39.9778, lng: -105.1319 },
-      'erie': { lat: 40.0503, lng: -105.0497 },
-      '80516': { lat: 40.0503, lng: -105.0497 },
-      'firestone': { lat: 40.1153, lng: -105.0428 },
-      '80520': { lat: 40.1153, lng: -105.0428 },
-      'frederick': { lat: 40.1011, lng: -105.0028 },
-      '80530': { lat: 40.1011, lng: -105.0028 },
-      'dacono': { lat: 40.0772, lng: -104.9428 },
-      '80514': { lat: 40.0772, lng: -104.9428 },
-      'bennett': { lat: 39.7453, lng: -104.4403 },
-      '80102': { lat: 39.7453, lng: -104.4403 },
-      'elizabeth': { lat: 39.3603, lng: -104.6003 },
-      '80107': { lat: 39.3603, lng: -104.6003 },
-      'kiowa': { lat: 39.3403, lng: -104.4603 },
-      '80117': { lat: 39.3403, lng: -104.4603 },
-      'larkspur': { lat: 39.2253, lng: -105.0003 },
-      '80118': { lat: 39.2253, lng: -105.0003 },
-      'conifer': { lat: 39.5153, lng: -105.3103 },
-      '80433': { lat: 39.5153, lng: -105.3103 },
-      'evergreen': { lat: 39.6353, lng: -105.3303 },
-      '80439': { lat: 39.6353, lng: -105.3303 },
-      'morrison': { lat: 39.6553, lng: -105.1903 },
-      '80465': { lat: 39.6553, lng: -105.1903 }
-    };
-    
-    // Find best match with priority for specific addresses
-    // First, check for specific address patterns
-    if (addressLower.includes('2444') && addressLower.includes('ellis')) {
-      return { lat: 39.6653, lng: -105.0797 };
-    }
-    
-    // Then check general locations
-    for (const [key, coords] of Object.entries(locations)) {
-      if (addressLower.includes(key)) {
-        return coords;
-      }
-    }
-    
-    return null;
-  };
-
-  // Haversine formula for distance calculation
+  // Haversine formula for distance calculation between two points
   const haversineDistance = (lat1: number, lng1: number, lat2: number, lng2: number) => {
     const R = 3959; // Earth's radius in miles
     const dLat = toRad(lat2 - lat1);
@@ -341,47 +146,6 @@ const QuoteWizard = () => {
   };
 
   const toRad = (value: number) => value * Math.PI / 180;
-
-  // Fallback area-based calculation for unknown addresses
-  const calculateDistanceByArea = (address: string) => {
-    const addressLower = address.toLowerCase();
-    
-    if (addressLower.includes('commerce city') || addressLower.includes('80022') || addressLower.includes('80023')) {
-      return Math.floor(Math.random() * 6) + 2;
-    }
-    
-    if (addressLower.includes('thornton') || addressLower.includes('northglenn') || 
-        addressLower.includes('westminster') || addressLower.includes('80031') || 
-        addressLower.includes('80030') || addressLower.includes('80221') || addressLower.includes('80234')) {
-      return Math.floor(Math.random() * 12) + 8;
-    }
-    
-    if (addressLower.includes('denver') || addressLower.includes('80202') || 
-        addressLower.includes('80205') || addressLower.includes('80211') || addressLower.includes('80212')) {
-      return Math.floor(Math.random() * 12) + 18;
-    }
-    
-    // Lakewood area should be around 28-32 miles to match Google Maps
-    if (addressLower.includes('lakewood') || addressLower.includes('80226') || 
-        addressLower.includes('80228') || addressLower.includes('ellis')) {
-      return Math.floor(Math.random() * 6) + 28; // 28-33 miles range
-    }
-    
-    if (addressLower.includes('arvada') || addressLower.includes('wheat ridge') || 
-        addressLower.includes('80003') || addressLower.includes('80033')) {
-      return Math.floor(Math.random() * 12) + 20;
-    }
-    
-    if (addressLower.includes('boulder') || addressLower.includes('longmont')) {
-      return Math.floor(Math.random() * 20) + 35;
-    }
-    
-    if (addressLower.includes('fort collins') || addressLower.includes('colorado springs')) {
-      return Math.floor(Math.random() * 25) + 50;
-    }
-    
-    return 25; // Default distance
-  };
 
   // Generate real-time address suggestions
   const generateAddressSuggestions = async (input: string): Promise<string[]> => {
@@ -513,9 +277,8 @@ const QuoteWizard = () => {
           setShowSuggestions(suggestions.length > 0);
         } catch (error) {
           console.error('Error calculating distance:', error);
-          // Fallback to area calculation
-          const dist = calculateDistanceByArea(customerAddress);
-          setDistance(dist);
+          // Fallback to default distance
+          setDistance(25);
           setAddressSuggestions([]);
           setShowSuggestions(false);
         }
