@@ -31,28 +31,40 @@ const Footer = () => {
                 "If you have the time, we have the shine!" Serving the Denver Metro area 
                 with premium automotive detailing services that exceed expectations.
               </p>
-              <div className="flex space-x-4">
-                <Button 
-                  variant="minimal" 
-                  size="icon"
-                  onClick={() => window.open('https://www.instagram.com/your.favorite.detailer/', '_blank', 'noopener,noreferrer')}
-                >
-                  <Instagram className="h-5 w-5" />
-                </Button>
-                <Button 
-                  variant="minimal" 
-                  size="icon"
-                  onClick={() => window.open('https://www.facebook.com/yourfavoritedetailerCO', '_blank', 'noopener,noreferrer')}
-                >
-                  <Facebook className="h-5 w-5" />
-                </Button>
-                <Button 
-                  variant="minimal" 
-                  size="icon"
-                  onClick={() => window.open('tel:(303)810-4626', '_blank')}
-                >
-                  <Phone className="h-5 w-5" />
-                </Button>
+              
+              {/* Follow Our Work Section */}
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-foreground mb-4">Follow Our Work</h4>
+                <div className="flex space-x-4">
+                  <a 
+                    href="https://www.instagram.com/your.favorite.detailer/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group"
+                  >
+                    <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
+                      <Instagram className="h-5 w-5" />
+                    </Button>
+                  </a>
+                  <a 
+                    href="https://www.facebook.com/yourfavoritedetailerCO" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="group"
+                  >
+                    <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
+                      <Facebook className="h-5 w-5" />
+                    </Button>
+                  </a>
+                  <a 
+                    href="tel:(303)810-4626"
+                    className="group"
+                  >
+                    <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
+                      <Phone className="h-5 w-5" />
+                    </Button>
+                  </a>
+                </div>
               </div>
             </div>
 

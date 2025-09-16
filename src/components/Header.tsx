@@ -47,6 +47,12 @@ const Header = () => {
             Our Work
           </button>
           <button 
+            onClick={() => scrollToSection('testimonials')}
+            className="text-muted-foreground hover:text-foreground transition-smooth font-display"
+          >
+            Reviews
+          </button>
+          <button 
             onClick={() => scrollToSection('contact')}
             className="text-muted-foreground hover:text-foreground transition-smooth font-display"
           >
@@ -56,10 +62,6 @@ const Header = () => {
 
         {/* Contact Button */}
         <div className="flex items-center space-x-4">
-          <div className="hidden sm:flex items-center space-x-2 text-sm text-muted-foreground">
-            <MapPin className="h-4 w-4" />
-            <span>Denver Metro</span>
-          </div>
           <Button 
             variant="hero" 
             size="sm"
