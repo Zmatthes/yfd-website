@@ -10,7 +10,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background py-16">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-card py-16">
         {/* Clean Logo Display */}
         <div className="relative z-10 container mx-auto px-4 flex items-center justify-center min-h-screen">
           <div className="w-full max-w-4xl mx-auto animate-fade-in flex items-center justify-center">
@@ -37,7 +37,7 @@ const Hero = () => {
       </section>
 
       {/* Luxurious Intro Section */}
-      <section className="py-20 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+      <section className="py-20 bg-card relative overflow-hidden">
         <div className="container mx-auto px-4 text-center max-w-4xl">
           <div className="animate-fade-in">
             {/* Main Heading */}
