@@ -61,7 +61,7 @@ const Header = () => {
         </nav>
 
         {/* Contact Button */}
-        <div className="flex items-center space-x-4">
+        <div className="hidden md:flex items-center space-x-4">
           <Button 
             variant="hero" 
             size="sm"
