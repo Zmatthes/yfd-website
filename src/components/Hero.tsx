@@ -76,7 +76,7 @@ const Hero = () => {
                 }}
                 className="group shadow-xl hover-scale"
               >
-                Get Free Quote
+                Get Quote
                 <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button 

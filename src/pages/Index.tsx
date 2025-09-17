@@ -9,20 +9,24 @@ import MonthlyMaintenance from "@/components/MonthlyMaintenance";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import MobileNav from "@/components/MobileNav";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
+      <MobileNav />
       <Hero />
-      <About />
-      <Services />
-      <Gallery />
-      <Pricing />
-      <QuoteWizard />
-      <MonthlyMaintenance />
-      <Testimonials />
-      <Contact />
+      <div className="space-y-8">
+        <About />
+        <Services />
+        <Gallery />
+        <Pricing />
+        <QuoteWizard />
+        <MonthlyMaintenance />
+        <Testimonials />
+        <Contact />
+      </div>
       <Footer />
     </div>
   );

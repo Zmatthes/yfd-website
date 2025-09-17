@@ -67,7 +67,6 @@ const Header = () => {
             size="sm"
             onClick={() => scrollToSection('quote-wizard')}
           >
-            <Phone className="h-4 w-4" />
             Build Quote
           </Button>
         </div>

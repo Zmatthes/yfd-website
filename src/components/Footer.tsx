@@ -35,35 +35,63 @@ const Footer = () => {
               {/* Follow Our Work Section */}
               <div className="mb-6">
                 <h4 className="text-lg font-semibold text-foreground mb-4">Follow Our Work</h4>
-                <div className="flex space-x-4">
-                  <a 
-                    href="https://www.instagram.com/your.favorite.detailer/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group"
-                  >
-                    <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
-                      <Instagram className="h-5 w-5" />
-                    </Button>
-                  </a>
-                  <a 
-                    href="https://www.facebook.com/yourfavoritedetailerCO" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="group"
-                  >
-                    <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
-                      <Facebook className="h-5 w-5" />
-                    </Button>
-                  </a>
-                  <a 
-                    href="tel:(303)810-4626"
-                    className="group"
-                  >
-                    <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
-                      <Phone className="h-5 w-5" />
-                    </Button>
-                  </a>
+                <div className="space-y-3">
+                  <div className="flex items-center space-x-3">
+                    <a 
+                      href="https://www.instagram.com/your.favorite.detailer/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
+                        <Instagram className="h-5 w-5" />
+                      </Button>
+                    </a>
+                    <a 
+                      href="https://www.instagram.com/your.favorite.detailer/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-foreground transition-smooth"
+                    >
+                      @your.favorite.detailer
+                    </a>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <a 
+                      href="https://www.facebook.com/yourfavoritedetailerCO" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
+                        <Facebook className="h-5 w-5" />
+                      </Button>
+                    </a>
+                    <a 
+                      href="https://www.facebook.com/yourfavoritedetailerCO" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-foreground transition-smooth"
+                    >
+                      Your Favorite Detailer CO
+                    </a>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <a 
+                      href="tel:(303)810-4626"
+                      className="group"
+                    >
+                      <Button variant="minimal" size="icon" className="group-hover:scale-110 transition-transform">
+                        <Phone className="h-5 w-5" />
+                      </Button>
+                    </a>
+                    <a 
+                      href="tel:(303)810-4626" 
+                      className="text-muted-foreground hover:text-foreground transition-smooth"
+                    >
+                      (303) 810-4626
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
