@@ -31,42 +31,42 @@ const MobileNav = () => {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-lg">
-          <div className="container mx-auto px-4 py-4">
-            <div className="grid grid-cols-2 gap-3 text-sm">
+        <div className="md:hidden fixed top-0 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b border-border shadow-lg pt-16">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex flex-col space-y-4">
               <button 
                 onClick={() => scrollToSection('services')}
-                className="text-muted-foreground hover:text-foreground transition-smooth font-display p-2 text-left"
+                className="text-muted-foreground hover:text-foreground transition-smooth font-display py-3 px-4 text-left border-b border-border/50"
               >
                 Services
               </button>
               <button 
                 onClick={() => scrollToSection('quote-wizard')}
-                className="text-muted-foreground hover:text-foreground transition-smooth font-display p-2 text-left"
+                className="text-muted-foreground hover:text-foreground transition-smooth font-display py-3 px-4 text-left border-b border-border/50"
               >
                 Build Quote
               </button>
               <button 
                 onClick={() => scrollToSection('monthly-maintenance')}
-                className="text-muted-foreground hover:text-foreground transition-smooth font-display p-2 text-left"
+                className="text-muted-foreground hover:text-foreground transition-smooth font-display py-3 px-4 text-left border-b border-border/50"
               >
                 Monthly Maintenance
               </button>
               <button 
                 onClick={() => scrollToSection('gallery')}
-                className="text-muted-foreground hover:text-foreground transition-smooth font-display p-2 text-left"
+                className="text-muted-foreground hover:text-foreground transition-smooth font-display py-3 px-4 text-left border-b border-border/50"
               >
                 Our Work
               </button>
               <button 
                 onClick={() => scrollToSection('testimonials')}
-                className="text-muted-foreground hover:text-foreground transition-smooth font-display p-2 text-left"
+                className="text-muted-foreground hover:text-foreground transition-smooth font-display py-3 px-4 text-left border-b border-border/50"
               >
                 Reviews
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-muted-foreground hover:text-foreground transition-smooth font-display p-2 text-left"
+                className="text-muted-foreground hover:text-foreground transition-smooth font-display py-3 px-4 text-left"
               >
                 Contact
               </button>
