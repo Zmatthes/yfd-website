@@ -335,6 +335,16 @@ const QuoteWizard = () => {
   };
 
   const nextStep = async () => {
+    // Validate vehicle info on step 1
+    if (currentStep === 1) {
+      if (!year.trim() || !make.trim() || !model.trim() || !vehicleType) {
+        toast.error("Please complete all vehicle information", {
+          description: "Year, Make, Model, and Vehicle Type are required to proceed."
+        });
+        return;
+      }
+    }
+    
     if ((serviceType === "ceramic-coating" || serviceType === "paint-correction") && currentStep === 2) {
       setSelectedDetailService(serviceType);
       setShowServiceDetail(true);
@@ -394,36 +404,39 @@ const QuoteWizard = () => {
 
             <div className="grid md:grid-cols-3 gap-4">
               <div>
-                <Label htmlFor="year" className="font-display">Year</Label>
+                <Label htmlFor="year" className="font-display">Year *</Label>
                 <Input
                   id="year"
-                  placeholder=""
+                  placeholder="e.g. 2020"
                   value={year}
                   onChange={(e) => setYear(e.target.value)}
+                  className={!year.trim() ? "border-destructive" : ""}
                 />
               </div>
               <div>
-                <Label htmlFor="make" className="font-display">Make</Label>
+                <Label htmlFor="make" className="font-display">Make *</Label>
                 <Input
                   id="make"
-                  placeholder=""
+                  placeholder="e.g. Toyota"
                   value={make}
                   onChange={(e) => setMake(e.target.value)}
+                  className={!make.trim() ? "border-destructive" : ""}
                 />
               </div>
               <div>
-                <Label htmlFor="model" className="font-display">Model</Label>
+                <Label htmlFor="model" className="font-display">Model *</Label>
                 <Input
                   id="model"
-                  placeholder=""
+                  placeholder="e.g. Camry"
                   value={model}
                   onChange={(e) => setModel(e.target.value)}
+                  className={!model.trim() ? "border-destructive" : ""}
                 />
               </div>
             </div>
 
             <div>
-              <Label className="text-lg font-display mb-4 block">Vehicle Type</Label>
+              <Label className="text-lg font-display mb-4 block">Vehicle Type *</Label>
               <RadioGroup 
                 value={vehicleType || ""} 
                 onValueChange={(value) => setVehicleType(value as VehicleType)}
