@@ -764,8 +764,8 @@ const QuoteWizard = () => {
 
                 <div className="space-y-3">
                   <div className="flex justify-between items-center">
-                    <span>Base Service</span>
-                    <span className="font-semibold text-red-500">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
+                    <span className="font-display">Base Service</span>
+                    <span className="font-semibold text-red-500 font-display">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
                   </div>
 
                     {selectedAddOns.map(addOnId => {
