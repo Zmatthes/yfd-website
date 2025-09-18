@@ -57,30 +57,32 @@ const Contact = () => {
             </div>
 
             <Card className="p-8 bg-primary/5 border-primary/20">
-              <div className="flex justify-center space-x-4 mb-4">
-                <Instagram className="h-8 w-8 text-primary" />
-                <Facebook className="h-8 w-8 text-primary" />
-              </div>
               <h4 className="text-xl font-semibold text-foreground mb-4 font-display">
                 FOLLOW OUR WORK
               </h4>
-              <div className="space-y-2">
-                <a 
-                  href="https://www.instagram.com/your.favorite.detailer/" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-primary font-semibold hover:underline"
-                >
-                  @your.favorite.detailer
-                </a>
-                <a 
-                  href="https://www.facebook.com/yourfavoritedetailerCO" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block text-primary font-semibold hover:underline"
-                >
-                  Your Favorite Detailer CO
-                </a>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-3">
+                  <Instagram className="h-6 w-6 text-primary" />
+                  <a 
+                    href="https://www.instagram.com/your.favorite.detailer/" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary font-semibold hover:underline"
+                  >
+                    @your.favorite.detailer
+                  </a>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <Facebook className="h-6 w-6 text-primary" />
+                  <a 
+                    href="https://www.facebook.com/yourfavoritedetailerCO" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary font-semibold hover:underline"
+                  >
+                    Your Favorite Detailer CO
+                  </a>
+                </div>
               </div>
             </Card>
           </div>
