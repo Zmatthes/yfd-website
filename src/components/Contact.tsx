@@ -57,10 +57,10 @@ const Contact = () => {
             </div>
 
             <Card className="p-8 bg-primary/5 border-primary/20">
-              <h4 className="text-xl font-semibold text-foreground mb-4 font-display">
+              <h4 className="text-xl font-semibold text-foreground mb-4 font-display text-center">
                 FOLLOW OUR WORK
               </h4>
-              <div className="space-y-3">
+              <div className="space-y-3 flex flex-col items-center">
                 <div className="flex items-center space-x-3">
                   <Instagram className="h-6 w-6 text-primary" />
                   <a 
