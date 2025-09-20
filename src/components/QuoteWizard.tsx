@@ -357,12 +357,24 @@ const QuoteWizard = () => {
         setDistance(dist);
       }
       setCurrentStep(currentStep + 1);
+      
+      // Keep the user focused on the quote wizard after step change
+      setTimeout(() => {
+        const element = document.getElementById('quote-wizard');
+        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }
   };
 
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
+      
+      // Keep the user focused on the quote wizard after step change
+      setTimeout(() => {
+        const element = document.getElementById('quote-wizard');
+        element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
     }
   };
 
@@ -376,11 +388,23 @@ const QuoteWizard = () => {
     setVehicleType(vehicleType);
     setShowServiceDetail(false);
     setCurrentStep(3);
+    
+    // Keep the user focused on the quote wizard
+    setTimeout(() => {
+      const element = document.getElementById('quote-wizard');
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const handleServiceDetailBack = () => {
     setShowServiceDetail(false);
     setServiceType(null);
+    
+    // Keep the user focused on the quote wizard
+    setTimeout(() => {
+      const element = document.getElementById('quote-wizard');
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
 
