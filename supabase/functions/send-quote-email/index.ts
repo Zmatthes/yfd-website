@@ -13,7 +13,9 @@ serve(async (req) => {
   }
 
   try {
-    const { quoteData } = await req.json()
+    const body = await req.json();
+    console.log('Received request:', body);
+    const quoteData = body.quoteData || body;
 
     const emailHtml = `
       <h2>New Quote Submission - Your Favorite Detailer</h2>
