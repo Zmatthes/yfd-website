@@ -528,15 +528,15 @@ const QuoteWizard = () => {
                    </div>
                 </div>
 
-                 {/* Interior Only */}
-                 <div className="space-y-2">
-                   <div className="flex items-center space-x-2">
-                     <RadioGroupItem value="interior-only" id="interior-only" />
-                     <Label htmlFor="interior-only" className="text-xl font-bold font-display">INTERIOR ONLY</Label>
-                   </div>
-                   <p className="text-sm text-muted-foreground ml-8 mb-2">
-                     Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned, headliner refreshed, leather scrubbed and conditioned, vents and cracks brushed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we restore your interior top to bottom.
-                   </p>
+                  {/* Interior Only */}
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="interior-only" id="interior-only" />
+                      <Label htmlFor="interior-only" className="text-xl font-bold font-display">VIP INTERIOR</Label>
+                    </div>
+                    <p className="text-sm text-muted-foreground ml-8 mb-2">
+                      Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned and shampooed, headliner refreshed, leather cleaned and conditioned, vents steamed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we restore your interior top to bottom.
+                    </p>
                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
                       <span className="text-base font-medium">2 DOOR CAR</span>
@@ -561,12 +561,15 @@ const QuoteWizard = () => {
                   </div>
                 </div>
 
-                 {/* Exterior Only */}
-                 <div className="space-y-2">
-                   <div className="flex items-center space-x-2">
-                     <RadioGroupItem value="exterior-only" id="exterior-only" />
-                     <Label htmlFor="exterior-only" className="text-xl font-bold font-display">EXTERIOR ONLY</Label>
-                   </div>
+                  {/* Exterior Only */}
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="exterior-only" id="exterior-only" />
+                      <Label htmlFor="exterior-only" className="text-xl font-bold font-display">VIP EXTERIOR</Label>
+                    </div>
+                    <p className="text-sm text-muted-foreground ml-8 mb-2">
+                      Complete multi-stage wash including bug and tar removal, wheel faces, barrels, wells, and fender liners deep-cleaned, two-bucket hand wash. Tires dressed, trim renewed, and a 6-month professional paint sealant applied to paint and wheels for lasting protection and shine.
+                    </p>
                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                     <div className="flex justify-between">
                       <span className="text-base font-medium">2 DOOR CAR</span>
