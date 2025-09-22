@@ -50,7 +50,7 @@ const QuoteWizard = () => {
       "wagon": 275,
       "truck": 300,
       "suv": 325,
-      "heavy-duty": 350,
+      "heavy-duty": 300,
       "van": 325
     },
     "exterior-only": {
@@ -478,14 +478,14 @@ const QuoteWizard = () => {
                       <div className="flex justify-between items-center p-4 border rounded-lg hover:bg-muted/50">
                         <span className="font-display">
                           {type === "2-door" ? "2 DOOR CAR" :
-                           type === "4-door" ? "4 DOOR CAR" :
+                           type === "4-door" ? "4 DOOR CAR / SMALL TRUCK" :
                             type === "mid-suv" ? "MID-SIZE SUV" :
                             type === "wagon" ? "WAGON" :
                             type === "truck" ? "TRUCK" :
                             type === "suv" ? "SUV" :
                             type === "heavy-duty" ? "HEAVY DUTY TRUCK" :
                             type === "van" ? "VAN" :
-                           "MOTORCYCLE"}
+                            "MOTORCYCLE"}
                         </span>
                       </div>
                     </Label>
@@ -973,11 +973,17 @@ const QuoteWizard = () => {
               </Card>
 
               <Card 
-                className="p-6 cursor-pointer hover:shadow-lg transition-all border-2 hover:border-primary/50"
+                className={`p-6 transition-all border-2 ${
+                  vehicleType === "motorcycle" 
+                    ? "opacity-50 cursor-not-allowed bg-muted/50" 
+                    : "cursor-pointer hover:shadow-lg hover:border-primary/50"
+                }`}
                 onClick={() => {
-                  setSelectedServices(["interior-only"]);
-                  setCurrentStep(3);
-                  setShowDetailServices(false);
+                  if (vehicleType !== "motorcycle") {
+                    setSelectedServices(["interior-only"]);
+                    setCurrentStep(3);
+                    setShowDetailServices(false);
+                  }
                 }}
               >
                 <h3 className="text-xl font-semibold text-foreground mb-3">Interior Detail</h3>
