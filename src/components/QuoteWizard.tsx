@@ -1,13 +1,13 @@
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Progress } from "@/components/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Progress } from "@/components/ui/progress";
-import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin, Check } from "lucide-react";
+import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 import { submitQuote } from "@/lib/supabase";
 import { toast } from "sonner";
 import QuoteSuccess from "./QuoteSuccess";
