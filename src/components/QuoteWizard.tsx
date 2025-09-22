@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Progress } from "@/components/ui/progress";
 import { Car, Clock, Phone, ChevronLeft, ChevronRight, MapPin, Check } from "lucide-react";
 import { submitQuote } from "@/lib/supabase";
@@ -14,12 +15,12 @@ import ServiceDetail from "./ServiceDetail";
 import CeramicPaintLanding from "./CeramicPaintLanding";
 
 type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "full-suv" | "heavy-duty" | "motorcycle";
-type ServiceType = "full-detail" | "interior-only" | "exterior-only" | "ceramic-coating" | "paint-correction";
+type ServiceType = "interior-only" | "exterior-only" | "ceramic-coating" | "paint-correction";
 
 const QuoteWizard = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [vehicleType, setVehicleType] = useState<VehicleType | null>(null);
-  const [serviceType, setServiceType] = useState<ServiceType | null>(null);
+  const [selectedServices, setSelectedServices] = useState<ServiceType[]>([]);
   const [showServiceDetail, setShowServiceDetail] = useState(false);
   const [showDetailServices, setShowDetailServices] = useState(false);
   const [showCeramicPaintLanding, setShowCeramicPaintLanding] = useState(false);
@@ -42,26 +43,19 @@ const QuoteWizard = () => {
   const shopAddress = "17284 E 102nd Place, Commerce City, CO 80022";
 
   const servicePrices = {
-    "full-detail": {
-      "2-door": 275,
-      "4-door": 300,
-      "mid-suv": 300,
-      "truck": 325,
-      "full-suv": 350
-    },
     "interior-only": {
-      "2-door": 215,
-      "4-door": 225,
-      "mid-suv": 225,
-      "truck": 250,
-      "full-suv": 275
+      "2-door": 225,
+      "4-door": 250,
+      "mid-suv": 275,
+      "truck": 300,
+      "full-suv": 325
     },
     "exterior-only": {
-      "2-door": 60,
-      "4-door": 75,
-      "mid-suv": 75,
-      "truck": 100,
-      "full-suv": 125,
+      "2-door": 75,
+      "4-door": 100,
+      "mid-suv": 115,
+      "truck": 125,
+      "full-suv": 150,
       "motorcycle": 125
     },
     "restore-protect": {
@@ -309,8 +303,10 @@ const QuoteWizard = () => {
   const calculateTotal = () => {
     let total = 0;
     
-    if (vehicleType && serviceType) {
-      total = servicePrices[serviceType][vehicleType] || 0;
+    if (vehicleType && selectedServices.length > 0) {
+      selectedServices.forEach(serviceType => {
+        total += servicePrices[serviceType][vehicleType] || 0;
+      });
     }
 
     selectedAddOns.forEach(addOnId => {
@@ -319,7 +315,7 @@ const QuoteWizard = () => {
       const addOn = exteriorAddOn || interiorAddOn;
       if (addOn) {
         // Apply 50% discount on interior detail if paired with ceramic-coating or paint-correction
-        if ((serviceType === "ceramic-coating" || serviceType === "paint-correction") && addOnId === "interior-detail") {
+        if ((selectedServices.includes("ceramic-coating") || selectedServices.includes("paint-correction")) && addOnId === "interior-detail") {
           total += addOn.price * 0.5;
         } else {
           total += addOn.price;
@@ -345,8 +341,9 @@ const QuoteWizard = () => {
       }
     }
     
-    if ((serviceType === "ceramic-coating" || serviceType === "paint-correction") && currentStep === 2) {
-      setSelectedDetailService(serviceType);
+    if ((selectedServices.includes("ceramic-coating") || selectedServices.includes("paint-correction")) && currentStep === 2) {
+      const ceramicService = selectedServices.includes("ceramic-coating") ? "ceramic-coating" : "paint-correction";
+      setSelectedDetailService(ceramicService);
       setShowServiceDetail(true);
       return;
     }
@@ -398,7 +395,7 @@ const QuoteWizard = () => {
 
   const handleServiceDetailBack = () => {
     setShowServiceDetail(false);
-    setServiceType(null);
+    setSelectedServices(prev => prev.filter(s => s !== "ceramic-coating" && s !== "paint-correction"));
     
     // Keep the user focused on the quote wizard
     setTimeout(() => {
@@ -493,129 +490,117 @@ const QuoteWizard = () => {
           <div className="space-y-8">
             <div className="text-center">
               <h2 className="text-3xl font-bold text-foreground mb-4 font-display">Detail Type</h2>
-              <p className="text-muted-foreground">Choose your detail</p>
+              <p className="text-muted-foreground">Choose your service(s) - you can select multiple</p>
             </div>
 
-            <RadioGroup value={serviceType || ""} onValueChange={(value) => setServiceType(value as ServiceType)}>
-              <div className="space-y-6">
-                 {/* Full Detail */}
-                 <div className="space-y-2">
-                   <div className="flex items-center space-x-2">
-                     <RadioGroupItem value="full-detail" id="full-detail" />
-                     <Label htmlFor="full-detail" className="text-xl font-bold font-display">FULL DETAIL</Label>
-                   </div>
-                   <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">2 DOOR CAR</span>
-                       <span className="font-bold text-red-500">$300</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
-                       <span className="font-bold text-red-500">$350</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
-                       <span className="font-bold text-red-500">$390</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">TRUCK</span>
-                       <span className="font-bold text-red-500">$425</span>
-                     </div>
-                     <div className="flex justify-between">
-                       <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
-                       <span className="font-bold text-red-500">$475</span>
-                     </div>
-                   </div>
+            <div className="space-y-6">
+              {/* Interior Service */}
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2">
+                  <Checkbox 
+                    id="interior-only" 
+                    checked={selectedServices.includes("interior-only")}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        setSelectedServices(prev => [...prev, "interior-only"]);
+                      } else {
+                        setSelectedServices(prev => prev.filter(s => s !== "interior-only"));
+                      }
+                    }}
+                  />
+                  <Label htmlFor="interior-only" className="text-xl font-bold font-display">VIP INTERIOR</Label>
                 </div>
-
-                  {/* Interior Only */}
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="interior-only" id="interior-only" />
-                      <Label htmlFor="interior-only" className="text-xl font-bold font-display">VIP INTERIOR</Label>
-                    </div>
-                    <p className="text-sm text-muted-foreground ml-8 mb-2">
-                      Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned and shampooed, headliner refreshed, leather cleaned and conditioned, vents steamed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we restore your interior top to bottom.
-                    </p>
-                  <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">2 DOOR CAR</span>
-                      <span className="font-bold text-red-500">$225</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
-                      <span className="font-bold text-red-500">$250</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
-                      <span className="font-bold text-red-500">$275</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
-                      <span className="font-bold text-red-500">$300</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">SUV / VAN</span>
-                      <span className="font-bold text-red-500">$325</span>
-                    </div>
+                <p className="text-sm text-muted-foreground ml-8 mb-2">
+                  Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned and shampooed, headliner refreshed, leather cleaned and conditioned, vents steamed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we restore your interior top to bottom.
+                </p>
+                <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">2 DOOR CAR</span>
+                    <span className="font-bold text-red-500">$225</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
+                    <span className="font-bold text-red-500">$250</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
+                    <span className="font-bold text-red-500">$275</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
+                    <span className="font-bold text-red-500">$300</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">SUV / VAN</span>
+                    <span className="font-bold text-red-500">$325</span>
                   </div>
                 </div>
+              </div>
 
-                  {/* Exterior Only */}
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="exterior-only" id="exterior-only" />
-                      <Label htmlFor="exterior-only" className="text-xl font-bold font-display">VIP EXTERIOR</Label>
-                    </div>
-                    <p className="text-sm text-muted-foreground ml-8 mb-2">
-                      Complete multi-stage wash including bug and tar removal, wheel faces, barrels, wells, and fender liners deep-cleaned, two-bucket hand wash. Tires dressed, trim renewed, and a 6-month professional paint sealant applied to paint and wheels for lasting protection and shine.
-                    </p>
-                  <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">2 DOOR CAR</span>
-                      <span className="font-bold text-red-500">$75</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
-                      <span className="font-bold text-red-500">$100</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
-                      <span className="font-bold text-red-500">$115</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">TRUCK</span>
-                      <span className="font-bold text-red-500">$125</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
-                      <span className="font-bold text-red-500">$150</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">MOTORCYCLE</span>
-                      <span className="font-bold text-red-500">$125</span>
-                    </div>
+              {/* Exterior Service */}
+              <div className="space-y-2">
+                <div className="flex items-center space-x-2">
+                  <Checkbox 
+                    id="exterior-only" 
+                    checked={selectedServices.includes("exterior-only")}
+                    onCheckedChange={(checked) => {
+                      if (checked) {
+                        setSelectedServices(prev => [...prev, "exterior-only"]);
+                      } else {
+                        setSelectedServices(prev => prev.filter(s => s !== "exterior-only"));
+                      }
+                    }}
+                  />
+                  <Label htmlFor="exterior-only" className="text-xl font-bold font-display">VIP EXTERIOR</Label>
+                </div>
+                <p className="text-sm text-muted-foreground ml-8 mb-2">
+                  Complete multi-stage wash including bug and tar removal, wheel faces, barrels, wells, and fender liners deep-cleaned, two-bucket hand wash. Tires dressed, trim renewed, and a 6-month professional paint sealant applied to paint and wheels for lasting protection and shine.
+                </p>
+                <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">2 DOOR CAR</span>
+                    <span className="font-bold text-red-500">$75</span>
                   </div>
-                 </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
+                    <span className="font-bold text-red-500">$100</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
+                    <span className="font-bold text-red-500">$115</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">TRUCK</span>
+                    <span className="font-bold text-red-500">$125</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
+                    <span className="font-bold text-red-500">$150</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-base font-medium">MOTORCYCLE</span>
+                    <span className="font-bold text-red-500">$125</span>
+                  </div>
+                </div>
+              </div>
 
-                 {/* Ceramic Coating & Paint Correction */}
-                  <div className="space-y-2">
-                    <Button
-                      onClick={handleDetailServicesClick}
-                      disabled={!year || !make || !model || !vehicleType}
-                      className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold cursor-pointer"
-                    >
-                      CERAMIC COATING & PAINT CORRECTION
-                    </Button>
-                   <div className="text-sm text-muted-foreground italic mb-2">
-                     Premium protection and restoration services
-                   </div>
-                   <div className="text-sm text-primary font-semibold">
-                     Click to see details and request a quote
-                   </div>
-                 </div>
-               </div>
-             </RadioGroup>
+              {/* Ceramic Coating & Paint Correction */}
+              <div className="space-y-2">
+                <Button
+                  onClick={handleDetailServicesClick}
+                  disabled={!year || !make || !model || !vehicleType}
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold cursor-pointer"
+                >
+                  CERAMIC COATING & PAINT CORRECTION
+                </Button>
+                <div className="text-sm text-muted-foreground italic mb-2">
+                  Premium protection and restoration services
+                </div>
+                <div className="text-sm text-primary font-semibold">
+                  Click to see details and request a quote
+                </div>
+              </div>
+            </div>
           </div>
         );
 
@@ -794,21 +779,25 @@ const QuoteWizard = () => {
 
                 {/* Service Details */}
                 <div className="mb-4 p-3 bg-muted/20 rounded-lg">
-                  <h4 className="font-semibold mb-2">Service Selected</h4>
+                  <h4 className="font-semibold mb-2">Services Selected</h4>
                    <p className="text-sm text-muted-foreground">
-                     {serviceType === 'full-detail' ? 'Full Detail' :
-                      serviceType === 'interior-only' ? 'Interior Only' :
-                      serviceType === 'exterior-only' ? 'Exterior Only' :
-                      serviceType === 'ceramic-coating' ? 'Ceramic Coating' :
-                      serviceType === 'paint-correction' ? 'Paint Correction' : 'No service selected'}
+                     {selectedServices.length === 0 ? 'No services selected' :
+                      selectedServices.map(service => 
+                        service === 'interior-only' ? 'VIP Interior' :
+                        service === 'exterior-only' ? 'VIP Exterior' :
+                        service === 'ceramic-coating' ? 'Ceramic Coating' :
+                        service === 'paint-correction' ? 'Paint Correction' : service
+                      ).join(', ')}
                    </p>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="font-display">Base Service</span>
-                    <span className="font-semibold text-red-500 font-display">${vehicleType && serviceType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
-                  </div>
+                  {selectedServices.map(serviceType => (
+                    <div key={serviceType} className="flex justify-between items-center">
+                      <span className="font-display">{serviceType === 'interior-only' ? 'VIP Interior' : 'VIP Exterior'}</span>
+                      <span className="font-semibold text-red-500 font-display">${vehicleType ? servicePrices[serviceType][vehicleType] || 0 : 0}</span>
+                    </div>
+                  ))}
 
                     {selectedAddOns.map(addOnId => {
                       const exteriorAddOn = exteriorAddOns.find(a => a.id === addOnId);
@@ -817,7 +806,7 @@ const QuoteWizard = () => {
                       return addOn ? (
                         <div key={addOnId} className="flex justify-between items-center text-sm">
                           <span>{addOn.label}</span>
-                          {(serviceType === "ceramic-coating" || serviceType === "paint-correction") && addOnId === "interior-detail" ? (
+                          {(selectedServices.includes("ceramic-coating") || selectedServices.includes("paint-correction")) && addOnId === "interior-detail" ? (
                             <div className="text-right">
                               <span className="text-muted-foreground line-through">${addOn.price}</span>
                               <span className="text-red-500 ml-2">+${addOn.price * 0.5}</span>
@@ -860,7 +849,7 @@ const QuoteWizard = () => {
                              vehicle_year: year,
                              vehicle_make: make,
                              vehicle_model: model,
-                             service_type: serviceType || '',
+                             service_type: selectedServices.join(', '),
                              add_ons: selectedAddOns,
                              estimated_total: calculateTotal(),
                              additional_notes: serviceMode === 'mobile' ? `Mobile service to: ${customerAddress}` : 'Drop-off service'
@@ -901,7 +890,7 @@ const QuoteWizard = () => {
     setYear("");
     setMake("");
     setModel("");
-    setServiceType(null);
+    setSelectedServices([]);
     setSelectedAddOns([]);
     setServiceMode("drop-off");
     setName("");
@@ -975,7 +964,7 @@ const QuoteWizard = () => {
               <Card 
                 className="p-6 cursor-pointer hover:shadow-lg transition-all border-2 hover:border-primary/50"
                 onClick={() => {
-                  setServiceType("interior-only");
+                  setSelectedServices(["interior-only"]);
                   setCurrentStep(3);
                   setShowDetailServices(false);
                 }}
@@ -1054,7 +1043,7 @@ const QuoteWizard = () => {
             </Button>
 
             <div className="text-center">
-              {serviceType !== "ceramic-coating" && serviceType !== "paint-correction" && (
+              {!selectedServices.includes("ceramic-coating") && !selectedServices.includes("paint-correction") && (
                 <div className="bg-primary/10 rounded-lg px-4 py-2">
                   <span className="text-sm text-muted-foreground">Current Total: </span>
                   <span className="font-bold text-primary font-display">${calculateTotal()}</span>
@@ -1065,7 +1054,7 @@ const QuoteWizard = () => {
             <Button 
               variant="default"
               onClick={nextStep}
-              disabled={currentStep === totalSteps || (currentStep === 1 && !vehicleType) || (currentStep === 2 && (!serviceType || !year || !make || !model))}
+              disabled={currentStep === totalSteps || (currentStep === 1 && !vehicleType) || (currentStep === 2 && (selectedServices.length === 0 || !year || !make || !model))}
             >
               Next
               <ChevronRight className="ml-2 h-4 w-4" />
