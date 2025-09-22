@@ -474,9 +474,9 @@ const QuoteWizard = () => {
                         <span className="font-display">
                           {type === "2-door" ? "2 DOOR CAR" :
                            type === "4-door" ? "4 DOOR CAR" :
-                           type === "mid-suv" ? "MID-SIZE SUV" :
-                           type === "truck" ? "TRUCK" :
-                           type === "full-suv" ? "SUV / HEAVY DUTY TRUCK" :
+                            type === "mid-suv" ? "MID-SIZE SUV/WAGON" :
+                            type === "truck" ? "TRUCK" :
+                            type === "full-suv" ? "SUV / HEAVY DUTY TRUCK / VAN" :
                            "MOTORCYCLE"}
                         </span>
                       </div>
@@ -510,7 +510,7 @@ const QuoteWizard = () => {
                       <span className="font-bold text-red-500">$275</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV/WAGON</span>
                       <span className="font-bold text-red-500">$300</span>
                     </div>
                     <div className="flex justify-between">
@@ -518,7 +518,7 @@ const QuoteWizard = () => {
                       <span className="font-bold text-red-500">$325</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK</span>
+                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
                       <span className="font-bold text-red-500">$350</span>
                     </div>
                   </div>
@@ -536,7 +536,7 @@ const QuoteWizard = () => {
                       <span className="font-bold text-red-500">$215</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV/WAGON</span>
                       <span className="font-bold text-red-500">$225</span>
                     </div>
                     <div className="flex justify-between">
@@ -562,7 +562,7 @@ const QuoteWizard = () => {
                       <span className="font-bold text-red-500">$60</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV</span>
+                      <span className="text-base font-medium">4 DOOR CAR / MID-SIZE SUV/WAGON</span>
                       <span className="font-bold text-red-500">$75</span>
                     </div>
                     <div className="flex justify-between">
@@ -570,7 +570,7 @@ const QuoteWizard = () => {
                       <span className="font-bold text-red-500">$100</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK</span>
+                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
                       <span className="font-bold text-red-500">$125</span>
                     </div>
                     <div className="flex justify-between">
