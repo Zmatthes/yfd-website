@@ -5,7 +5,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 
-type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "suv" | "heavy-duty" | "van" | "motorcycle";
+type VehicleType = "2-door" | "4-door" | "mid-suv" | "wagon" | "truck" | "suv" | "heavy-duty" | "van" | "motorcycle";
 type ServiceDetailType = "ceramic-coating" | "paint-correction";
 
 interface ServiceDetailProps {
@@ -22,6 +22,7 @@ const ServiceDetail = ({ serviceType, onBack, onContinue }: ServiceDetailProps) 
       "2-door": { label: "2 Door Car", price: 650 },
       "4-door": { label: "4 Door Car/Small Truck", price: 700 },
       "mid-suv": { label: "Mid Size SUV", price: 750 },
+      "wagon": { label: "Wagon", price: 750 },
       "truck": { label: "Truck", price: 850 },
       "suv": { label: "SUV", price: 950 },
       "heavy-duty": { label: "Heavy Duty Truck", price: 1050 },
@@ -32,6 +33,7 @@ const ServiceDetail = ({ serviceType, onBack, onContinue }: ServiceDetailProps) 
       "2-door": { label: "2 Door Car", price: 650 },
       "4-door": { label: "4 Door Car/Small Truck", price: 700 },
       "mid-suv": { label: "Mid Size SUV", price: 750 },
+      "wagon": { label: "Wagon", price: 750 },
       "truck": { label: "Truck", price: 850 },
       "suv": { label: "SUV", price: 950 },
       "heavy-duty": { label: "Heavy Duty Truck", price: 1050 },

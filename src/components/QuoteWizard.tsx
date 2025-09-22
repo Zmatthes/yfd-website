@@ -14,7 +14,7 @@ import QuoteSuccess from "./QuoteSuccess";
 import ServiceDetail from "./ServiceDetail";
 import CeramicPaintLanding from "./CeramicPaintLanding";
 
-type VehicleType = "2-door" | "4-door" | "mid-suv" | "truck" | "suv" | "heavy-duty" | "van" | "motorcycle";
+type VehicleType = "2-door" | "4-door" | "mid-suv" | "wagon" | "truck" | "suv" | "heavy-duty" | "van" | "motorcycle";
 type ServiceType = "interior-only" | "exterior-only" | "ceramic-coating" | "paint-correction";
 
 const QuoteWizard = () => {
@@ -47,6 +47,7 @@ const QuoteWizard = () => {
       "2-door": 225,
       "4-door": 250,
       "mid-suv": 275,
+      "wagon": 275,
       "truck": 300,
       "suv": 325,
       "heavy-duty": 350,
@@ -56,6 +57,7 @@ const QuoteWizard = () => {
       "2-door": 75,
       "4-door": 100,
       "mid-suv": 115,
+      "wagon": 115,
       "truck": 125,
       "suv": 150,
       "heavy-duty": 175,
@@ -66,6 +68,7 @@ const QuoteWizard = () => {
       "2-door": 650,
       "4-door": 700,
       "mid-suv": 750,
+      "wagon": 750,
       "truck": 850,
       "suv": 950,
       "heavy-duty": 1050,
@@ -468,7 +471,7 @@ const QuoteWizard = () => {
                 onValueChange={(value) => setVehicleType(value as VehicleType)}
                 className="grid md:grid-cols-2 gap-4"
               >
-                {["2-door", "4-door", "mid-suv", "truck", "suv", "heavy-duty", "van", "motorcycle"].map((type) => (
+                {["2-door", "4-door", "mid-suv", "wagon", "truck", "suv", "heavy-duty", "van", "motorcycle"].map((type) => (
                   <div key={type} className="flex items-center space-x-2">
                     <RadioGroupItem value={type} id={type} />
                     <Label htmlFor={type} className="flex-1 cursor-pointer">
@@ -476,7 +479,8 @@ const QuoteWizard = () => {
                         <span className="font-display">
                           {type === "2-door" ? "2 DOOR CAR" :
                            type === "4-door" ? "4 DOOR CAR" :
-                            type === "mid-suv" ? "MID-SIZE SUV / WAGON" :
+                            type === "mid-suv" ? "MID-SIZE SUV" :
+                            type === "wagon" ? "WAGON" :
                             type === "truck" ? "TRUCK" :
                             type === "suv" ? "SUV" :
                             type === "heavy-duty" ? "HEAVY DUTY TRUCK" :
