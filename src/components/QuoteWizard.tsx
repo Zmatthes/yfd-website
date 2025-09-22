@@ -60,7 +60,7 @@ const QuoteWizard = () => {
       "wagon": 115,
       "truck": 125,
       "suv": 150,
-      "heavy-duty": 175,
+      "heavy-duty": 150,
       "van": 150,
       "motorcycle": 125
     },
@@ -510,16 +510,19 @@ const QuoteWizard = () => {
                 <div className="flex items-center space-x-2">
                   <Checkbox 
                     id="interior-only" 
+                    disabled={vehicleType === "motorcycle"}
                     checked={selectedServices.includes("interior-only")}
                     onCheckedChange={(checked) => {
-                      if (checked) {
-                        setSelectedServices(prev => [...prev, "interior-only"]);
-                      } else {
-                        setSelectedServices(prev => prev.filter(s => s !== "interior-only"));
+                      if (vehicleType !== "motorcycle") {
+                        if (checked) {
+                          setSelectedServices(prev => [...prev, "interior-only"]);
+                        } else {
+                          setSelectedServices(prev => prev.filter(s => s !== "interior-only"));
+                        }
                       }
                     }}
                   />
-                  <Label htmlFor="interior-only" className="text-xl font-bold font-display">VIP INTERIOR</Label>
+                  <Label htmlFor="interior-only" className={`text-xl font-bold font-display ${vehicleType === "motorcycle" ? "opacity-50 cursor-not-allowed" : ""}`}>VIP INTERIOR</Label>
                 </div>
                 <p className="text-sm text-muted-foreground ml-8 mb-2">
                   Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned and shampooed, headliner refreshed, leather cleaned and conditioned, vents steamed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we restore your interior top to bottom.
