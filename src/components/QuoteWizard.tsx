@@ -525,7 +525,7 @@ const QuoteWizard = () => {
                   <Label htmlFor="interior-only" className={`text-xl font-bold font-display ${vehicleType === "motorcycle" ? "opacity-50 cursor-not-allowed" : ""}`}>VIP INTERIOR</Label>
                 </div>
                 <p className="text-sm text-muted-foreground ml-8 mb-2">
-                  Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned and shampooed, headliner refreshed, leather cleaned and conditioned, vents steamed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we restore your interior top to bottom.
+                  Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned and shampooed, headliner refreshed, leather cleaned and conditioned, vents steamed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we detail your interior top to bottom.
                 </p>
                 <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                   <div className="flex justify-between">
