@@ -10,18 +10,28 @@ const MonthlyMaintenance = () => {
       description: "Perfect for compact cars and coupes"
     },
     {
-      type: "4 Door Car / Mid-Size SUV",
-      price: "$115", 
-      description: "Ideal for sedans and mid-size SUVs",
+      type: "Motorcycle",
+      price: "$100",
+      description: "For motorcycles and bikes"
+    },
+    {
+      type: "4 Door Car / Small Truck",
+      price: "$120",
+      description: "Ideal for sedans and small trucks"
+    },
+    {
+      type: "Mid-Size SUV / Wagon",
+      price: "$135", 
+      description: "For mid-size SUVs and wagons",
       popular: true
     },
     {
       type: "Truck",
-      price: "$125",
-      description: "For pickup trucks of all sizes"
+      price: "$145",
+      description: "For pickup trucks"
     },
     {
-      type: "SUV / Van / Heavy Duty Truck",
+      type: "SUV / Heavy Duty Truck / Van",
       price: "$150",
       description: "Large vehicles and commercial trucks"
     }
