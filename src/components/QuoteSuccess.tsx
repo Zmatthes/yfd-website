@@ -21,7 +21,7 @@ const QuoteSuccess = ({ onStartOver }: QuoteSuccessProps) => {
             Quote Submitted Successfully!
           </h2>
           <p className="text-xl text-muted-foreground leading-relaxed mb-8">
-            Your Favorite Detailer will reach out to you with his soonest available openings. 
+            Your Favorite Detailer will reach out to you with their soonest available openings. 
             Thanks for choosing us for your vehicle's care!
           </p>
         </div>
