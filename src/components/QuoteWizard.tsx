@@ -80,14 +80,12 @@ const QuoteWizard = () => {
   const exteriorAddOns = [
     { id: "clay-bar", label: "Clay Bar", price: 25 },
     { id: "oversized", label: "Oversized/Lifted", price: 20 },
-    { id: "bug-removal", label: "Bug Removal", price: 10 },
     { id: "engine-bay", label: "Engine Bay Detail", price: 30 },
     { id: "headlights", label: "Headlight Restoration", price: 100 }
   ];
 
   const interiorAddOns = [
-    { id: "dog-hair", label: "Dog Hair Removal", price: 25 },
-    { id: "smoke-odor", label: "Smoke Odor Removal", price: 50 }
+    { id: "dog-hair", label: "Dog Hair Removal", price: 25 }
   ];
 
   // Real distance calculation using Nominatim (OpenStreetMap) geocoding API
