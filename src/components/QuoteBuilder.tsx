@@ -54,25 +54,25 @@ const QuoteBuilder = () => {
 
     const prices: Record<ServiceType, Record<VehicleType, number>> = {
       'vip-exterior': {
-        'motorcycle': 100,
-        '2-door': 60,
-        '4-door-suv': 75,
-        'truck': 100,
+        'motorcycle': 125,
+        '2-door': 75,
+        '4-door-suv': 100,
+        'truck': 115,
         'heavy-duty': 125,
       },
       'vip-interior': {
         'motorcycle': 0, // Not applicable
-        '2-door': 215,
-        '4-door-suv': 225,
-        'truck': 250,
+        '2-door': 225,
+        '4-door-suv': 250,
+        'truck': 275,
         'heavy-duty': 275,
       },
       'vip-both': {
         'motorcycle': 0, // Not applicable
-        '2-door': 275,
-        '4-door-suv': 300,
-        'truck': 325,
-        'heavy-duty': 350,
+        '2-door': 300,
+        '4-door-suv': 350,
+        'truck': 390,
+        'heavy-duty': 400,
       },
     };
 
