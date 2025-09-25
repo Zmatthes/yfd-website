@@ -44,8 +44,8 @@ const QuoteWizard = () => {
 
   const servicePrices = {
     "interior-only": {
-      "2-door": 225,
-      "4-door": 250,
+      "2-door": 200,
+      "4-door": 225,
       "mid-suv": 275,
       "wagon": 275,
       "truck": 250,
@@ -528,11 +528,11 @@ const QuoteWizard = () => {
                  <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                    <div className="flex justify-between">
                      <span className="text-base font-medium">2 DOOR CAR</span>
-                     <span className="font-bold text-red-500">$225</span>
+                     <span className="font-bold text-red-500">$200</span>
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
-                     <span className="font-bold text-red-500">$250</span>
+                     <span className="font-bold text-red-500">$225</span>
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
