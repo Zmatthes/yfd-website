@@ -527,28 +527,28 @@ const QuoteWizard = () => {
                 <p className="text-sm text-muted-foreground ml-8 mb-2">
                   Every inch of your interior is deep-cleaned — carpets shampooed, seats and upholstery steam-cleaned and shampooed, headliner refreshed, leather cleaned and conditioned, vents steamed, plastics and trim restored, and door jambs detailed. We don't just vacuum and wipe down — we detail your interior top to bottom.
                 </p>
-                <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">2 DOOR CAR</span>
-                    <span className="font-bold text-red-500">$225</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
-                    <span className="font-bold text-red-500">$250</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
-                    <span className="font-bold text-red-500">$275</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
-                    <span className="font-bold text-red-500">$250</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">SUV / VAN</span>
-                    <span className="font-bold text-red-500">$300</span>
-                  </div>
-                </div>
+                 <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">2 DOOR CAR</span>
+                     <span className="font-bold text-red-500">$225</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
+                     <span className="font-bold text-red-500">$250</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
+                     <span className="font-bold text-red-500">$250</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
+                     <span className="font-bold text-red-500">$275</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">SUV / VAN</span>
+                     <span className="font-bold text-red-500">$300</span>
+                   </div>
+                 </div>
               </div>
 
               {/* Exterior Service */}
@@ -570,32 +570,32 @@ const QuoteWizard = () => {
                 <p className="text-sm text-muted-foreground ml-8 mb-2">
                   Complete multi-stage wash including bug and tar removal, wheel faces, barrels, wells, and fender liners deep-cleaned, two-bucket hand wash. Tires dressed, trim renewed, and a 6-month professional paint sealant applied to paint and wheels for lasting protection and shine.
                 </p>
-                <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">2 DOOR CAR</span>
-                    <span className="font-bold text-red-500">$75</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
-                    <span className="font-bold text-red-500">$100</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
-                    <span className="font-bold text-red-500">$110</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">TRUCK</span>
-                    <span className="font-bold text-red-500">$115</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
-                    <span className="font-bold text-red-500">$125</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-base font-medium">MOTORCYCLE</span>
-                    <span className="font-bold text-red-500">$125</span>
-                  </div>
-                </div>
+                 <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">2 DOOR CAR</span>
+                     <span className="font-bold text-red-500">$75</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
+                     <span className="font-bold text-red-500">$100</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
+                     <span className="font-bold text-red-500">$110</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">TRUCK</span>
+                     <span className="font-bold text-red-500">$115</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
+                     <span className="font-bold text-red-500">$125</span>
+                   </div>
+                   <div className="flex justify-between">
+                     <span className="text-base font-medium">MOTORCYCLE</span>
+                     <span className="font-bold text-red-500">$125</span>
+                   </div>
+                 </div>
               </div>
 
               {/* Ceramic Coating & Paint Correction */}
