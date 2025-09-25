@@ -30,7 +30,7 @@ const Services = () => {
     {
       icon: Brush,
       title: "Paint Correction",
-      description: "Paint correction is the process of safely removing surface imperfections — like swirl marks, light scratches, oxidation, water spots, and haze — to restore depth, clarity, and gloss to your vehicle's finish. Using professional compounds, polishers, and lighting, we carefully level the clear coat to reveal a smooth, mirror-like surface. This service goes beyond a wax or sealant; it permanently improves the paint by removing defects rather than covering them up. Perfect for anyone wanting to revive dull, tired paint or prepare their vehicle for ceramic coating.",
+      description: "Paint correction is the process of safely removing surface imperfections — like swirl marks, light scratches, oxidation, water spots, and haze — to restore depth, clarity, and gloss to your vehicle's finish. Using professional compounds, polishers, and lighting, we carefully level the clear coat to reveal a smooth, mirror-like surface.\n\nThis service goes beyond a wax or sealant; it permanently improves the paint by removing defects rather than covering them up. Perfect for anyone wanting to revive dull, tired paint or prepare their vehicle for ceramic coating.",
       features: [],
       popular: false,
       image: "/lovable-uploads/55de000b-9398-4de3-a167-332e88c75bda.png"
