@@ -55,13 +55,13 @@ const QuoteWizard = () => {
     },
     "exterior-only": {
       "2-door": 75,
-      "4-door": 100,
-      "mid-suv": 110,
-      "wagon": 110,
-      "truck": 115,
-      "suv": 125,
-      "heavy-duty": 125,
-      "van": 125,
+      "4-door": 75,
+      "mid-suv": 90,
+      "wagon": 90,
+      "truck": 100,
+      "suv": 115,
+      "heavy-duty": 115,
+      "van": 115,
       "motorcycle": 125
     },
     "restore-protect": {
@@ -577,19 +577,19 @@ const QuoteWizard = () => {
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">4 DOOR CAR / SMALL TRUCK</span>
-                     <span className="font-bold text-red-500">$100</span>
+                     <span className="font-bold text-red-500">$75</span>
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
-                     <span className="font-bold text-red-500">$110</span>
+                     <span className="font-bold text-red-500">$90</span>
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">TRUCK</span>
-                     <span className="font-bold text-red-500">$115</span>
+                     <span className="font-bold text-red-500">$100</span>
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">SUV / HEAVY DUTY TRUCK / VAN</span>
-                     <span className="font-bold text-red-500">$125</span>
+                     <span className="font-bold text-red-500">$115</span>
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">MOTORCYCLE</span>
