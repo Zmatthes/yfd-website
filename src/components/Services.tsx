@@ -130,7 +130,7 @@ const Services = () => {
 
                     {/* Action */}
                     <Button 
-                      variant={service.popular ? "hero" : "luxury"}
+                      variant="destructive"
                       className="w-full mt-auto"
                       onClick={() => {
                         const element = document.getElementById('quote-wizard');
