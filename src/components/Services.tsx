@@ -14,7 +14,7 @@ const Services = () => {
     {
       icon: Car,
       title: "Exterior Detailing",
-      description: "Complete exterior detailing with professional techniques and premium products.",
+      description: "Complete multi-stage wash including bug and tar removal, wheels including wheel wells, and fender liners, followed by a safe two-bucket hand wash. Tires are dressed, trim is renewed, and a 6-month professional paint sealant is applied to both paint and wheels for lasting protection, hydrophobicity, and a deep, glossy finish.",
       features: [
         "Hand Wash of Exterior", 
         "Deep Clean of Wheels & Wheel Wells", 
@@ -28,15 +28,7 @@ const Services = () => {
       icon: Sparkles,
       title: "Interior Detailing", 
       description: "Give your vehicle a true reset. Our restorative interior detail goes far beyond a standard cleaning, targeting years of buildup, stains, odors, and wear. We deep clean every surface — carpets, seats, vents, trim, and headliner — using professional tools and extraction methods to lift out dirt and refresh fabrics. Leather and vinyl are reconditioned, plastics are restored, and hard-to-reach areas get the same attention as the obvious ones.",
-      features: [
-        "Vacuum of Interior Including Trunk", 
-        "Deep Clean of ALL Interior Surfaces with Steam Effectively Removing 99.9% of Germs and Bacteria", 
-        "Shampoo Carpets", 
-        "Shampoo Seats", 
-        "Glass Cleaned", 
-        "Leather / Plastics Conditioned", 
-        "Door Jams Cleaned"
-      ],
+      features: [],
       popular: false,
       image: "/lovable-uploads/281f810c-9383-4f71-865c-87b7f0c75a91.png"
     },
