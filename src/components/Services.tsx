@@ -27,7 +27,7 @@ const Services = () => {
     {
       icon: Sparkles,
       title: "Interior Detailing", 
-      description: "Deep interior cleaning that removes 99.9% of germs and bacteria with steam cleaning.",
+      description: "Give your vehicle a true reset. Our restorative interior detail goes far beyond a standard cleaning, targeting years of buildup, stains, odors, and wear. We deep clean every surface — carpets, seats, vents, trim, and headliner — using professional tools and extraction methods to lift out dirt and refresh fabrics. Leather and vinyl are reconditioned, plastics are restored, and hard-to-reach areas get the same attention as the obvious ones.",
       features: [
         "Vacuum of Interior Including Trunk", 
         "Deep Clean of ALL Interior Surfaces with Steam Effectively Removing 99.9% of Germs and Bacteria", 
