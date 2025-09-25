@@ -46,7 +46,7 @@ const QuoteWizard = () => {
     "interior-only": {
       "2-door": 200,
       "4-door": 225,
-      "mid-suv": 275,
+      "mid-suv": 250,
       "wagon": 275,
       "truck": 250,
       "suv": 300,
