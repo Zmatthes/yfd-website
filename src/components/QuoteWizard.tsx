@@ -48,9 +48,9 @@ const QuoteWizard = () => {
       "4-door": 250,
       "mid-suv": 275,
       "wagon": 275,
-      "truck": 275,
+      "truck": 250,
       "suv": 300,
-      "heavy-duty": 275,
+      "heavy-duty": 250,
       "van": 300
     },
     "exterior-only": {
@@ -542,7 +542,7 @@ const QuoteWizard = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
-                    <span className="font-bold text-red-500">$275</span>
+                    <span className="font-bold text-red-500">$250</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-base font-medium">SUV / VAN</span>
