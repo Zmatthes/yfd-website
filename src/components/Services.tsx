@@ -38,8 +38,8 @@ const Services = () => {
     {
       icon: Droplet,
       title: "Ceramic Coating",
-      description: "Long-lasting ceramic coating protection for superior paint protection and easy maintenance.",
-      features: ["1-5 year protection (with proper maintenance)", "Extremely hydrophobic properties", "Protects paint from road grime"],
+      description: "Ceramic coating creates a semi-permanent, glass-like layer of protection that bonds directly to your vehicle's paint. It guards against UV damage, chemicals, and environmental fallout while adding unmatched gloss and slickness. Your vehicle stays cleaner longer, water beads effortlessly, and washing becomes easier than ever.",
+      features: [],
       popular: false,
       image: "/lovable-uploads/3d321eca-bb73-442b-b36d-4599afcaa1a7.png"
     }
