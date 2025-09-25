@@ -6,34 +6,28 @@ const MonthlyMaintenance = () => {
   const maintenancePackages = [
     {
       type: "2 Door Car",
-      price: "$100",
-      description: "Perfect for compact cars and coupes"
+      price: "$100"
     },
     {
       type: "Motorcycle",
-      price: "$100",
-      description: "For motorcycles and bikes"
+      price: "$100"
     },
     {
       type: "4 Door Car / Small Truck",
-      price: "$120",
-      description: "Ideal for sedans and small trucks"
+      price: "$120"
     },
     {
       type: "Mid-Size SUV / Wagon",
-      price: "$135", 
-      description: "For mid-size SUVs and wagons",
+      price: "$135",
       popular: true
     },
     {
       type: "Truck",
-      price: "$145",
-      description: "For pickup trucks"
+      price: "$145"
     },
     {
       type: "SUV / Heavy Duty Truck / Van",
-      price: "$150",
-      description: "Large vehicles and commercial trucks"
+      price: "$150"
     }
   ];
 
@@ -120,9 +114,6 @@ const MonthlyMaintenance = () => {
                         <h4 className="text-lg font-semibold text-foreground">
                           {pkg.type}
                         </h4>
-                        <p className="text-sm text-muted-foreground">
-                          {pkg.description}
-                        </p>
                       </div>
                       <div className="text-right">
                         <span className="text-2xl font-bold text-primary">

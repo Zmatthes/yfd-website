@@ -48,20 +48,20 @@ const QuoteWizard = () => {
       "4-door": 250,
       "mid-suv": 275,
       "wagon": 275,
-      "truck": 300,
-      "suv": 325,
-      "heavy-duty": 300,
-      "van": 325
+      "truck": 275,
+      "suv": 300,
+      "heavy-duty": 275,
+      "van": 300
     },
     "exterior-only": {
       "2-door": 75,
       "4-door": 100,
-      "mid-suv": 115,
-      "wagon": 115,
-      "truck": 125,
-      "suv": 150,
-      "heavy-duty": 150,
-      "van": 150,
+      "mid-suv": 110,
+      "wagon": 110,
+      "truck": 115,
+      "suv": 125,
+      "heavy-duty": 125,
+      "van": 125,
       "motorcycle": 125
     },
     "restore-protect": {
