@@ -109,9 +109,13 @@ const Services = () => {
                       <h3 className="text-2xl font-bold text-foreground mb-4">
                         {service.title}
                       </h3>
-                      <p className="text-muted-foreground mb-6 leading-relaxed">
-                        {service.description}
-                      </p>
+                      <div className="text-muted-foreground mb-6 leading-relaxed">
+                        {service.description.split('\n\n').map((paragraph, idx) => (
+                          <p key={idx} className={idx > 0 ? 'mt-4' : ''}>
+                            {paragraph}
+                          </p>
+                        ))}
+                      </div>
 
                       {/* Features */}
                       <ul className="space-y-2 mb-6">
