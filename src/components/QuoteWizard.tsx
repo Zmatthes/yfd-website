@@ -62,7 +62,7 @@ const QuoteWizard = () => {
       "suv": 115,
       "heavy-duty": 115,
       "van": 115,
-      "motorcycle": 125
+      "motorcycle": 115
     },
     "restore-protect": {
       "2-door": 650,
@@ -591,7 +591,7 @@ const QuoteWizard = () => {
                    </div>
                    <div className="flex justify-between">
                      <span className="text-base font-medium">MOTORCYCLE</span>
-                     <span className="font-bold text-red-500">$125</span>
+                     <span className="font-bold text-red-500">$115</span>
                    </div>
                  </div>
               </div>
