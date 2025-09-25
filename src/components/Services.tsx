@@ -76,11 +76,11 @@ const Services = () => {
           </div>
 
           {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
             {services.map((service, index) => (
               <Card 
                 key={index}
-                className={`relative overflow-hidden bg-gradient-card border-border hover:shadow-luxury transition-smooth group cursor-pointer ${
+                className={`relative overflow-hidden bg-gradient-card border-border hover:shadow-luxury transition-smooth group cursor-pointer h-full flex flex-col ${
                   service.popular ? 'ring-2 ring-primary/50' : ''
                 }`}
               >
@@ -102,7 +102,7 @@ const Services = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                 </div>
 
-                <div className="p-8">
+                <div className="p-8 flex-1 flex flex-col">
                   <div className="flex flex-col h-full">
                     {/* Content */}
                     <div className="flex-1">
