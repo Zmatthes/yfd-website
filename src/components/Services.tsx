@@ -15,12 +15,7 @@ const Services = () => {
       icon: Car,
       title: "Exterior Detailing",
       description: "Complete multi-stage wash including bug and tar removal, wheels including wheel wells, and fender liners, followed by a safe two-bucket hand wash. Tires are dressed, trim is renewed, and a 6-month professional paint sealant is applied to both paint and wheels for lasting protection, hydrophobicity, and a deep, glossy finish.",
-      features: [
-        "Hand Wash of Exterior", 
-        "Deep Clean of Wheels & Wheel Wells", 
-        "6 Month Paint Sealant Applied To Paint & Wheels For Protection & Hydrophobicity", 
-        "Tire Shine Applied (No Tire Shine Can Be Requested)"
-      ],
+      features: [],
       popular: false,
       image: "/lovable-uploads/d6f938e6-fa9e-41ec-b29b-65c1759c5109.png"
     },
