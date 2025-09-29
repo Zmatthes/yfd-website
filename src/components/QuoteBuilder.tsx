@@ -214,7 +214,7 @@ const QuoteBuilder = () => {
                           },
                           'vip-interior': {
                             'motorcycle': 0,
-                            '2-door': 215,
+                            '2-door': 250,
                             '4-door-suv': 250,
                             'truck': 0, // Not available for trucks
                             'heavy-duty': 275,
