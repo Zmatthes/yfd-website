@@ -13,7 +13,7 @@ const MonthlyMaintenance = () => {
       price: "$100"
     },
     {
-      type: "4 Door Car / Small Truck",
+      type: "4 Door Car",
       price: "$120"
     },
     {

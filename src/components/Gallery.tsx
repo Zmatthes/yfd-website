@@ -52,7 +52,7 @@ const Gallery = () => {
               <div className="relative w-full max-w-4xl mx-auto min-h-[400px] flex items-center justify-center">
                 <img 
                   src={images[currentIndex].src} 
-                  alt={images[currentIndex].alt}
+                  alt=""
                   className="max-w-full max-h-[600px] w-auto h-auto object-contain"
                 />
                 
