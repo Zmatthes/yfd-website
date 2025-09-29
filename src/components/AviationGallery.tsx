@@ -6,6 +6,9 @@ import aviationImage1 from "@/assets/aviation-1.jpg";
 import aviationImage2 from "@/assets/aviation-2.jpg";
 import aviationImage3 from "@/assets/aviation-3.webp";
 import aviationDetailingImage from "@/assets/aviation-detailing.webp";
+import hangarDetail from "@/assets/hangar-detail.jpg";
+import jetCleaning from "@/assets/jet-cleaning.jpg";
+import jetDetail from "@/assets/jet-detail.jpg";
 
 const AviationGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,23 +16,31 @@ const AviationGallery = () => {
   const images = [
     {
       src: aviationDetailingImage,
-      alt: "Professional aircraft detailing service - exterior cleaning",
-      title: "Complete Exterior Detailing"
+      alt: ""
     },
     {
       src: aviationImage1,
-      alt: "Aircraft interior and exterior restoration - detailed engine bay",
-      title: "Engine Bay Restoration"
+      alt: ""
     },
     {
       src: aviationImage2,
-      alt: "Aviation detailing - pristine aircraft exterior finish",
-      title: "Premium Finish Work"
+      alt: ""
     },
     {
       src: aviationImage3,
-      alt: "Professional aviation detailer with completed aircraft project",
-      title: "Quality Craftsmanship"
+      alt: ""
+    },
+    {
+      src: hangarDetail,
+      alt: ""
+    },
+    {
+      src: jetCleaning,
+      alt: ""
+    },
+    {
+      src: jetDetail,
+      alt: ""
     }
   ];
 
@@ -67,7 +78,7 @@ const AviationGallery = () => {
             </Button>
             
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Aviation Detailing Portfolio
+              Aviation Detailing
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Professional aircraft detailing services for both interior and exterior. 
@@ -104,7 +115,7 @@ const AviationGallery = () => {
             <div className="relative h-96 md:h-[600px]">
               <img 
                 src={images[currentIndex].src}
-                alt={images[currentIndex].alt}
+                alt=""
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -128,9 +139,8 @@ const AviationGallery = () => {
                 <ChevronRight className="w-6 h-6" />
               </Button>
 
-              {/* Image Info */}
+              {/* Image Counter */}
               <div className="absolute bottom-6 left-6 text-white">
-                <h3 className="text-xl font-bold mb-2">{images[currentIndex].title}</h3>
                 <p className="text-sm text-white/80">
                   {currentIndex + 1} of {images.length}
                 </p>
@@ -152,7 +162,7 @@ const AviationGallery = () => {
               >
                 <img 
                   src={image.src}
-                  alt={image.alt}
+                  alt=""
                   className="w-full h-full object-cover"
                 />
                 {index === currentIndex && (
