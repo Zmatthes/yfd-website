@@ -64,7 +64,7 @@ const QuoteBuilder = () => {
         'motorcycle': 0, // Not applicable
         '2-door': 225,
         '4-door-suv': 250,
-        'truck': 275,
+        'truck': 0, // Not available for trucks
         'heavy-duty': 275,
       },
       'vip-both': {
@@ -164,6 +164,9 @@ const QuoteBuilder = () => {
       if (vehicleType === 'motorcycle') {
         return service.id === 'vip-exterior';
       }
+      if (vehicleType === 'truck' && service.id === 'vip-interior') {
+        return false; // Remove VIP Interior option for trucks
+      }
       return true;
     });
 
@@ -212,8 +215,8 @@ const QuoteBuilder = () => {
                           'vip-interior': {
                             'motorcycle': 0,
                             '2-door': 215,
-                            '4-door-suv': 225,
-                            'truck': 250,
+                            '4-door-suv': 250,
+                            'truck': 0, // Not available for trucks
                             'heavy-duty': 275,
                           },
                           'vip-both': {
