@@ -48,6 +48,7 @@ const QuoteWizard = () => {
       "4-door": 250,
       "mid-suv": 250,
       "wagon": 275,
+      "truck": 275,
       "suv": 300,
       "heavy-duty": 250,
       "van": 300
