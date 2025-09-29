@@ -527,17 +527,17 @@ const QuoteWizard = () => {
                 </p>
                  <div className="ml-8 space-y-1 bg-muted/30 p-3 rounded-lg">
                    <div className="flex justify-between">
-                     <span className="text-base font-medium">2 DOOR CAR</span>
-                     <span className="font-bold text-red-500">$200</span>
+                      <span className="text-base font-medium">2 DOOR CAR</span>
+                      <span className="font-bold text-red-500">$225</span>
                    </div>
                     <div className="flex justify-between">
                       <span className="text-base font-medium">4 DOOR CAR</span>
                       <span className="font-bold text-red-500">$250</span>
                     </div>
-                    <div className="flex justify-between">
-                      <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
-                      <span className="font-bold text-red-500">$250</span>
-                    </div>
+                     <div className="flex justify-between">
+                       <span className="text-base font-medium">TRUCK / HEAVY DUTY TRUCK</span>
+                       <span className="font-bold text-red-500">$250</span>
+                     </div>
                     <div className="flex justify-between">
                       <span className="text-base font-medium">MID-SIZE SUV / WAGON</span>
                       <span className="font-bold text-red-500">$275</span>
