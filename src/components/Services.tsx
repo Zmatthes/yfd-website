@@ -156,7 +156,8 @@ const Services = () => {
                       className="w-full mt-auto"
                       onClick={() => {
                         if (service.isAviation) {
-                          scrollToContact();
+                          const element = document.getElementById('aviation-gallery');
+                          element?.scrollIntoView({ behavior: 'smooth' });
                         } else {
                           const element = document.getElementById('quote-wizard');
                           element?.scrollIntoView({ behavior: 'smooth' });
@@ -173,7 +174,7 @@ const Services = () => {
                         }
                       }}
                     >
-                      {service.isAviation ? "Call for Quote" : "Get Quote"}
+                      {service.isAviation ? "See Our Work" : "Get Quote"}
                     </Button>
                   </div>
                 </div>

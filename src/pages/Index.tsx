@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Services from "@/components/Services"; 
 import Gallery from "@/components/Gallery";
+import AviationGallery from "@/components/AviationGallery";
 import Pricing from "@/components/Pricing";
 import QuoteWizard from "@/components/QuoteWizard";
 import MonthlyMaintenance from "@/components/MonthlyMaintenance";
@@ -20,6 +21,7 @@ const Index = () => {
       <div className="space-y-8">
         <About />
         <Services />
+        <AviationGallery />
         <Gallery />
         <Pricing />
         <QuoteWizard />
