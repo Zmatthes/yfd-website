@@ -6,8 +6,10 @@ import {
   Shield, 
   Brush, 
   Droplet, 
-  Smartphone 
+  Smartphone,
+  Plane
 } from "lucide-react";
+import aviationImage from "@/assets/aviation-detailing.webp";
 
 const Services = () => {
   const services = [
@@ -42,6 +44,15 @@ const Services = () => {
       features: [],
       popular: false,
       image: "/lovable-uploads/3d321eca-bb73-442b-b36d-4599afcaa1a7.png"
+    },
+    {
+      icon: Plane,
+      title: "Aviation Detailing",
+      description: "Professional aircraft detailing services for both interior and exterior. We specialize in comprehensive cleaning and protection for private aircraft, ensuring your investment maintains its pristine condition and value.",
+      features: [],
+      popular: false,
+      image: aviationImage,
+      isAviation: true
     }
   ];
 
@@ -109,13 +120,24 @@ const Services = () => {
                       <h3 className="text-2xl font-bold text-foreground mb-4">
                         {service.title}
                       </h3>
-                      <div className="text-muted-foreground mb-6 leading-relaxed">
+                       <div className="text-muted-foreground mb-6 leading-relaxed">
                         {service.description.split('\n\n').map((paragraph, idx) => (
                           <p key={idx} className={idx > 0 ? 'mt-4' : ''}>
                             {paragraph}
                           </p>
                         ))}
                       </div>
+
+                      {service.isAviation && (
+                        <div className="bg-primary/5 rounded-lg p-4 mb-6 border border-primary/20">
+                          <p className="text-sm font-medium text-primary mb-2">
+                            Interior and Exterior Services Available
+                          </p>
+                          <p className="text-sm text-muted-foreground">
+                            Contact us for a personalized quote based on your aircraft type and specific requirements.
+                          </p>
+                        </div>
+                      )}
 
                       {/* Features */}
                       <ul className="space-y-2 mb-6">
@@ -133,21 +155,25 @@ const Services = () => {
                       variant="destructive"
                       className="w-full mt-auto"
                       onClick={() => {
-                        const element = document.getElementById('quote-wizard');
-                        element?.scrollIntoView({ behavior: 'smooth' });
-                        
-                        // Navigate to specific section based on service
-                        setTimeout(() => {
-                          if (service.title === "Paint Correction" || service.title === "Ceramic Coating") {
-                            // Will be handled by the quote wizard to show ceramic/paint correction landing
-                            const event = new CustomEvent('navigate-to-ceramic-paint');
-                            window.dispatchEvent(event);
-                          }
-                          // Interior and Exterior detailing will go to normal flow (vehicle selection first)
-                        }, 100);
+                        if (service.isAviation) {
+                          scrollToContact();
+                        } else {
+                          const element = document.getElementById('quote-wizard');
+                          element?.scrollIntoView({ behavior: 'smooth' });
+                          
+                          // Navigate to specific section based on service
+                          setTimeout(() => {
+                            if (service.title === "Paint Correction" || service.title === "Ceramic Coating") {
+                              // Will be handled by the quote wizard to show ceramic/paint correction landing
+                              const event = new CustomEvent('navigate-to-ceramic-paint');
+                              window.dispatchEvent(event);
+                            }
+                            // Interior and Exterior detailing will go to normal flow (vehicle selection first)
+                          }, 100);
+                        }
                       }}
                     >
-                      Get Quote
+                      {service.isAviation ? "Call for Quote" : "Get Quote"}
                     </Button>
                   </div>
                 </div>
