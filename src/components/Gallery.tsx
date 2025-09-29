@@ -2,20 +2,33 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Instagram, ExternalLink, Camera, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import detailExterior1 from "@/assets/detail-exterior-1.png";
+import detailWork1 from "@/assets/detail-work-1.jpg";
+import detailWork2 from "@/assets/detail-work-2.jpg";
+import detailWork3 from "@/assets/detail-work-3.jpg";
+import hangarDetail from "@/assets/hangar-detail.jpg";
+import jetCleaning from "@/assets/jet-cleaning.jpg";
+import jetDetail from "@/assets/jet-detail.jpg";
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const images = [
-    { src: '/lovable-uploads/c69fc324-772a-40f9-ba6c-30d415cab15e.png', alt: 'Jeep floor mat cleaning transformation before and after Denver mobile detailing service' },
-    { src: '/lovable-uploads/aa258f0a-05e3-41d4-b750-a2b53d2f8fba.png', alt: 'Vehicle interior seat cleaning before and after Commerce City professional detailing' },
-    { src: '/lovable-uploads/a62b8403-66d2-47a0-aed8-69fc36ab6b05.png', alt: 'Complete vehicle interior detailing transformation Your Favorite Detailer Denver' },
-    { src: '/lovable-uploads/2fc18210-7a41-441b-960a-0b162fcc16b5.png', alt: 'Jeep rubber floor mat restoration before after Denver Metro detailing service' },
-    { src: '/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png', alt: 'Professional vehicle interior cleaning transformation Commerce City auto detailing' },
-    { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png', alt: 'Honda CR-V exterior wash and detail before after Denver mobile service' },
-    { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png', alt: 'Black car exterior detailing transformation before after Your Favorite Detailer' },
-    { src: '/lovable-uploads/50196e7d-e181-45cd-88e7-c3ee3124143c.png', alt: 'Professional automotive detailing before and after transformation Denver service' },
-    { src: '/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png', alt: 'Vehicle exterior wash and detail transformation Your Favorite Detailer Commerce City' }
+    { src: '/lovable-uploads/c69fc324-772a-40f9-ba6c-30d415cab15e.png' },
+    { src: '/lovable-uploads/aa258f0a-05e3-41d4-b750-a2b53d2f8fba.png' },
+    { src: '/lovable-uploads/a62b8403-66d2-47a0-aed8-69fc36ab6b05.png' },
+    { src: '/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png' },
+    { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png' },
+    { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png' },
+    { src: '/lovable-uploads/50196e7d-e181-45cd-88e7-c3ee3124143c.png' },
+    { src: '/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png' },
+    { src: detailExterior1 },
+    { src: detailWork1 },
+    { src: detailWork2 },
+    { src: detailWork3 },
+    { src: hangarDetail },
+    { src: jetCleaning },
+    { src: jetDetail }
   ];
 
   const nextImage = () => {
