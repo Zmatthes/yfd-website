@@ -60,8 +60,8 @@ const QuoteWizard = () => {
       "wagon": 85,
       "truck": 100,
       "suv": 125,
-      "heavy-duty": 115,
-      "van": 115,
+      "heavy-duty": 125,
+      "van": 125,
       "motorcycle": 115
     },
     "restore-protect": {
