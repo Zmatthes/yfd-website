@@ -45,10 +45,9 @@ const QuoteWizard = () => {
   const servicePrices = {
     "interior-only": {
       "2-door": 200,
-      "4-door": 225,
+      "4-door": 250,
       "mid-suv": 250,
       "wagon": 275,
-      "truck": 250,
       "suv": 300,
       "heavy-duty": 250,
       "van": 300
@@ -59,7 +58,7 @@ const QuoteWizard = () => {
       "mid-suv": 90,
       "wagon": 90,
       "truck": 100,
-      "suv": 115,
+      "suv": 125,
       "heavy-duty": 115,
       "van": 115,
       "motorcycle": 115
