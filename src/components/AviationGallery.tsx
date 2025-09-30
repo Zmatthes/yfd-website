@@ -93,14 +93,6 @@ const AviationGallery = () => {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <Button 
-              variant="ghost" 
-              onClick={goBack}
-              className="mb-6 text-muted-foreground hover:text-foreground"
-            >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Back to Services
-            </Button>
             
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Aviation Detailing
@@ -186,10 +178,18 @@ const AviationGallery = () => {
                 variant="destructive"
                 size="lg"
                 onClick={scrollToContact}
-                className="text-lg px-8 py-3"
+                className="text-lg px-8 py-3 mr-4"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call for Quote
+              </Button>
+              <Button 
+                variant="ghost" 
+                onClick={goBack}
+                className="text-lg px-8 py-3 text-muted-foreground hover:text-foreground"
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                Back to Services
               </Button>
             </div>
           </div>
