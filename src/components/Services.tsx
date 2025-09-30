@@ -109,7 +109,7 @@ const Services = () => {
                     src={service.image} 
                     alt={`${service.title} professional transformation by Your Favorite Detailer`}
                     className={`w-full h-full group-hover:scale-110 transition-transform duration-500 ${
-                      service.isAviation ? 'object-cover object-bottom' : 'object-cover'
+                      service.isAviation ? 'object-contain' : 'object-cover'
                     }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
@@ -130,16 +130,6 @@ const Services = () => {
                         ))}
                       </div>
 
-                      {service.isAviation && (
-                        <div className="bg-primary/5 rounded-lg p-4 mb-6 border border-primary/20">
-                          <p className="text-sm font-medium text-primary mb-2">
-                            Interior and Exterior Services Available
-                          </p>
-                          <p className="text-sm text-muted-foreground">
-                            Contact us for a personalized quote based on your aircraft type and specific requirements.
-                          </p>
-                        </div>
-                      )}
 
                       {/* Features */}
                       <ul className="space-y-2 mb-6">
