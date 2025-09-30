@@ -78,7 +78,7 @@ const QuoteWizard = () => {
   };
 
   const exteriorAddOns = [
-    { id: "clay-bar", label: "Clay Bar", price: 40 },
+    { id: "clay-bar", label: "Clay Bar", price: 20 },
     { id: "oversized", label: "Oversized/Lifted", price: 20 },
     { id: "engine-bay", label: "Engine Bay Detail", price: 30 },
     { id: "headlights", label: "Headlight Restoration", price: 100 }
