@@ -85,7 +85,8 @@ const QuoteWizard = () => {
   ];
 
   const interiorAddOns = [
-    { id: "dog-hair", label: "Dog Hair Removal", price: 50 }
+    { id: "dog-hair", label: "Dog Hair Removal", price: 50 },
+    { id: "disaster-interior", label: "Disaster Interior", price: 50 }
   ];
 
   // Real distance calculation using Nominatim (OpenStreetMap) geocoding API

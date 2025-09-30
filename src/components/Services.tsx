@@ -71,7 +71,7 @@ const Services = () => {
               Services
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              From routine monthly cleanings to deep restorative work, we offer full interior and exterior detailing designed to protect your investment and keep your vehicle looking its best. Whether it's stain removal, odor treatment, paint care, or a complete interior refresh, every service is tailored to the condition of your car, truck, or SUV.
+From routine monthly cleanings to deep restorative work, we offer full interior and exterior detailing designed to protect your investment and keep your vehicle looking its best. Whether it's stain removal, odor treatment, paint care, or a complete interior refresh, every service is tailored to the condition of your vehicle.
             </p>
           </div>
 
