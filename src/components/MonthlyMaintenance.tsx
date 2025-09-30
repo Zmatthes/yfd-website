@@ -67,22 +67,22 @@ const MonthlyMaintenance = () => {
 
           <div className="grid lg:grid-cols-2 gap-12 items-start">
             {/* What's Included */}
-            <div>
-              <div className="flex items-center mb-8">
+            <div className="text-center lg:text-left">
+              <div className="flex items-center justify-center lg:justify-start mb-8">
                 <Shield className="h-8 w-8 text-primary mr-3" />
                 <h3 className="text-2xl font-bold text-foreground">What's Included</h3>
               </div>
               
               <div className="space-y-4 mb-8">
                 {maintenanceFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start">
+                  <div key={index} className="flex items-start justify-center lg:justify-start">
                     <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5 mr-3" />
                     <span className="text-muted-foreground">{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
+              <div className="bg-primary/5 rounded-lg p-6 border border-primary/20 text-center lg:text-left">
                 <h4 className="text-lg font-semibold text-foreground mb-2">
                   Why Monthly Maintenance?
                 </h4>
