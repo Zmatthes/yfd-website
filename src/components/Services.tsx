@@ -47,7 +47,7 @@ const Services = () => {
     },
     {
       icon: Plane,
-      title: "Aviation Detailing",
+      title: "Aircraft Detailing",
       description: "Professional aircraft detailing services for both interior and exterior. We specialize in comprehensive cleaning and protection for private aircraft, ensuring your investment maintains its pristine condition and value.",
       features: [],
       popular: false,
