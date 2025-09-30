@@ -109,7 +109,7 @@ const Services = () => {
                     src={service.image} 
                     alt={`${service.title} professional transformation by Your Favorite Detailer`}
                     className={`w-full h-full group-hover:scale-110 transition-transform duration-500 ${
-                      service.isAviation ? 'object-cover object-center' : 'object-cover'
+                      service.isAviation ? 'object-cover object-top' : 'object-cover'
                     }`}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
