@@ -103,9 +103,20 @@ const AviationGallery = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Aircraft Detailing
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Yes, we do aircraft too! Comprehensive aircraft detailing services — precision cleaning and protective treatments that preserve both appearance and long-term value of your investment.
-            </p>
+            <div className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed space-y-6">
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Interior Detailing</h3>
+                <p>
+                  Give your aircraft interior the same first-class treatment you get with your vehicle. Our restorative cabin detail addresses years of buildup, stains, and wear. We deep clean every touchpoint — seats, carpets, upholstery, leather, wood trim, vents, galley, and lavatories — using aviation-safe products, steam, and professional techniques. Leather and vinyl are conditioned, fabrics are refreshed, and even the smallest details are restored to a spotless finish.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-foreground mb-2">Exterior Detailing</h3>
+                <p>
+                  From nose to tail, our exterior detailing offers a full dry-wash and degrease. Landing gear, wheel wells, and engine inlets are carefully cleaned, ensuring every surface gets inspected and addressed. Brightwork polishing, paint correction, and/ or ceramic coatings for a lasting, high-gloss finish are also available.
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Main Gallery */}
