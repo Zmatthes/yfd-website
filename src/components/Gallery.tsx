@@ -21,14 +21,7 @@ const Gallery = () => {
     { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png' },
     { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png' },
     { src: '/lovable-uploads/50196e7d-e181-45cd-88e7-c3ee3124143c.png' },
-    { src: '/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png' },
-    { src: detailExterior1 },
-    { src: detailWork1 },
-    { src: detailWork2 },
-    { src: detailWork3 },
-    { src: hangarDetail },
-    { src: jetCleaning },
-    { src: jetDetail }
+    { src: '/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png' }
   ];
 
   const nextImage = () => {
