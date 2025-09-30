@@ -106,34 +106,8 @@ const AviationGallery = () => {
               Aviation Detailing
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We specialize in meticulous cleaning and protective treatments for private aircraft, 
-              helping you preserve both appearance and long-term value. Interior & exterior packages 
-              tailored to your aircraft. Contact us today for a custom quote.
+              Yes, we do aircraft too! Comprehensive aircraft detailing services — precision cleaning and protective treatments that preserve both appearance and long-term value of your investment.
             </p>
-          </div>
-
-          {/* Service Info */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
-              <h3 className="text-lg font-semibold text-primary mb-3">Interior Services</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• Extensive cleaning of all cabin and cockpit surfaces</li>
-                <li>• Leather care: deep cleaning, conditioning & protection</li>
-                <li>• Carpet, fabric & upholstery restoration</li>
-                <li>• Detailed treatment of wood, metal, and trim finishes</li>
-                <li>• Sanitization of galleys, lavatories & high-touch areas</li>
-              </ul>
-            </div>
-            
-            <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
-              <h3 className="text-lg font-semibold text-primary mb-3">Exterior Services</h3>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• Exterior dry-wash & degrease with aviation-safe products</li>
-                <li>• Brightwork polishing, paint correction, and paint protection treatments</li>
-                <li>• Landing gear, wheels & brake assemblies deep clean</li>
-                <li>• De-icing boot restoration & surface protection</li>
-              </ul>
-            </div>
           </div>
 
           {/* Main Gallery */}
