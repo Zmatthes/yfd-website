@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, ArrowLeft, Phone } from "lucide-react";
 import aviationImage1 from "@/assets/aviation-1.jpg";
 import aviationImage2 from "@/assets/aviation-2.jpg";
-import aviationImage3 from "@/assets/aviation-3.webp";
 import aviationDetailingImage from "@/assets/aviation-detailing.webp";
-import hangarDetail from "@/assets/hangar-detail.jpg";
 import jetCleaning from "@/assets/jet-cleaning.jpg";
-import jetDetail from "@/assets/jet-detail.jpg";
+import aviationNew1 from "@/assets/aviation-new-1.jpg";
+import aviationNew2 from "@/assets/aviation-new-2.jpg";
+import aviationNew3 from "@/assets/aviation-new-3.jpg";
+import aviationNew4 from "@/assets/aviation-new-4.jpg";
+import aviationNew5 from "@/assets/aviation-new-5.jpg";
 
 const AviationGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -27,11 +29,11 @@ const AviationGallery = () => {
       alt: ""
     },
     {
-      src: aviationImage3,
+      src: aviationNew1,
       alt: ""
     },
     {
-      src: hangarDetail,
+      src: aviationNew2,
       alt: ""
     },
     {
@@ -39,7 +41,15 @@ const AviationGallery = () => {
       alt: ""
     },
     {
-      src: jetDetail,
+      src: aviationNew3,
+      alt: ""
+    },
+    {
+      src: aviationNew4,
+      alt: ""
+    },
+    {
+      src: aviationNew5,
       alt: ""
     }
   ];
@@ -81,8 +91,8 @@ const AviationGallery = () => {
               Aviation Detailing
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Professional aircraft detailing services for both interior and exterior. 
-              We specialize in comprehensive cleaning and protection for private aircraft, 
+              Detailing services for both interior and exterior of the aircraft. 
+              Experienced in comprehensive cleaning and protection for private aircraft, 
               ensuring your investment maintains its pristine condition and value.
             </p>
           </div>
@@ -180,7 +190,7 @@ const AviationGallery = () => {
               </h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Contact us for a personalized quote based on your aircraft type and specific requirements. 
-                Every aviation detailing project is custom-tailored to ensure exceptional results.
+                Every aviation detailing project is custom-tailored to your aircraft, budget, and it's needs.
               </p>
               <Button 
                 variant="destructive"
