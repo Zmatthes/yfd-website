@@ -117,10 +117,11 @@ const AviationGallery = () => {
             <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
               <h3 className="text-lg font-semibold text-primary mb-3">Interior Services</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li>• Deep cleaning of all interior surfaces</li>
-                <li>• Leather conditioning and protection</li>
-                <li>• Carpet and upholstery restoration</li>
-                <li>• Dashboard and trim detailing</li>
+                <li>• Extensive cleaning of all cabin and cockpit surfaces</li>
+                <li>• Leather care: deep cleaning, conditioning & protection</li>
+                <li>• Carpet, fabric & upholstery restoration</li>
+                <li>• Detailed treatment of wood, metal, and trim finishes</li>
+                <li>• Sanitization of galleys, lavatories & high-touch areas</li>
               </ul>
             </div>
             
