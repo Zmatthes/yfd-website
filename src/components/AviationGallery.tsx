@@ -128,10 +128,10 @@ const AviationGallery = () => {
             <div className="bg-primary/5 rounded-lg p-6 border border-primary/20">
               <h3 className="text-lg font-semibold text-primary mb-3">Exterior Services</h3>
               <ul className="space-y-2 text-muted-foreground">
-                <li>• Complete exterior wash and decontamination</li>
-                <li>• Paint correction and protection</li>
-                <li>• Engine bay detailing</li>
-                <li>• Landing gear and wheel cleaning</li>
+                <li>• Exterior dry-wash & degrease with aviation-safe products</li>
+                <li>• Brightwork polishing, paint correction, and paint protection treatments</li>
+                <li>• Landing gear, wheels & brake assemblies deep clean</li>
+                <li>• De-icing boot restoration & surface protection</li>
               </ul>
             </div>
           </div>
