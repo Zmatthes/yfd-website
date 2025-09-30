@@ -50,7 +50,7 @@ const Hero = () => {
 
             {/* Tagline */}
             <p className="text-2xl md:text-3xl text-muted-foreground mb-8 font-medium italic">
-              "If you have the time, we have the shine!"
+              "The last detailer you'll ever need"
             </p>
 
             {/* Badge */}
