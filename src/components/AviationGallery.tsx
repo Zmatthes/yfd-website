@@ -11,6 +11,9 @@ import aviationNew2 from "@/assets/aviation-new-2.jpg";
 import aviationNew3 from "@/assets/aviation-new-3.jpg";
 import aviationNew4 from "@/assets/aviation-new-4.jpg";
 import aviationNew5 from "@/assets/aviation-new-5.jpg";
+import aviationBeforeAfter1 from "@/assets/aviation-before-after-1.jpg";
+import aviationBeforeAfter2 from "@/assets/aviation-before-after-2.jpg";
+import aviationBeforeAfter3 from "@/assets/aviation-before-after-3.jpg";
 
 const AviationGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,6 +53,18 @@ const AviationGallery = () => {
     },
     {
       src: aviationNew5,
+      alt: ""
+    },
+    {
+      src: aviationBeforeAfter1,
+      alt: ""
+    },
+    {
+      src: aviationBeforeAfter2,
+      alt: ""
+    },
+    {
+      src: aviationBeforeAfter3,
       alt: ""
     }
   ];
