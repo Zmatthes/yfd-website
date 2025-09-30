@@ -106,9 +106,9 @@ const AviationGallery = () => {
               Aviation Detailing
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Detailing services for both interior and exterior of the aircraft. 
-              Experienced in comprehensive cleaning and protection for private aircraft, 
-              ensuring your investment maintains its pristine condition and value.
+              We specialize in meticulous cleaning and protective treatments for private aircraft, 
+              helping you preserve both appearance and long-term value. Interior & exterior packages 
+              tailored to your aircraft. Contact us today for a custom quote.
             </p>
           </div>
 
