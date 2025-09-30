@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -13,6 +14,26 @@ import Footer from "@/components/Footer";
 import MobileNav from "@/components/MobileNav";
 
 const Index = () => {
+  const [showAviationGallery, setShowAviationGallery] = useState(false);
+
+  useEffect(() => {
+    const handleShowAviationGallery = () => {
+      setShowAviationGallery(true);
+    };
+
+    const handleHideAviationGallery = () => {
+      setShowAviationGallery(false);
+    };
+
+    window.addEventListener('show-aviation-gallery', handleShowAviationGallery);
+    window.addEventListener('hide-aviation-gallery', handleHideAviationGallery);
+
+    return () => {
+      window.removeEventListener('show-aviation-gallery', handleShowAviationGallery);
+      window.removeEventListener('hide-aviation-gallery', handleHideAviationGallery);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
@@ -21,7 +42,7 @@ const Index = () => {
       <div className="space-y-8">
         <About />
         <Services />
-        <AviationGallery />
+        {showAviationGallery && <AviationGallery />}
         <Gallery />
         <Pricing />
         <QuoteWizard />

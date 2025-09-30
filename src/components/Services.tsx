@@ -156,8 +156,12 @@ const Services = () => {
                       className="w-full mt-auto"
                       onClick={() => {
                         if (service.isAviation) {
-                          const element = document.getElementById('aviation-gallery');
-                          element?.scrollIntoView({ behavior: 'smooth' });
+                          const event = new CustomEvent('show-aviation-gallery');
+                          window.dispatchEvent(event);
+                          setTimeout(() => {
+                            const element = document.getElementById('aviation-gallery');
+                            element?.scrollIntoView({ behavior: 'smooth' });
+                          }, 100);
                         } else {
                           const element = document.getElementById('quote-wizard');
                           element?.scrollIntoView({ behavior: 'smooth' });

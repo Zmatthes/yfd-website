@@ -79,8 +79,12 @@ const AviationGallery = () => {
   };
 
   const goBack = () => {
-    const element = document.getElementById('services');
-    element?.scrollIntoView({ behavior: 'smooth' });
+    const event = new CustomEvent('hide-aviation-gallery');
+    window.dispatchEvent(event);
+    setTimeout(() => {
+      const element = document.getElementById('services');
+      element?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   return (
