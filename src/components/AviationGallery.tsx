@@ -14,6 +14,8 @@ import aviationNew5 from "@/assets/aviation-new-5.jpg";
 import aviationBeforeAfter1 from "@/assets/aviation-before-after-1.jpg";
 import aviationBeforeAfter2 from "@/assets/aviation-before-after-2.jpg";
 import aviationBeforeAfter3 from "@/assets/aviation-before-after-3.jpg";
+import aircraftNew1 from "@/assets/aircraft-new-1.jpg";
+import aircraftNew2 from "@/assets/aircraft-new-2.jpg";
 
 const AviationGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -62,6 +64,14 @@ const AviationGallery = () => {
     {
       src: aviationBeforeAfter3,
       alt: ""
+    },
+    {
+      src: aircraftNew1,
+      alt: ""
+    },
+    {
+      src: aircraftNew2,
+      alt: ""
     }
   ];
 
@@ -95,7 +105,7 @@ const AviationGallery = () => {
           <div className="text-center mb-16">
             
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Aviation Detailing
+              Aircraft Detailing
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
               Yes, we do aircraft too! Comprehensive aircraft detailing services — precision cleaning and protective treatments that preserve both appearance and long-term value of your investment.
