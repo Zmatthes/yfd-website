@@ -40,10 +40,6 @@ const AviationGallery = () => {
       alt: ""
     },
     {
-      src: jetCleaning,
-      alt: ""
-    },
-    {
       src: aviationNew3,
       alt: ""
     },
