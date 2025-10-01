@@ -10,6 +10,7 @@ import {
   Plane
 } from "lucide-react";
 import aviationImage from "@/assets/aviation-detailing.webp";
+import { getAssetPath } from "@/lib/assets";
 
 const Services = () => {
   const services = [
@@ -19,7 +20,7 @@ const Services = () => {
       description: "Complete multi-stage wash including bug and tar removal, wheels including wheel wells, and fender liners, followed by a safe two-bucket hand wash. Tires are dressed, trim is renewed, and a 6-month professional paint sealant is applied to both paint and wheels for lasting protection, hydrophobicity, and a deep, glossy finish.",
       features: [],
       popular: false,
-      image: "/lovable-uploads/d6f938e6-fa9e-41ec-b29b-65c1759c5109.png"
+      image: getAssetPath("/lovable-uploads/d6f938e6-fa9e-41ec-b29b-65c1759c5109.png")
     },
     {
       icon: Sparkles,
@@ -27,7 +28,7 @@ const Services = () => {
       description: "Give your vehicle a true reset. Our restorative interior detail goes far beyond a standard cleaning, targeting years of buildup, stains, odors, and wear. We deep clean every surface — carpets, seats, vents, trim, and headliner — using professional tools and extraction methods to lift out dirt and refresh fabrics. Leather and vinyl are reconditioned, plastics are restored, and hard-to-reach areas get the same attention as the obvious ones.",
       features: [],
       popular: false,
-      image: "/lovable-uploads/281f810c-9383-4f71-865c-87b7f0c75a91.png"
+      image: getAssetPath("/lovable-uploads/281f810c-9383-4f71-865c-87b7f0c75a91.png")
     },
     {
       icon: Brush,
@@ -35,7 +36,7 @@ const Services = () => {
       description: "Paint correction is the process of safely removing surface imperfections — like swirl marks, light scratches, oxidation, water spots, and haze — to restore depth, clarity, and gloss to your vehicle's finish. Using professional compounds, polishers, and lighting, we carefully level the clear coat to reveal a smooth, mirror-like surface.\n\nThis service goes beyond a wax or sealant; it permanently improves the paint by removing defects rather than covering them up. Perfect for anyone wanting to revive dull, tired paint or prepare their vehicle for ceramic coating.",
       features: [],
       popular: false,
-      image: "/lovable-uploads/55de000b-9398-4de3-a167-332e88c75bda.png"
+      image: getAssetPath("/lovable-uploads/55de000b-9398-4de3-a167-332e88c75bda.png")
     },
     {
       icon: Droplet,
@@ -43,7 +44,7 @@ const Services = () => {
       description: "Ceramic coating creates a semi-permanent, glass-like layer of protection that bonds directly to your vehicle's paint. It guards against UV damage, chemicals, and environmental fallout while adding unmatched gloss and slickness. Your vehicle stays cleaner longer, water beads effortlessly, and washing becomes easier than ever.",
       features: [],
       popular: false,
-      image: "/lovable-uploads/3d321eca-bb73-442b-b36d-4599afcaa1a7.png"
+      image: getAssetPath("/lovable-uploads/3d321eca-bb73-442b-b36d-4599afcaa1a7.png")
     },
     {
       icon: Plane,

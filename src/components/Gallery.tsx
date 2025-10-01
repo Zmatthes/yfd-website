@@ -9,19 +9,20 @@ import detailWork3 from "@/assets/detail-work-3.jpg";
 import hangarDetail from "@/assets/hangar-detail.jpg";
 import jetCleaning from "@/assets/jet-cleaning.jpg";
 import jetDetail from "@/assets/jet-detail.jpg";
+import { getAssetPath } from "@/lib/assets";
 
 const Gallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
   const images = [
-    { src: '/lovable-uploads/c69fc324-772a-40f9-ba6c-30d415cab15e.png' },
-    { src: '/lovable-uploads/aa258f0a-05e3-41d4-b750-a2b53d2f8fba.png' },
-    { src: '/lovable-uploads/a62b8403-66d2-47a0-aed8-69fc36ab6b05.png' },
-    { src: '/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png' },
-    { src: '/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png' },
-    { src: '/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png' },
-    { src: '/lovable-uploads/50196e7d-e181-45cd-88e7-c3ee3124143c.png' },
-    { src: '/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png' }
+    { src: getAssetPath('/lovable-uploads/c69fc324-772a-40f9-ba6c-30d415cab15e.png') },
+    { src: getAssetPath('/lovable-uploads/aa258f0a-05e3-41d4-b750-a2b53d2f8fba.png') },
+    { src: getAssetPath('/lovable-uploads/a62b8403-66d2-47a0-aed8-69fc36ab6b05.png') },
+    { src: getAssetPath('/lovable-uploads/7bd6cc3f-8d37-4a93-8291-e192b451010a.png') },
+    { src: getAssetPath('/lovable-uploads/24ac8cf9-dab3-4fc1-a78b-82f448baa1fe.png') },
+    { src: getAssetPath('/lovable-uploads/10e9f03f-e8a0-42fb-965a-5dfb34fa659c.png') },
+    { src: getAssetPath('/lovable-uploads/50196e7d-e181-45cd-88e7-c3ee3124143c.png') },
+    { src: getAssetPath('/lovable-uploads/c1dfd628-32fa-443f-bbd5-833d9a400951.png') }
   ];
 
   const nextImage = () => {

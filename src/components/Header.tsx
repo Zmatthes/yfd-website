@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Phone, Instagram, MapPin } from "lucide-react";
+import { getAssetPath } from "@/lib/assets";
 
 const Header = () => {
   const scrollToSection = (sectionId: string) => {
@@ -16,7 +17,7 @@ const Header = () => {
           className="flex items-center space-x-3 hover:opacity-80 transition-smooth"
         >
           <img 
-            src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
+            src={getAssetPath("/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png")}
             alt="Your Favorite Detailer Logo - Professional Mobile Auto Detailing Denver Metro"
             className="h-10 w-10"
           />

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Instagram, Phone, Mail, MapPin, Heart, Facebook } from "lucide-react";
+import { getAssetPath } from "@/lib/assets";
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
@@ -19,7 +20,7 @@ const Footer = () => {
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <img 
-                  src="/lovable-uploads/1dee44ec-18e0-40dd-a213-fd82464a4206.png" 
+                  src={getAssetPath("/lovable-uploads/1dee44ec-18e0-40dd-a213-fd82464a4206.png")}
                   alt="Your Favorite Detailer Logo" 
                   className="h-12 w-12"
                 />

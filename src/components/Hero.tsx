@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star, MapPin } from "lucide-react";
 import heroImage from "@/assets/hero-detailed-car.jpg";
+import { getAssetPath } from "@/lib/assets";
 
 const Hero = () => {
   const scrollToSection = (sectionId: string) => {
@@ -18,14 +19,14 @@ const Hero = () => {
               {/* Dirty/hidden logo base */}
               <div className="relative max-w-full max-h-[80vh] w-auto h-auto">
                 <img 
-                  src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
+                  src={getAssetPath("/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png")}
                   alt="Your Favorite Detailer logo"
                   className="max-w-full max-h-[80vh] w-auto h-auto object-contain opacity-20 blur-[2px] grayscale"
                 />
                 
                 {/* Clean logo with simple glow animation */}
                 <img 
-                  src="/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png" 
+                  src={getAssetPath("/lovable-uploads/f5e6d722-ea01-4b5d-a2dc-5c18c8b24d49.png")}
                   alt="Your Favorite Detailer logo - Professional mobile auto detailing Denver Metro Commerce City"
                   className="absolute inset-0 max-w-full max-h-[80vh] w-auto h-auto object-contain drop-shadow-2xl animate-red-glow-pulse"
                 />
