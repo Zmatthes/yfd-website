@@ -81,7 +81,7 @@ export default {
 			fontFamily: {
 				'display': ['Oswald', 'Inter', 'system-ui', 'sans-serif'],
 				'body': ['Oswald', 'Inter', 'system-ui', 'sans-serif'],
-				'logo': ['Bebas Neue', 'Impact', 'Arial Black', 'sans-serif']
+				'logo': ['Anton', 'Impact', 'Arial Black', 'sans-serif']
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
