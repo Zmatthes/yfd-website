@@ -20,9 +20,9 @@ const Footer = () => {
             <div className="lg:col-span-2">
               <div className="flex items-center gap-3 mb-4">
                 <img 
-                  src={getAssetPath("/lovable-uploads/c4a62878-854e-47d0-8f45-5d85832f0f70.png")}
+                  src="/lovable-uploads/yfd-logo.png"
                   alt="Your Favorite Detailer Logo" 
-                  className="h-12 w-12 object-contain"
+                  className="h-16 w-16 object-contain"
                 />
                 <h3 className="text-2xl font-bold text-foreground">
                   Your Favorite <span className="text-red-500">Detailer</span>
@@ -162,7 +162,7 @@ const Footer = () => {
         <div className="py-6 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-              <span>© {currentYear} Your Favorite Detailer. "If you have the time, we have the shine!" Made with</span>
+              <span>© {currentYear} Your Favorite Detailer. "The last detailer you'll ever need!" Made with</span>
               <Heart className="h-4 w-4 text-primary fill-current" />
               <span>in Denver, Colorado.</span>
             </div>
