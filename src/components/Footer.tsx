@@ -162,7 +162,7 @@ const Footer = () => {
         <div className="py-6 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-              <span>© {currentYear} Your Favorite Detailer. Made with</span>
+              <span>© {currentYear} Your Favorite Detailer. "If you have the time, we have the shine!" Made with</span>
               <Heart className="h-4 w-4 text-primary fill-current" />
               <span>in Denver, Colorado.</span>
             </div>
