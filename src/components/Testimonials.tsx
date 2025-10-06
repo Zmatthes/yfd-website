@@ -1,7 +1,17 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 
 const Testimonials = () => {
+  const [expandedReviews, setExpandedReviews] = useState<number[]>([]);
+
+  const toggleReview = (id: number) => {
+    setExpandedReviews(prev => 
+      prev.includes(id) ? prev.filter(reviewId => reviewId !== id) : [...prev, id]
+    );
+  };
+
   const testimonials = [
     {
       id: 1,
@@ -216,28 +226,45 @@ const Testimonials = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.filter(t => t.text).map((testimonial) => (
-              <Card key={testimonial.id} className="p-6 bg-gradient-card border-border hover:shadow-luxury transition-smooth group">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-1">
-                    {renderStars(testimonial.rating)}
-                  </div>
-                  
-                  <p className="text-muted-foreground leading-relaxed line-clamp-4">
-                    "{testimonial.text}"
-                  </p>
-                  
-                  <div className="border-t border-border pt-4">
-                    <div className="font-semibold text-foreground">
-                      {testimonial.name}
+            {testimonials.filter(t => t.text).map((testimonial) => {
+              const isExpanded = expandedReviews.includes(testimonial.id);
+              const shouldShowButton = testimonial.text.length > 150;
+              
+              return (
+                <Card key={testimonial.id} className="p-6 bg-gradient-card border-border hover:shadow-luxury transition-smooth group">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-1">
+                      {renderStars(testimonial.rating)}
                     </div>
-                    <div className="text-sm text-muted-foreground">
-                      {testimonial.location}
+                    
+                    <div>
+                      <p className={`text-muted-foreground leading-relaxed ${!isExpanded && shouldShowButton ? 'line-clamp-4' : ''}`}>
+                        "{testimonial.text}"
+                      </p>
+                      {shouldShowButton && (
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => toggleReview(testimonial.id)}
+                          className="mt-2 text-primary hover:text-primary/80 p-0 h-auto font-semibold"
+                        >
+                          {isExpanded ? 'Show Less' : 'Read More'}
+                        </Button>
+                      )}
+                    </div>
+                    
+                    <div className="border-t border-border pt-4">
+                      <div className="font-semibold text-foreground">
+                        {testimonial.name}
+                      </div>
+                      <div className="text-sm text-muted-foreground">
+                        {testimonial.location}
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
 
           {/* Call to Action */}

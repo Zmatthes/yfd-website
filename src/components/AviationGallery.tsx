@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ArrowLeft, Phone } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight, ArrowLeft, Phone, ZoomIn } from "lucide-react";
 import aviationImage1 from "@/assets/aviation-1.jpg";
 import aviationImage2 from "@/assets/aviation-2.jpg";
 import aviationDetailingImage from "@/assets/aviation-detailing.webp";
@@ -19,6 +20,8 @@ import aircraftNew2 from "@/assets/aircraft-new-2.jpg";
 
 const AviationGallery = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalImageIndex, setModalImageIndex] = useState(0);
 
   const images = [
     {
@@ -93,6 +96,19 @@ const AviationGallery = () => {
     }, 100);
   };
 
+  const openModal = (index: number) => {
+    setModalImageIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const nextModalImage = () => {
+    setModalImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevModalImage = () => {
+    setModalImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <section id="aviation-gallery" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -162,10 +178,10 @@ const AviationGallery = () => {
             {images.map((image, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all ${
+                onClick={() => openModal(index)}
+                className={`relative aspect-video rounded-lg overflow-hidden border-2 transition-all group ${
                   index === currentIndex 
-                    ? 'border-primary shadow-lg scale-105' 
+                    ? 'border-primary shadow-lg' 
                     : 'border-border hover:border-primary/50'
                 }`}
               >
@@ -174,12 +190,54 @@ const AviationGallery = () => {
                   alt=""
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
+                  <ZoomIn className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
                 {index === currentIndex && (
                   <div className="absolute inset-0 bg-primary/20" />
                 )}
               </button>
             ))}
           </div>
+
+          {/* Image Modal */}
+          <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+            <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-black/95 border-0">
+              <div className="relative w-full h-[90vh] flex items-center justify-center">
+                <img 
+                  src={images[modalImageIndex].src}
+                  alt=""
+                  className="max-w-full max-h-full object-contain"
+                />
+                
+                {/* Navigation Buttons */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={prevModalImage}
+                  className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white border-0"
+                >
+                  <ChevronLeft className="w-8 h-8" />
+                </Button>
+                
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={nextModalImage}
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white border-0"
+                >
+                  <ChevronRight className="w-8 h-8" />
+                </Button>
+
+                {/* Image Counter */}
+                <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-black/70 px-4 py-2 rounded-lg">
+                  <p className="text-sm text-white">
+                    {modalImageIndex + 1} of {images.length}
+                  </p>
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
 
           {/* Call to Action */}
           <div className="text-center">

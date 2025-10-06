@@ -602,7 +602,7 @@ const QuoteWizard = () => {
                 <Button
                   onClick={handleDetailServicesClick}
                   disabled={!year || !make || !model || !vehicleType}
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-xl font-bold cursor-pointer"
+                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-base sm:text-xl font-bold cursor-pointer px-2 sm:px-4"
                 >
                   CERAMIC COATING & PAINT CORRECTION
                 </Button>
